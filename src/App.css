@@ -1,0 +1,19 @@
+/* App.css */
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.App {
+  text-align: center; /* Centers the content */
+  min-height: 100vh; /* Minimum height to cover the viewport height */
+  display: flex;
+  flex-direction: column; /* Stack children components vertically */
+  align-items: center; /* Center-align children components */
+  justify-content: flex-start; /* Align children to the start of the main axis */
+  background-color: #f4f4f4; /* Light background for the entire app */
+}
+
+/* Additional global styles or specific ones can be added here depending on your design needs */

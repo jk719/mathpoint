@@ -1,0 +1,81 @@
+/* Container settings for grade selection, centered alignment */
+.grade-selection {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Flex container for grade buttons, centers them and defines space between */
+.grades-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px; /* Space between circular buttons */
+}
+
+/* Styling for circular grade selection buttons */
+.grade-button {
+  width: 100px; /* Width and height set to 100px to form a circle */
+  height: 100px;
+  line-height: 100px; /* Align text vertically within the circle */
+  border-radius: 50%; /* 50% border-radius to create a perfect circle */
+  border: none;
+  background-color: #007bff; /* Primary blue color for the button */
+  color: white; /* White text for contrast */
+  font-size: 1.5rem; /* Large text size to fit the button */
+  text-align: center;
+  cursor: pointer; /* Cursor pointer to indicate the button is clickable */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+/* Hover effect for grade buttons - changes background color */
+.grade-button:hover {
+  background-color: #0056b3; /* Darker shade of blue on hover */
+}
+
+/* Main container for math questions, with smooth opacity transition */
+.math-questions {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+  border-radius: 8px; /* Rounded corners */
+  background-color: #fff; /* White background for clarity */
+  font-size: 1.2rem; /* Base font size for text elements */
+}
+
+/* Transition effects for showing and hiding question section */
+.question-section {
+  transition: opacity 0.5s ease-in-out; /* Smooth transition for opacity change */
+  opacity: 0; /* Start invisible and fade in */
+}
+
+/* Styling for sections containing questions and answer options */
+.question-section {
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.5s ease-in-out; /* Transition for smooth fade-in effect */
+}
+
+
+/* Styling for question text, bold and larger for emphasis */
+.question-text {
+  margin-bottom: 20px;
+  font-size: 1.5rem; /* Larger font size for questions */
+  font-weight: bold; /* Bold for emphasis */
+}
+
+/* General button styling for answer options, ensuring interactive feedback */
+.button {
+  padding: 10px 20px; /* Adequate padding for clickable area */
+  margin-right: 10px; /* Space between buttons */
+  border: none; /* No border for cleaner appearance */
+  background-color: #007bff; /* Consistent color theme with grade buttons */
+  color: white; /* White text for contrast */
+  border-radius: 8px; /* Rounded corners */
+  cursor: pointer; /* Indicates a clickable element */
+  font-size: 1.3rem; /* Slightly larger font size for readability */
+  transition: background-color 0.3s; /* Color change on hover */
+}
+
+/* Hover effect for answer buttons, gives visual feedback */
+.button:hover {
+  background-color: #0056b3; /* Darker blue on interaction */
+}

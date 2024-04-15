@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* General header styling */
+.site-header {
+    background-color: #f8f9fa; /* Light gray background, or choose your color */
+    padding: 1rem 0; /* Top and bottom padding */
+    display: flex; /* Align the title and navigation side by side */
+    justify-content: space-between; /* Space out the title and navigation */
+    align-items: center; /* Vertically center the content */
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1); /* Optional: adds a subtle shadow for depth */
+}
+
+/* Header title styling */
+.header-title {
+    font-family: 'Roboto', sans-serif; /* Roboto font for the title */
+    font-size: 48px; /* Large font size for the title */
+    font-weight: 700; /* Bold font weight */
+    color: #0056b3; /* Blue color for the title, adjust as needed */
+    margin-left: 1rem; /* Space from the left edge */
+}
+
+/* Navigation menu styling */
+.header-nav ul {
+    list-style-type: none; /* Remove default list styling */
+    margin: 0; /* Reset default margin */
+    padding: 0; /* Reset default padding */
+    display: flex; /* Display list items inline */
+}
+
+.header-nav li {
+    padding: 0 20px; /* Horizontal padding between menu items */
+}
+
+.header-nav a {
+    text-decoration: none; /* Remove the underline from links */
+    color: #007bff; /* Blue color for links, adjust as needed */
+    font-size: 1.2rem; /* Size of the navigation links */
+    transition: color 0.3s ease-in-out; /* Smooth color transition for hover effect */
+}
+
+.header-nav a:hover,
+.header-nav a:focus {
+    color: #0056b3; /* Darker blue for hover and focus states */
+}
+
+/* Responsive adjustments (optional) */
+@media (max-width: 768px) {
+    .site-header {
+        flex-direction: column; /* Stack title and navigation on smaller screens */
+    }
+
+    .header-title {
+        margin-bottom: 1rem; /* Space between title and navigation on smaller screens */
+    }
+
+    .header-nav li {
+        padding: 0 10px; /* Less padding on smaller screens */
+    }
+}

@@ -1,0 +1,16 @@
+/* AboutSection.css */
+.about-section {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f4f4f4; /* Example background color */
+    border-radius: 8px;
+}
+
+.about-section h2, .about-section h3 {
+    color: #333;
+}
+
+.about-section p {
+    color: #666;
+    line-height: 1.6;
+}

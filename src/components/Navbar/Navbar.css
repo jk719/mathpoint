@@ -1,0 +1,42 @@
+/* Navbar.css */
+.navbar {
+    background: #004d99;  /* A deep blue background */
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-logo {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.5em; /* Large, easy-to-read text */
+}
+
+.navbar-menu {
+    list-style: none;
+    display: flex;
+    margin: 0;
+}
+
+.navbar-item {
+    padding: 0 20px;
+}
+
+.navbar-links {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1em;
+}
+
+.navbar-links:hover {
+    color: #ffc800;  /* Change color on hover for better user interaction */
+}

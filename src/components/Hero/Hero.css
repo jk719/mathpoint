@@ -1,0 +1,33 @@
+.hero {
+    position: relative;
+    width: 100%;
+    height: auto; /* You can set a specific height if you prefer */
+    display: flex;
+    align-items: center; /* Centers content vertically */
+    justify-content: center; /* Centers content horizontally */
+    text-align: center; /* Ensures text is centered */
+}
+
+.hero-image {
+    width: 100%;
+    height: auto; /* Adjust height if necessary to maintain aspect ratio */
+    display: block;
+    opacity: 0.8; /* Optional: decreases the image opacity for better text visibility */
+}
+
+.signup-button {
+    position: absolute;
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjusts the positioning to be exactly center */
+    padding: 10px 20px;
+    font-size: 18px; /* Adjust font size as needed */
+    color: white;
+    background-color: #007bff; /* Example blue background color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase; /* Optional: styles the text to be uppercase */
+    letter-spacing: 1px; /* Optional: increases spacing between letters */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Optional: adds a subtle shadow for better visibility */
+}
