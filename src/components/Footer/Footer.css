@@ -1,15 +1,29 @@
+/* Footer.css */
 .footer {
-    background-color: #f8f9fa;
-    text-align: center;
-    padding: 20px 0;
-    border-top: 1px solid #ccc;
+    width: 100%;
+    padding: 20px 30px; /* Adjust padding to give more space */
+    background-color: black; /* Dark background for contrast */
+    color: white; /* Text color for readability */
+    text-align: center; /* Center-align all text */
+    font-family: 'Roboto', sans-serif; /* Consistent font with the header */
+    font-size: 0.8rem; /* Manageable font size for footer content */
+    border-top: 1px solid #444; /* Subtle top border for stylistic separation */
 }
 
 .footer p {
-    margin: 5px;
-    color: #333;
+    margin: 10px 0; /* Vertical spacing between paragraphs */
 }
 
 .footer a {
-    color: #007bff;
+    color: #009688; /* Stylish color for links (change as needed) */
+    text-decoration: none; /* No underline for a cleaner look */
+}
+
+.footer a:hover {
+    color: #00bcd4; /* Lighter color on hover for interaction feedback */
+}
+
+.footer-address {
+    margin-bottom: 15px; /* Additional space below the address */
+    font-weight: bold; /* Emphasize the address for visibility */
 }

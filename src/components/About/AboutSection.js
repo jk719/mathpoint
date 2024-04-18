@@ -1,6 +1,6 @@
 // AboutSection.js
 import React from 'react';
-import './AboutSection.css'; // Ensure the CSS file is linked
+import './AboutSection.css'; // Ensure the CSS file is linked for styling
 
 function AboutSection() {
     return (

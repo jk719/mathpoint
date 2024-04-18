@@ -8,7 +8,7 @@
 }
 
 .about-item {
-    background: #ffffff;
+    background: #ffffff; /* Default background */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -17,9 +17,17 @@
     text-align: center;
 }
 
+/* Applying unique background colors to each item */
+.about-item:nth-child(1) { background-color: #ffadad; }
+.about-item:nth-child(2) { background-color: #ffd6a5; }
+.about-item:nth-child(3) { background-color: #fdffb6; }
+.about-item:nth-child(4) { background-color: #caffbf; }
+.about-item:nth-child(5) { background-color: #9bf6ff; }
+.about-item:nth-child(6) { background-color: #a0c4ff; }
+
 .about-item:hover {
     transform: translateY(-5px);
-    background-color: #e8f0fe;
+    background-color: #e8f0fe; /* This will be overridden by hover-specific colors if added */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
