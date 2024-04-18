@@ -1,16 +1,42 @@
 /* AboutSection.css */
-.about-section {
-    margin: 20px;
+.about-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
     padding: 20px;
-    background-color: #f4f4f4; /* Example background color */
+    background-color: #f4f4f4;
+}
+
+.about-item {
+    background: #ffffff;
+    padding: 20px;
     border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    text-align: center;
 }
 
-.about-section h2, .about-section h3 {
+.about-item:hover {
+    transform: translateY(-5px);
+    background-color: #e8f0fe;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.about-item h3 {
+    font-size: 24px; /* Enlarged font size */
     color: #333;
+    margin-bottom: 15px;
 }
 
-.about-section p {
+.about-item p {
+    font-size: 18px; /* Enlarged font size */
     color: #666;
     line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .about-container {
+        grid-template-columns: 1fr;
+    }
 }

@@ -8,10 +8,10 @@ import './App.css'; // Main stylesheet for App
 function App() {
     return (
         <div className="App">
-            <Navbar />  // Navigation bar at the top of the page
-            <Hero />    // Hero section for impactful visual introduction
-            <AboutSection />  // Detailed about section with comprehensive info about MathPoint
-            <Footer />  // Footer at the bottom of the page with additional links and information
+            <Navbar /> {/* Navigation bar at the top of the page */}
+            <Hero />   {/* Hero section for impactful visual introduction */}
+            <AboutSection /> {/* Detailed about section with comprehensive info about MathPoint */}
+            <Footer /> {/* Footer at the bottom of the page with additional links and information */}
         </div>
     );
 }

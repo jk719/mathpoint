@@ -1,0 +1,12 @@
+.start-quiz-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.hero-content li {
+    margin: 10px 0;
+    padding: 5px 10px;
+    background-color: #f4f4f4;
+    list-style: none;
+}
