@@ -1,4 +1,6 @@
 /* General styles for the hero container */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 .hero {
     position: relative;
     width: 100%;
@@ -15,7 +17,7 @@
 
 /* Applying pixelated font style to all elements within .hero */
 .hero * {
-    font-family: 'Press Start 2P', cursive; /* Pixelated 'Press Start 2P' font */
+    font-family: 'Press Start 2P', cursive;
     -webkit-filter: pixelate(5px); /* Chrome, Safari, Opera */
     filter: pixelate(5px); /* Standard syntax */
 }
