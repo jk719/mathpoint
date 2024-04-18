@@ -10,31 +10,23 @@
     padding: 0 20px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.3); /* Slight shadow for depth */
     position: sticky;
-    top: 0; /* Aligns the navbar to the top of the viewport */
+    top: 0; /* Keeps the navbar at the top of the viewport */
     z-index: 1000; /* Ensures the navbar stays above other content */
-    transition: background-color 0.3s ease; /* Smooth transition for bg color change */
 }
 
-/* Logo styles, if using an image */
+/* Logo styles, if using an image in the navbar */
 .navbar-logo img {
-    height: 50px; /* Or the height that fits your logo */
+    height: 50px; /* Adjust height to fit your design */
     width: auto; /* Maintain aspect ratio */
-    cursor: pointer; /* Indicates the logo is clickable */
-}
-
-/* If using a text logo, you can style it like this */
-.navbar-logo h1 {
-    font-size: 1.5em; /* Size of your text logo */
-    font-weight: bold; /* Weight of the logo text */
     cursor: pointer; /* Indicates the logo is clickable */
 }
 
 /* Styles for navigation menu items */
 .navbar-menu {
     display: flex;
-    list-style-type: none; /* Remove bullet points */
-    margin: 0; /* Remove default margin */
-    padding: 0; /* Remove default padding */
+    list-style-type: none; /* Removes default list styling */
+    margin: 0;
+    padding: 0;
 }
 
 .navbar-item {
@@ -50,27 +42,43 @@
 }
 
 .navbar-links:hover, .navbar-links:focus {
-    color: #ffc800; /* Highlight color when hovering or focused */
+    color: #45a049; /* Highlight color when hovering or focused */
+}
+
+/* Menu icon for mobile view */
+.menu-icon {
+    display: none; /* Hidden by default */
+    cursor: pointer;
 }
 
 /* Responsive navbar adjustments */
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
-        height: auto;
+        height: auto; /* Allows the navbar to expand vertically on smaller screens */
+        padding: 10px 0;
     }
 
     .navbar-menu {
         flex-direction: column;
-        width: 100%; /* Full width on small screens */
+        width: 100%; /* Full width to better accommodate vertical layout */
+        display: none; /* Initially hide the menu on mobile */
+    }
+
+    .navbar-menu.expanded {
+        display: flex; /* Show the menu when it's expanded */
     }
 
     .navbar-item {
-        width: 100%; /* Each item takes full width */
-        text-align: center; /* Center items text */
+        width: 100%; /* Full width items for easier touch */
+        text-align: center; /* Center the text for a cleaner look */
+        padding: 10px 0; /* Vertical padding for each item */
     }
 
-    .navbar-logo, .navbar-menu {
-        margin-bottom: 10px; /* Add some space between logo and menu */
+    .menu-icon {
+        display: block; /* Show the menu icon on mobile */
+        position: absolute;
+        right: 20px; /* Position to the right */
+        top: 15px; /* Align with the top of the navbar */
     }
 }

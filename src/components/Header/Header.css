@@ -1,59 +1,91 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+/* Header.css */
 
-/* General header styling */
-.site-header {
-    background-color: #f8f9fa; /* Light gray background, or choose your color */
-    padding: 1rem 0; /* Top and bottom padding */
-    display: flex; /* Align the title and navigation side by side */
-    justify-content: space-between; /* Space out the title and navigation */
-    align-items: center; /* Vertically center the content */
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1); /* Optional: adds a subtle shadow for depth */
+
+
+
+.header {
+    width: 100%; /* This sets the header to take up the full width of its parent */
+    max-width: 100vw; /* This can help if there's a horizontal scroll issue */
+    box-sizing: border-box; /* Ensures that padding and border are included in the width */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    background-color: black; /* Sets the header background to black */
 }
 
-/* Header title styling */
-.header-title {
-    font-family: 'Roboto', sans-serif; /* Roboto font for the title */
-    font-size: 48px; /* Large font size for the title */
-    font-weight: 700; /* Bold font weight */
-    color: #0056b3; /* Blue color for the title, adjust as needed */
-    margin-left: 1rem; /* Space from the left edge */
+.header-content {
+    display: flex;
+    justify-content: center; /* Centers the navigation links and logo */
+    align-items: center;
+    flex-grow: 1; /* Allows the header content to fill the space */
 }
 
-/* Navigation menu styling */
-.header-nav ul {
-    list-style-type: none; /* Remove default list styling */
-    margin: 0; /* Reset default margin */
-    padding: 0; /* Reset default padding */
-    display: flex; /* Display list items inline */
+.site-logo {
+    height: auto;
+    width: 300px; /* Adjust width as necessary to fit your design */
 }
 
-.header-nav li {
-    padding: 0 20px; /* Horizontal padding between menu items */
+.navbar {
+    display: flex;
+    justify-content: center; /* This will center the navbar items */
+    align-items: center;
+    flex-grow: 1; /* This will allow the navbar to grow and utilize available space */
 }
 
-.header-nav a {
-    text-decoration: none; /* Remove the underline from links */
-    color: #007bff; /* Blue color for links, adjust as needed */
-    font-size: 1.2rem; /* Size of the navigation links */
-    transition: color 0.3s ease-in-out; /* Smooth color transition for hover effect */
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem; /* Increased font size for visibility */
+    padding: 15px; /* Increased padding for a larger clickable area */
+    margin: 0 10px; /* Centers the links with equal margin on both sides */
 }
 
-.header-nav a:hover,
-.header-nav a:focus {
-    color: #0056b3; /* Darker blue for hover and focus states */
+.signup-button {
+    padding: 10px 20px;  /* Original padding */
+    font-size: 1rem;     /* Original font size */
+    background-color: red;  /* Eye-catching green */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-left: 20px;  /* Space between the navbar and button */
+    transition: background-color 0.3s ease;  /* Smooth transition for hover effect */
 }
 
-/* Responsive adjustments (optional) */
+.signup-button:hover {
+    background-color: #45a049;  /* Darker green on hover */
+}
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
-    .site-header {
-        flex-direction: column; /* Stack title and navigation on smaller screens */
+    .header {
+        padding: 10px; /* Less padding on smaller screens */
     }
 
-    .header-title {
-        margin-bottom: 1rem; /* Space between title and navigation on smaller screens */
+    .site-logo {
+        width: 120px; /* Smaller logo on smaller screens */
     }
 
-    .header-nav li {
-        padding: 0 10px; /* Less padding on smaller screens */
+    .navbar a, .signup-button {
+        font-size: 1rem; /* Smaller font size for smaller screens */
+        padding: 8px 10px; /* Smaller padding on smaller screens */
+    }
+
+    .navbar {
+        /* Adjust navbar styling for smaller screens */
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .header-content {
+        justify-content: space-around; /* Adjust content spacing for mobile */
+    }
+
+    .signup-button {
+        font-size: 1rem;   /* Keep font size consistent on mobile */
+        padding: 10px 20px;  /* Maintain original padding on smaller screens */
     }
 }

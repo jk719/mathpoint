@@ -1,4 +1,3 @@
-/* The overlay that fills the entire screen */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -7,24 +6,22 @@
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.6); /* Dark semi-transparent background */
     display: flex;
-    align-items: center; /* Align vertically */
-    justify-content: center; /* Align horizontally */
-    z-index: 1000; /* High z-index to be on top of other content */
+    align-items: center; /* Center the modal vertically */
+    justify-content: center; /* Center the modal horizontally */
+    z-index: 1000; /* High z-index to ensure it is on top of other content */
 }
 
-/* The modal box */
 .modal-content {
+    position: relative;
     background: #fff; /* Light background for the content */
-    border-radius: 10px; /* Rounded corners for the modal */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
-    padding: 20px; /* Padding inside the modal */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Shadow for a slight depth effect */
+    padding: 20px;
     max-width: 600px; /* Maximum width of the modal */
-    width: 90%; /* Full width on small screens, up to max-width */
-    z-index: 1001; /* Above the overlay */
-    position: relative; /* For absolute positioning of the close button */
+    width: 90%; /* Full width on smaller screens, up to max-width */
+    z-index: 1001; /* Ensures content is above the overlay */
 }
 
-/* The close button in the top-right corner */
 .close-button {
     position: absolute;
     top: 10px;
@@ -33,55 +30,4 @@
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
-}
-
-/* Styles for the form within the modal */
-.modal-content form {
-    display: flex;
-    flex-direction: column;
-}
-
-/* Style for form labels */
-.modal-content form label {
-    font-size: 1rem;
-    color: #333;
-    margin-bottom: 0.5rem;
-}
-
-/* Style for form inputs */
-.modal-content form input,
-.modal-content form select {
-    font-size: 1rem;
-    padding: 10px;
-    margin-bottom: 1rem;
-    border-radius: 5px;
-    border: 2px solid #ccc; /* A light grey border */
-    transition: border-color 0.3s;
-}
-
-/* Hover and focus styles for form inputs */
-.modal-content form input:hover,
-.modal-content form input:focus,
-.modal-content form select:hover,
-.modal-content form select:focus {
-    border-color: #007bff; /* Highlight color */
-    outline: none;
-}
-
-/* Styles for the submit button */
-.modal-content form button.submit-button {
-    padding: 10px 15px;
-    margin-top: 10px;
-    background-color: #007bff; /* A bright blue that matches your hero image */
-    color: white;
-    text-transform: uppercase; /* Makes text uppercase for emphasis */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-/* Hover effect for the submit button */
-.modal-content form button.submit-button:hover {
-    background-color: #0056b3; /* A darker shade of blue for hover state */
 }
