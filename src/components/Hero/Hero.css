@@ -17,7 +17,7 @@
 
 /* Applying pixelated font style to all elements within .hero */
 .hero * {
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'Press Start 2P', 'Comic Sans MS';
     -webkit-filter: pixelate(5px); /* Chrome, Safari, Opera */
     filter: pixelate(5px); /* Standard syntax */
 }
