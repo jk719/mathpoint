@@ -38,26 +38,6 @@
 }
 
 /* Styles for question text and option buttons */
-/* Specific styles for the quiz component within the hero section */
-.quiz-question, .option-button {
-    font-family: 'Press Start 2P', monospace; /* Apply the pixelated font */
-    font-size: 1rem; /* This font tends to render larger, so you might need to adjust the size */
-    color: #FFFFFF; /* Ensuring the text color provides good contrast for readability */
-}
-
-.option-button {
-    padding: 10px;
-    margin: 5px 0;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-}
-
-.option-button:hover {
-    background-color: #0056b3;
-}
 
 
 /* Responsive adjustments for smaller screens */
