@@ -135,16 +135,22 @@
 /* Styles for the option buttons */
 .option-button {
     display: inline-block;
-    margin: 10px 20px;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    line-height: 60px;
-    text-align: center;
+    margin: 10px 5px; /* Reduced lateral margins for more space */
+    border-radius: 8px; /* Rounded corners */
+    width: auto; /* Adjust width to content */
+    min-width: 80px; /* Minimum width */
+    max-width: 150px; /* Maximum width to avoid very large buttons */
+    height: 40px; /* Fixed height */
+    line-height: 40px; /* Center text vertically */
+    text-align: center; /* Center text horizontally */
     background-color: red;
     color: white;
     border: none;
-    font-size: 0.9rem;
+    font-size: 0.8rem; /* Smaller font size */
+    padding: 0 10px; /* Horizontal padding */
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Use ellipsis for overflow text */
+    white-space: nowrap; /* No wrapping */
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
 }
@@ -154,23 +160,40 @@
     transform: scale(1.1);
 }
 
+
 /* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
     .hero {
         padding: 30px 15px;
     }
 
-    .grade-circle {
-        font-size: 1.2rem;
-        padding: 8px 16px;
-    }
-
-    .option-button {
-        font-size: 1rem;
-        padding: 10px 15px;
-    }
     .progress-text {
         font-size: 0.8rem; /* Smaller font size for mobile */
         padding: 1px 3px; /* Smaller padding */
+    }
+
+    .option-button {
+        font-size: 0.7rem; /* Reduce font size for smaller screens */
+        padding: 0 8px; /* Reduce padding to fit more content */
+        min-width: 70px; /* Slightly reduce minimum width */
+        max-width: 120px; /* Slightly reduce maximum width */
+        height: 35px; /* Adjust height to maintain proportion */
+        line-height: 35px; /* Adjust line height to new button height */
+    }
+
+    .grade-circle {
+        font-size: 0.9rem; /* Adjust font size for readability */
+        padding: 5px 10px; /* Adjust padding to make button easier to tap */
+    }
+
+    /* Adjusting the label for better spacing and readability */
+    .grade-label {
+        font-size: 0.7rem; /* Smaller font size for labels */
+        margin-bottom: 5px; /* Reduced space between label and input */
+    }
+
+    .grade-input {
+        font-size: 0.7rem; /* Smaller font size for input fields */
+        padding: 5px; /* Reduced padding for inputs */
     }
 }
