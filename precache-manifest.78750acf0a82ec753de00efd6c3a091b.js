@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2631bcde07b5bb5c9a5213c5d8431a88",
+    "revision": "6c1f7f757b6368182d1b03faddc9012a",
     "url": "/mathpoint/index.html"
   },
   {
-    "revision": "74cd2f14c1ac1a8e2356",
-    "url": "/mathpoint/static/css/main.dafcab2a.chunk.css"
+    "revision": "e1f8b7ba5fb8d5410e33",
+    "url": "/mathpoint/static/css/main.dcf8952a.chunk.css"
   },
   {
     "revision": "b355a2d4029bdf420e28",
@@ -20,7 +20,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/mathpoint/static/js/3.0b9449e4.chunk.js"
   },
   {
-    "revision": "74cd2f14c1ac1a8e2356",
+    "revision": "e1f8b7ba5fb8d5410e33",
     "url": "/mathpoint/static/js/main.89167acf.chunk.js"
   },
   {
