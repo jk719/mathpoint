@@ -123,7 +123,14 @@
     }
 
     .option-button {
-        font-size: 1rem;
-        padding: 10px 15px;
+        width: 50px; /* Smaller size for mobile */
+        height: 50px; /* Smaller size for mobile */
+        line-height: 50px; /* Adjust line height to match size */
+        font-size: 0.75rem; /* Smaller font size for smaller buttons */
+        margin: 5px 10px; /* Reduce margin for tighter spacing */
+    }
+    .progress-text {
+        font-size: 0.8rem; /* Smaller font size for mobile */
+        padding: 1px 3px; /* Smaller padding */
     }
 }
