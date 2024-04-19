@@ -71,6 +71,49 @@
     padding: 20px;
 }
 
+
+/* Styles for the grade input as a square */
+.grade-input {
+    width: 30px; /* Set width and height to the same value for a square */
+    height: 30px; /* Equal to width to make the input square */
+    padding: 8px;
+    font-family: 'Press Start 2P', 'Comic Sans MS';
+    font-size: 1rem; /* Adjust font size as necessary */
+    text-align: center; /* Center text inside the input */
+    color: black;
+    background-color: white; /* Dark blue background */
+    border: 2px solid #007bff; /* Bright blue border */
+    border-radius: 5px; /* Optionally adjust for square corners or keep for slight rounding */
+}
+
+/* Adjust label size to fit new input size */
+.label-grade {
+    display: block;
+    margin-bottom: 5px; /* Space between label and input */
+    font-size: 0.8rem;
+    color: white;
+    text-align: center; /* Center-align the label text */
+}
+
+
+.grade-label {
+    margin-bottom: 10px; /* Adjust the bottom margin */
+    margin-top: 10px; /* Top margin if needed */
+    display: block; /* Ensures the label takes up the full width */
+    font-size: 1.2rem; /* Adjust font size as needed */
+}
+
+/* Update the container to align items better */
+.grade-input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align the input and label */
+    margin-bottom: 20px;
+}
+
+
+
+
 /* Styles for the start quiz button */
 .grade-circle {
     padding: 10px 20px;
