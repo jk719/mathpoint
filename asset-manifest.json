@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/mathpoint/static/css/main.58abe80f.chunk.css",
+    "main.css": "/mathpoint/static/css/main.d35a66d3.chunk.css",
     "main.js": "/mathpoint/static/js/main.b45d0b1b.chunk.js",
     "main.js.map": "/mathpoint/static/js/main.b45d0b1b.chunk.js.map",
     "runtime~main.js": "/mathpoint/static/js/runtime~main.9d5f81fa.js",
@@ -10,9 +10,9 @@
     "static/js/3.c02789ba.chunk.js": "/mathpoint/static/js/3.c02789ba.chunk.js",
     "static/js/3.c02789ba.chunk.js.map": "/mathpoint/static/js/3.c02789ba.chunk.js.map",
     "index.html": "/mathpoint/index.html",
-    "precache-manifest.a27a4e7c3e61fe36d9326c47db85c39c.js": "/mathpoint/precache-manifest.a27a4e7c3e61fe36d9326c47db85c39c.js",
+    "precache-manifest.3988c7ee7e0b9dc976f028c12788f3f2.js": "/mathpoint/precache-manifest.3988c7ee7e0b9dc976f028c12788f3f2.js",
     "service-worker.js": "/mathpoint/service-worker.js",
-    "static/css/main.58abe80f.chunk.css.map": "/mathpoint/static/css/main.58abe80f.chunk.css.map",
+    "static/css/main.d35a66d3.chunk.css.map": "/mathpoint/static/css/main.d35a66d3.chunk.css.map",
     "static/media/logo.png": "/mathpoint/static/media/logo.1220596e.png"
   }
 }
