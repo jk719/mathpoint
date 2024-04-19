@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/mathpoint/static/css/main.dcf8952a.chunk.css",
-    "main.js": "/mathpoint/static/js/main.89167acf.chunk.js",
-    "main.js.map": "/mathpoint/static/js/main.89167acf.chunk.js.map",
+    "main.css": "/mathpoint/static/css/main.b654b0e7.chunk.css",
+    "main.js": "/mathpoint/static/js/main.bcf9ebdd.chunk.js",
+    "main.js.map": "/mathpoint/static/js/main.bcf9ebdd.chunk.js.map",
     "runtime-main.js": "/mathpoint/static/js/runtime-main.ad021a64.js",
     "runtime-main.js.map": "/mathpoint/static/js/runtime-main.ad021a64.js.map",
     "static/js/2.0533cb71.chunk.js": "/mathpoint/static/js/2.0533cb71.chunk.js",
@@ -10,16 +10,16 @@
     "static/js/3.0b9449e4.chunk.js": "/mathpoint/static/js/3.0b9449e4.chunk.js",
     "static/js/3.0b9449e4.chunk.js.map": "/mathpoint/static/js/3.0b9449e4.chunk.js.map",
     "index.html": "/mathpoint/index.html",
-    "precache-manifest.78750acf0a82ec753de00efd6c3a091b.js": "/mathpoint/precache-manifest.78750acf0a82ec753de00efd6c3a091b.js",
+    "precache-manifest.f6e09012ce2f23ab3e9dd75ce45d27e0.js": "/mathpoint/precache-manifest.f6e09012ce2f23ab3e9dd75ce45d27e0.js",
     "service-worker.js": "/mathpoint/service-worker.js",
-    "static/css/main.dcf8952a.chunk.css.map": "/mathpoint/static/css/main.dcf8952a.chunk.css.map",
+    "static/css/main.b654b0e7.chunk.css.map": "/mathpoint/static/css/main.b654b0e7.chunk.css.map",
     "static/js/2.0533cb71.chunk.js.LICENSE.txt": "/mathpoint/static/js/2.0533cb71.chunk.js.LICENSE.txt",
     "static/media/logo.png": "/mathpoint/static/media/logo.1220596e.png"
   },
   "entrypoints": [
     "static/js/runtime-main.ad021a64.js",
     "static/js/2.0533cb71.chunk.js",
-    "static/css/main.dcf8952a.chunk.css",
-    "static/js/main.89167acf.chunk.js"
+    "static/css/main.b654b0e7.chunk.css",
+    "static/js/main.bcf9ebdd.chunk.js"
   ]
 }
