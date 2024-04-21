@@ -16,13 +16,12 @@
 
 .hero * {
     font-family: 'Press Start 2P', cursive;
-    -webkit-filter: pixelate(0.5px); /* Chrome, Safari, Opera */
-    filter: pixelate(0.5px); /* Standard syntax */
 }
 
+/* Progress containers */
 .progress-container {
     position: absolute;
-    top: 0;
+    top: 10px;  /* Adjusted for visibility */
     left: 0;
     width: 100%;
     height: 20px;
@@ -31,8 +30,12 @@
     z-index: 1000;
 }
 
-.correct-container, .incorrect-container {
-    top: 0;
+.correct-container {
+    top: 10px;  /* Starting position for the correct progress bar */
+}
+
+.incorrect-container {
+    top: 40px;  /* Ensure no overlap with the correct progress bar */
 }
 
 .correct-bar, .incorrect-bar {
@@ -41,11 +44,11 @@
 }
 
 .correct-bar {
-    background-color: #39FF14;
+    background-color: #39FF14;  /* Neon green for correct answers */
 }
 
 .incorrect-bar {
-    background-color: red;
+    background-color: red;  /* Red for incorrect answers */
 }
 
 .progress-text {
@@ -56,11 +59,10 @@
 }
 
 .question-text {
-    font-size: 2rem; /* Adjusted size for question text */
-    color: white; /* Text color for readability */
-    margin: 20px 0; /* Margin around the text for better spacing */
-    text-align: center; /* Center alignment for the question text */
-    margin: 0px; /* Margin around the text for better spacing */
+    font-size: 2rem;
+    color: white;
+    margin: 20px 0;
+    text-align: center;
 }
 
 .grade-input-container {
@@ -71,28 +73,26 @@
 }
 
 .grade-label {
-    font-size: 2rem;
+    font-size: 1.2rem;
     color: white;
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
 }
 
 .grade-input {
     width: 50px;
-    height: 50px;
+    height: 30px;
     padding: 5px;
-    font-family: 'Press Start 2P', sans-serif;
     font-size: 0.8rem;
     text-align: center;
     color: black;
     background-color: white;
     border: 2px solid #007bff;
     border-radius: 5px;
-    margin-bottom: 40px;
 }
 
 .grade-circle {
-    padding: 20px 20px;
+    padding: 10px 20px;
     font-size: 1.5rem;
     cursor: pointer;
     background-color: red;
@@ -135,29 +135,37 @@
 }
 
 @media (max-width: 768px) {
-    .hero-mobile {
+    .hero {
         padding: 30px 15px;
     }
 
-    .progress-text-mobile, .option-button-mobile, .question-text-mobile, .grade-circle-mobile, .grade-label-mobile, .grade-input-mobile {
+    .progress-text, .option-button, .question-text, .grade-circle, .grade-label, .grade-input {
         font-size: 0.7rem;  /* Smaller font size for all mobile elements */
     }
 
-    .grade-label-mobile {
-        font-size: 1.2;
-    }
-
-    .grade-label-mobile {
-        margin-bottom: 20px;  /* Reduced margin for grade label on mobile */
+    .question-text {
+        font-size: 1.5rem; /* Adjusted font size for question text */
     }
 
    
-    .grade-input-mobile, .grade-circle-mobile {
-        width: 100%;  /* Full width for easier interaction */
+
+    .grade-input {
+        font-size: 1rem; /* Increase font size to avoid mobile zoom */
+        width: 40px;  /* Full width for easier interaction */
         padding: 10px 0;  /* More padding for touch targets */
+        margin-bottom: 20px;
     }
 
-    .grade-label-mobile, .grade-input-mobile {
+    .grade-label, .grade-input {
         padding: 10px 0;  /* Increased padding for visibility and ease of use */
+        font-size: 1.3rem;  /* Adjusted font size for mobile */
+    }
+
+    /* Updated styles for the Start Quiz button */
+    .grade-circle {
+        font-size: 1rem;  /* Adjust font size for readability and easier tapping */
+        padding: 12px 20px;  /* More padding for a better touch target */
+        width: 80%;  /* Adjust width to better fit mobile screens */
+        margin: 10px auto;  /* Center button and provide margin for spacing */
     }
 }
