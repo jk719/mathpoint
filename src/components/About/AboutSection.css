@@ -8,7 +8,7 @@
 }
 
 .about-item {
-    background: #ffffff; /* Default background */
+    background: #ffffff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -17,30 +17,40 @@
     text-align: center;
 }
 
-/* Applying unique background colors to each item */
-.about-item:nth-child(1) { background-color: #ffadad; }
-.about-item:nth-child(2) { background-color: #ffd6a5; }
-.about-item:nth-child(3) { background-color: #fdffb6; }
-.about-item:nth-child(4) { background-color: #caffbf; }
-.about-item:nth-child(5) { background-color: #9bf6ff; }
-.about-item:nth-child(6) { background-color: #a0c4ff; }
+.about-item img {
+    width: 100%; /* Adjust width as necessary */
+    height: auto;
+    margin-bottom: 10px; /* Space between image and header */
+}
 
-.about-item:hover {
-    transform: translateY(-5px);
-    background-color: #e8f0fe; /* This will be overridden by hover-specific colors if added */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+.about-item ul {
+    list-style-type: none;
+    padding-left: 0;
+    text-align: left;
+}
+
+.about-item li {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.translation {
+    display: block;
+    font-size: 14px;
+    color: #666;
 }
 
 .about-item h3 {
-    font-size: 24px; /* Enlarged font size */
+    font-size: 24px;
     color: #333;
     margin-bottom: 15px;
 }
 
-.about-item p {
-    font-size: 18px; /* Enlarged font size */
-    color: #666;
-    line-height: 1.6;
+.about-item:hover {
+    transform: translateY(-5px);
+    background-color: #e8f0fe;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 @media (max-width: 768px) {
@@ -48,3 +58,11 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* Color styles */
+.about-item:nth-child(1) { background-color: #ffadad; }
+.about-item:nth-child(2) { background-color: #ffd6a5; }
+.about-item:nth-child(3) { background-color: #fdffb6; }
+.about-item:nth-child(4) { background-color: #caffbf; }
+.about-item:nth-child(5) { background-color: #9bf6ff; }
+.about-item:nth-child(6) { background-color: #a0c4ff; }
