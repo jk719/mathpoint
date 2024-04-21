@@ -76,22 +76,24 @@ body {
 }
 
 .grade-label {
-    font-size: 1.2rem;
+    font-size: 2rem;
     color: white;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 40px;
 }
 
 .grade-input {
     width: 50px;
-    height: 30px;
+    height: 50px;
     padding: 5px;
-    font-size: 0.8rem;
+    font-size: 1.8rem;
     text-align: center;
     color: black;
     background-color: white;
     border: 2px solid #007bff;
     border-radius: 5px;
+    margin-bottom: 40px;
+
 }
 
 .grade-circle {
@@ -146,22 +148,24 @@ body {
         font-size: 0.7rem;
     }
 
+
     .question-text {
         font-size: 1.5rem;
     }
 
     .grade-input {
-        width: 40px;
+        width: 50px;
+        height: 50px;
         padding: 10px 0;
         margin-bottom: 20px;
     }
 
     .grade-label {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
     }
 
     .grade-circle {
-        font-size: 1rem;
+        font-size: 1.5rem;
         padding: 12px 20px;
         width: 80%;
         margin: 10px auto;
