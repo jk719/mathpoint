@@ -1,14 +1,17 @@
 /* Header.css */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
+
+
 .header {
     width: 100%;
     display: flex;
     justify-content: space-evenly; /* Ensures space is distributed evenly between items */
     align-items: center; /* Centers items vertically */
-    padding: 10px 30px;
+    padding: 10px 0; /* Removed horizontal padding to prevent overflow */
     background-color: black;
     font-family: 'Roboto', sans-serif;
+    box-sizing: border-box; /* Ensures padding is included in the width */
 }
 
 .site-logo {
