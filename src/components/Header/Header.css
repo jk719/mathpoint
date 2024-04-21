@@ -4,85 +4,66 @@
 .header {
     width: 100%;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: space-evenly; /* Ensures space is distributed evenly between items */
+    align-items: center; /* Centers items vertically */
     padding: 10px 30px;
     background-color: black;
     font-family: 'Roboto', sans-serif;
 }
 
-.logo-address {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
 .site-logo {
     height: auto;
-    width: 300px;
-}
-
-.header-address {
-    color: white;
-    font-size: 0.8rem;
+    width: 180px; /* Adjusted width for balance */
+    flex: 1; /* Allows this item to grow and shrink as needed */
 }
 
 .social-media-icons {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex: 1; /* Flex grow equally */
 }
 
 .social-media-icons a {
     color: white;
-    margin: 0 10px;
+    margin: 0 10px; /* Consistent spacing between icons */
     font-size: 2rem;
 }
 
 .social-media-icons a:hover {
-    color: #ddd;
+    color: #ddd; /* Feedback on hover */
 }
 
 .signup-button {
-    padding: 10px 20px; /* Original padding */
-    font-size: 1rem;     /* Original font size */
-    background-color: red;  /* Eye-catching color */
+    padding: 20px 20px;
+    font-size: 1rem;
+    background-color: red;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
     text-transform: uppercase;
-    margin-left: 20px;  /* Space between the navbar and button */
-    margin-right: 30px; /* Added space to the right to avoid sticking to the edge */
-    transition: background-color 0.3s ease;  /* Smooth transition for hover effect */
+    transition: background-color 0.3s ease;
+    flex: 1; /* Flex grow equally */
+    margin: 20px;
 }
 
 .signup-button:hover {
-    background-color: #45a049;  /* Darker green on hover */
+    background-color: #45a049; /* Color change on hover for visibility */
 }
-
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .header {
         flex-direction: column;
         align-items: center;
+        text-align: center;
     }
 
-    .logo-address, .social-media-icons, .signup-button {
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        margin: 5px 0;
-    }
-
-    .site-logo {
-        width: 100%;
-        max-width: 200px; /* Adjust logo size on smaller screens */
-    }
-
-    .signup-button {
-        width: 90%; /* Full width button on smaller screens */
+    .site-logo, .social-media-icons, .signup-button {
+        flex: none; /* Override the flex-grow in mobile */
+        width: 100%; /* Full width for mobile */
+        margin-top: 10px; /* Space between elements */
     }
 }

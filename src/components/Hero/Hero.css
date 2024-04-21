@@ -1,4 +1,3 @@
-/* General styles for the hero container */
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 .hero {
@@ -15,11 +14,10 @@
     color: white;
 }
 
-/* Applying pixelated font style to all elements within .hero */
 .hero * {
-    font-family: 'Press Start 2P', 'Comic Sans MS';
-    -webkit-filter: pixelate(5px); /* Chrome, Safari, Opera */
-    filter: pixelate(5px); /* Standard syntax */
+    font-family: 'Press Start 2P', cursive;
+    -webkit-filter: pixelate(0.5px); /* Chrome, Safari, Opera */
+    filter: pixelate(0.5px); /* Standard syntax */
 }
 
 .progress-container {
@@ -27,18 +25,14 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 20px; /* Adjust if more space is needed */
+    height: 20px;
     display: flex;
     align-items: center;
     z-index: 1000;
 }
 
-.correct-container {
+.correct-container, .incorrect-container {
     top: 0;
-}
-
-.incorrect-container {
-    top: 20px; /* Adjust based on the height of the progress bars */
 }
 
 .correct-bar, .incorrect-bar {
@@ -47,7 +41,7 @@
 }
 
 .correct-bar {
-    background-color: #39FF14; /* Neon green */
+    background-color: #39FF14;
 }
 
 .incorrect-bar {
@@ -61,63 +55,44 @@
     white-space: nowrap;
 }
 
-/* Flexbox settings for the content area */
-.hero-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding: 20px;
+.question-text {
+    font-size: 2rem; /* Adjusted size for question text */
+    color: white; /* Text color for readability */
+    margin: 20px 0; /* Margin around the text for better spacing */
+    text-align: center; /* Center alignment for the question text */
+    margin: 0px; /* Margin around the text for better spacing */
 }
 
-
-/* Styles for the grade input as a square */
-.grade-input {
-    width: 30px; /* Set width and height to the same value for a square */
-    height: 30px; /* Equal to width to make the input square */
-    padding: 8px;
-    font-family: 'Press Start 2P', 'Comic Sans MS';
-    font-size: 1rem; /* Adjust font size as necessary */
-    text-align: center; /* Center text inside the input */
-    color: black;
-    background-color: white; /* Dark blue background */
-    border: 2px solid #007bff; /* Bright blue border */
-    border-radius: 5px; /* Optionally adjust for square corners or keep for slight rounding */
-}
-
-/* Adjust label size to fit new input size */
-.label-grade {
-    display: block;
-    margin-bottom: 5px; /* Space between label and input */
-    font-size: 0.8rem;
-    color: white;
-    text-align: center; /* Center-align the label text */
-}
-
-
-.grade-label {
-    margin-bottom: 10px; /* Adjust the bottom margin */
-    margin-top: 10px; /* Top margin if needed */
-    display: block; /* Ensures the label takes up the full width */
-    font-size: 1.2rem; /* Adjust font size as needed */
-}
-
-/* Update the container to align items better */
 .grade-input-container {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center align the input and label */
-    margin-bottom: 20px;
+    align-items: center;
+    width: 100%;
 }
 
+.grade-label {
+    font-size: 2rem;
+    color: white;
+    text-align: center;
+    margin-bottom: 40px;
+}
 
+.grade-input {
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+    font-family: 'Press Start 2P', sans-serif;
+    font-size: 0.8rem;
+    text-align: center;
+    color: black;
+    background-color: white;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    margin-bottom: 40px;
+}
 
-
-/* Styles for the start quiz button */
 .grade-circle {
-    padding: 10px 20px;
-    margin: 10px;
+    padding: 20px 20px;
     font-size: 1.5rem;
     cursor: pointer;
     background-color: red;
@@ -132,25 +107,24 @@
     transform: scale(1.1);
 }
 
-/* Styles for the option buttons */
 .option-button {
     display: inline-block;
-    margin: 10px 5px; /* Reduced lateral margins for more space */
-    border-radius: 8px; /* Rounded corners */
-    width: auto; /* Adjust width to content */
-    min-width: 80px; /* Minimum width */
-    max-width: 150px; /* Maximum width to avoid very large buttons */
-    height: 40px; /* Fixed height */
-    line-height: 40px; /* Center text vertically */
-    text-align: center; /* Center text horizontally */
+    margin: 10px 5px;
+    border-radius: 8px;
+    width: auto;
+    min-width: 80px;
+    max-width: 150px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
     background-color: red;
     color: white;
     border: none;
-    font-size: 0.8rem; /* Smaller font size */
-    padding: 0 10px; /* Horizontal padding */
-    overflow: hidden; /* Hide overflow */
-    text-overflow: ellipsis; /* Use ellipsis for overflow text */
-    white-space: nowrap; /* No wrapping */
+    font-size: 0.8rem;
+    padding: 0 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
 }
@@ -160,40 +134,30 @@
     transform: scale(1.1);
 }
 
-
-/* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
-    .hero {
+    .hero-mobile {
         padding: 30px 15px;
     }
 
-    .progress-text {
-        font-size: 0.8rem; /* Smaller font size for mobile */
-        padding: 1px 3px; /* Smaller padding */
+    .progress-text-mobile, .option-button-mobile, .question-text-mobile, .grade-circle-mobile, .grade-label-mobile, .grade-input-mobile {
+        font-size: 0.7rem;  /* Smaller font size for all mobile elements */
     }
 
-    .option-button {
-        font-size: 0.7rem; /* Reduce font size for smaller screens */
-        padding: 0 8px; /* Reduce padding to fit more content */
-        min-width: 70px; /* Slightly reduce minimum width */
-        max-width: 120px; /* Slightly reduce maximum width */
-        height: 35px; /* Adjust height to maintain proportion */
-        line-height: 35px; /* Adjust line height to new button height */
+    .grade-label-mobile {
+        font-size: 1.2;
     }
 
-    .grade-circle {
-        font-size: 0.9rem; /* Adjust font size for readability */
-        padding: 5px 10px; /* Adjust padding to make button easier to tap */
+    .grade-label-mobile {
+        margin-bottom: 20px;  /* Reduced margin for grade label on mobile */
     }
 
-    /* Adjusting the label for better spacing and readability */
-    .grade-label {
-        font-size: 0.7rem; /* Smaller font size for labels */
-        margin-bottom: 5px; /* Reduced space between label and input */
+   
+    .grade-input-mobile, .grade-circle-mobile {
+        width: 100%;  /* Full width for easier interaction */
+        padding: 10px 0;  /* More padding for touch targets */
     }
 
-    .grade-input {
-        font-size: 0.7rem; /* Smaller font size for input fields */
-        padding: 5px; /* Reduced padding for inputs */
+    .grade-label-mobile, .grade-input-mobile {
+        padding: 10px 0;  /* Increased padding for visibility and ease of use */
     }
 }

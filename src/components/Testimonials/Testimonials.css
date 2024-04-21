@@ -1,6 +1,6 @@
 /* Testimonials.css */
 .testimonials-section {
-    text-align: center; /* Centers the title and possibly other elements */
+    text-align: center; /* Centers the title */
     padding: 20px; /* Adds padding around the section for better spacing */
     margin-top: 40px; /* Separates the section from elements above it */
 }
@@ -29,6 +29,7 @@
     opacity: 0; /* Start with hidden for animation */
     animation: fadeIn 0.5s ease forwards; /* Animation for fade in */
     transition: transform 0.3s ease-in-out; /* Smooth transform on hover */
+    text-align: left; /* Align text to the left */
 }
 
 /* Different background colors for each testimonial based on nth-child */

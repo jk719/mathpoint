@@ -2,12 +2,12 @@ import React from 'react';
 import './Testimonials.css';  // Ensure the CSS file is linked for styling
 
 const testimonialsData = [
-    { id: 1, text: "The tutoring services at MathPoint are top-notch. My daughter's grades improved significantly!", name: "Jane Doe" },
-    { id: 2, text: "I highly recommend MathPoint. The tutors are knowledgeable and genuinely care about student success.", name: "John Smith" },
-    { id: 3, text: "MathPoint has been a game-changer for my son's education. The interactive lessons are fantastic.", name: "Alice Johnson" },
-    { id: 4, text: "Thanks to MathPoint, my child now loves math. The personalized attention was exactly what he needed.", name: "Michael Brown" },
-    { id: 5, text: "We've tried several tutoring centers, but MathPoint stands out for its effective teaching methods.", name: "Sarah Davis" },
-    { id: 6, text: "MathPoint tutors helped my daughter excel in her calculus course. We're thrilled with the progress!", name: "Emily Wilson" }
+    { id: 1, text: "Since starting at MathPoint, my daughter's confidence in math has soared, especially in algebra. Her grades improved dramatically in just a few months.", name: "Sofia Chen" },
+    { id: 2, text: "MathPoint’s tailored approach to geometry helped my son grasp challenging concepts. The progress he's made is remarkable.", name: "Raj Patel" },
+    { id: 3, text: "Interactive lessons on trigonometry have significantly helped my daughter understand and apply complex math concepts.", name: "Aisha Johnson" },
+    { id: 4, text: "My child now enjoys math thanks to the personalized attention and supportive environment at MathPoint.", name: "Carlos Rodriguez" },
+    { id: 5, text: "MathPoint's teaching methods and the patience of their tutors have made a huge difference. My daughter is now thriving in calculus.", name: "Fatima Al-Farsi" },
+    { id: 6, text: "Seeing my daughter excel in calculus and improve her problem-solving skills has been incredibly satisfying.", name: "Grace Kim" }
 ];
 
 function Testimonials() {

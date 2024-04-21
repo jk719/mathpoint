@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './Hero.css';
 import Modal from '../Modal/Modal';
 
-// Array of questions for the quiz
 const questions = [
     { id: 1, question: "What is 7 x 8?", options: ["54", "56", "49", "63"], answer: "56" },
     { id: 2, question: "What is the square root of 144?", options: ["12", "14", "16", "10"], answer: "12" },
@@ -15,15 +14,13 @@ const questions = [
     { id: 9, question: "What is the probability of rolling a total of 8 with two dice?", options: ["1/12", "1/6", "1/8", "1/10"], answer: "1/6" },
 ];
 
-
 function Hero() {
-    // State hooks for managing quiz state
     const [quizStarted, setQuizStarted] = useState(false);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [correctAnswers, setCorrectAnswers] = useState(0);
     const [incorrectAnswers, setIncorrectAnswers] = useState(0);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [grade, setGrade] = useState(''); // Additional state for grade input
+    const [grade, setGrade] = useState('');
 
     const startQuiz = () => {
         setQuizStarted(true);
@@ -58,7 +55,7 @@ function Hero() {
     return (
         <div className="hero">
             {!quizStarted && (
-                <>
+                <div className="grade-input-container">
                     <label htmlFor="gradeInput" className="grade-label">Enter your grade:</label>
                     <input 
                         id="gradeInput"
@@ -70,7 +67,7 @@ function Hero() {
                     <button className="grade-circle" onClick={startQuiz}>
                         Start Quiz
                     </button>
-                </>
+                </div>
             )}
             {quizStarted && (
                 <>
@@ -84,7 +81,7 @@ function Hero() {
                     </div>
                     {currentQuestionIndex < questions.length ? (
                         <div>
-                            <h2>{questions[currentQuestionIndex].question}</h2>
+                            <h2 className="question-text">{questions[currentQuestionIndex].question}</h2>
                             {questions[currentQuestionIndex].options.map((option, index) => (
                                 <button key={index} onClick={() => handleAnswer(option)} className="option-button">
                                     {option}
@@ -110,7 +107,6 @@ function Hero() {
                     <label>School: <input type="text" name="school" /></label>
                     <label>Phone Number: <input type="tel" name="phoneNumber" placeholder="123-456-7890" /></label>
                     <button type="submit" className="submit-button">Submit</button>
-
                 </form>
             </Modal>
         </div>

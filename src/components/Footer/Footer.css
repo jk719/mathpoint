@@ -5,13 +5,14 @@
     background-color: black; /* Dark background for contrast */
     color: white; /* Text color for readability */
     text-align: center; /* Center-align all text */
-    font-family: 'Roboto', sans-serif; /* Consistent font with the header */
-    font-size: 0.8rem; /* Manageable font size for footer content */
+    font-family: 'Roboto', sans-serif; /* Consistent font with the rest of the site */
+    font-size: 1rem; /* Increase font size for better readability */
     border-top: 1px solid #444; /* Subtle top border for stylistic separation */
 }
 
 .footer p {
     margin: 10px 0; /* Vertical spacing between paragraphs */
+    font-size: 1.1rem; /* Slightly larger text size for paragraphs */
 }
 
 .footer a {
