@@ -76,17 +76,17 @@ body {
 }
 
 .grade-label {
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: white;
     text-align: center;
     margin-bottom: 40px;
 }
 
 .grade-input {
-    width: 50px;
+    width: 100px;
     height: 50px;
     padding: 5px;
-    font-size: 1.8rem;
+    font-size: 1.2rem;
     text-align: center;
     color: black;
     background-color: white;

@@ -1,18 +1,7 @@
 import React, { useState } from 'react';
 import './Hero.css';
 import Modal from '../Modal/Modal';
-
-const questions = [
-    { id: 1, question: "What is 7 x 8?", options: ["54", "56", "49", "63"], answer: "56" },
-    { id: 2, question: "What is the square root of 144?", options: ["12", "14", "16", "10"], answer: "12" },
-    { id: 3, question: "What is 15% of 200?", options: ["30", "25", "50", "20"], answer: "30" },
-    { id: 4, question: "What is the sum of angles in a triangle?", options: ["180", "360", "90", "270"], answer: "180" },
-    { id: 5, question: "What is 9 + 10?", options: ["21", "19", "18", "20"], answer: "19" },
-    { id: 6, question: "What is the value of x if 5x + 3 = 18?", options: ["3", "15", "30", "5"], answer: "3" },
-    { id: 7, question: "What is the area of a circle with a radius of 4 units?", options: ["16π", "32π", "64π", "8π"], answer: "16π" },
-    { id: 8, question: "If y varies directly with x, and y = 20 when x = 5, what is y when x = 8?", options: ["32", "16", "24", "28"], answer: "32" },
-    { id: 9, question: "What is the probability of rolling a total of 8 with two dice?", options: ["1/12", "1/6", "1/8", "1/10"], answer: "1/6" },
-];
+import { getQuestionsForGrade } from './questions'; // Ensure this is correctly imported
 
 function Hero() {
     const [quizStarted, setQuizStarted] = useState(false);
@@ -21,12 +10,21 @@ function Hero() {
     const [incorrectAnswers, setIncorrectAnswers] = useState(0);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [grade, setGrade] = useState('');
+    const [questions, setQuestions] = useState([]);
+    const [errorMessage, setErrorMessage] = useState(''); // Added error message state
 
     const startQuiz = () => {
-        setQuizStarted(true);
-        setCurrentQuestionIndex(0);
-        setCorrectAnswers(0);
-        setIncorrectAnswers(0);
+        const gradeNum = parseInt(grade, 10);
+        if (!isNaN(gradeNum) && gradeNum >= 1 && gradeNum <= 12) {
+            setQuestions(getQuestionsForGrade(gradeNum));
+            setQuizStarted(true);
+            setCurrentQuestionIndex(0);
+            setCorrectAnswers(0);
+            setIncorrectAnswers(0);
+            setErrorMessage(''); // Clear any error message
+        } else {
+            setErrorMessage('Please enter a grade between 1 and 12.'); // Set error message
+        }
     };
 
     const handleAnswer = (option) => {
@@ -40,7 +38,7 @@ function Hero() {
 
     const nextQuestion = () => {
         if (currentQuestionIndex < questions.length - 1) {
-            setCurrentQuestionIndex(currentQuestionIndex + 1);
+            setCurrentQuestionIndex(prev => prev + 1);
         } else {
             setQuizStarted(false);
         }
@@ -56,13 +54,16 @@ function Hero() {
         <div className="hero">
             {!quizStarted && (
                 <div className="grade-input-container">
-                    <label htmlFor="gradeInput" className="grade-label">Enter your grade:</label>
+                    <label htmlFor="gradeInput" className="grade-label">
+                        {errorMessage || "Enter your grade:"}
+                    </label>
                     <input 
                         id="gradeInput"
-                        type="text" 
+                        type="number" // Ensuring input is numerical
                         value={grade} 
                         onChange={(e) => setGrade(e.target.value)} 
                         className="grade-input"
+                        // placeholder="1-12" // Updated placeholder
                     />
                     <button className="grade-circle" onClick={startQuiz}>
                         Start Quiz
@@ -80,7 +81,7 @@ function Hero() {
                         <span className="progress-text">{incorrectAnswers} Incorrect</span>
                     </div>
                     {currentQuestionIndex < questions.length ? (
-                        <div>
+                        <div className="question-section">
                             <h2 className="question-text">{questions[currentQuestionIndex].question}</h2>
                             {questions[currentQuestionIndex].options.map((option, index) => (
                                 <button key={index} onClick={() => handleAnswer(option)} className="option-button">
@@ -89,7 +90,7 @@ function Hero() {
                             ))}
                         </div>
                     ) : (
-                        <div>
+                        <div className="quiz-complete-section">
                             <h2>Quiz Completed!</h2>
                             <p>You got {correctAnswers} out of {questions.length} right.</p>
                             <button onClick={handleOpenModal} className="signup-button">
