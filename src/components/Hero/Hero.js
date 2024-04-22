@@ -13,6 +13,7 @@ function Hero() {
     const [questions, setQuestions] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
     const [quizComplete, setQuizComplete] = useState(false);  // State to track if the quiz is completed
+    
 
     const startQuiz = () => {
         const gradeNum = parseInt(grade, 10);

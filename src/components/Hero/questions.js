@@ -4,7 +4,7 @@ const questionsByGrade = {
       { id: 1000, question: "What is 2 + 3?", options: ["5", "4", "3", "6"], answer: "5" },
       { id: 1001, question: "What number comes after 6?", options: ["7", "5", "8", "6"], answer: "7" },
       { id: 1002, question: "How many sides does a square have?", options: ["4", "3", "5", "6"], answer: "4" },
-      { id: 1003, question: "Which is greater, 8 or 5?", options: ["8", "5", "They are equal", "None"], answer: "8" },
+      { id: 1003, question: "What is 5 + 3 - 4?", options: ["4", "3", "2", "5"], answer: "4" },
       { id: 1004, question: "What is 10 - 7?", options: ["2", "3", "4", "5"], answer: "3" }
     ],
     2: [
