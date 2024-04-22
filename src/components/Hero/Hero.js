@@ -11,7 +11,8 @@ function Hero() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [grade, setGrade] = useState('');
     const [questions, setQuestions] = useState([]);
-    const [errorMessage, setErrorMessage] = useState(''); // Added error message state
+    const [errorMessage, setErrorMessage] = useState('');
+    const [quizComplete, setQuizComplete] = useState(false);  // State to track if the quiz is completed
 
     const startQuiz = () => {
         const gradeNum = parseInt(grade, 10);
@@ -21,9 +22,10 @@ function Hero() {
             setCurrentQuestionIndex(0);
             setCorrectAnswers(0);
             setIncorrectAnswers(0);
-            setErrorMessage(''); // Clear any error message
+            setQuizComplete(false);  // Reset quiz completion status
+            setErrorMessage('');
         } else {
-            setErrorMessage('Please enter a grade between 1 and 12.'); // Set error message
+            setErrorMessage('Please enter a grade between 1 and 12.');
         }
     };
 
@@ -41,29 +43,37 @@ function Hero() {
             setCurrentQuestionIndex(prev => prev + 1);
         } else {
             setQuizStarted(false);
+            setQuizComplete(true);  // Set quiz completion status to true
         }
     };
 
     const handleOpenModal = () => setIsModalOpen(true);
     const handleCloseModal = () => setIsModalOpen(false);
 
+    const restartQuiz = () => {
+        setQuizComplete(false);
+        setQuizStarted(false);
+        setCorrectAnswers(0);
+        setIncorrectAnswers(0);
+        setGrade('');
+    };
+
     const correctProgress = (correctAnswers / questions.length) * 100;
     const incorrectProgress = (incorrectAnswers / questions.length) * 100;
 
     return (
         <div className="hero">
-            {!quizStarted && (
+            {!quizStarted && !quizComplete && (
                 <div className="grade-input-container">
                     <label htmlFor="gradeInput" className="grade-label">
                         {errorMessage || "Enter your grade:"}
                     </label>
                     <input 
                         id="gradeInput"
-                        type="number" // Ensuring input is numerical
+                        type="number"
                         value={grade} 
                         onChange={(e) => setGrade(e.target.value)} 
                         className="grade-input"
-                        // placeholder="1-12" // Updated placeholder
                     />
                     <button className="grade-circle" onClick={startQuiz}>
                         Start Quiz
@@ -80,26 +90,25 @@ function Hero() {
                         <div className="incorrect-bar" style={{ width: `${incorrectProgress}%` }}></div>
                         <span className="progress-text">{incorrectAnswers} Incorrect</span>
                     </div>
-                    {currentQuestionIndex < questions.length ? (
-                        <div className="question-section">
-                            <h2 className="question-text">{questions[currentQuestionIndex].question}</h2>
-                            {questions[currentQuestionIndex].options.map((option, index) => (
-                                <button key={index} onClick={() => handleAnswer(option)} className="option-button">
-                                    {option}
-                                </button>
-                            ))}
-                        </div>
-                    ) : (
-                        <div className="quiz-complete-section">
-                            <h2>Quiz Completed!</h2>
-                            <p>You got {correctAnswers} out of {questions.length} right.</p>
-                            <button onClick={handleOpenModal} className="signup-button">
-                                Sign Up for More!
+                    <div className="question-section">
+                        <h2 className="question-text">{questions[currentQuestionIndex].question}</h2>
+                        {questions[currentQuestionIndex].options.map((option, index) => (
+                            <button key={index} onClick={() => handleAnswer(option)} className="option-button">
+                                {option}
                             </button>
-                        </div>
-                    )}
+                        ))}
+                    </div>
                 </>
             )}
+            {quizComplete && (
+                <div className="grade-input-container">
+                    <h2 className="question-text">Quiz Completed! You scored {correctAnswers} out of {questions.length}.</h2>
+                    <button className="grade-circle" onClick={restartQuiz}>
+                        Restart Quiz
+                    </button>
+                </div>
+            )}
+            <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
             <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
                 <form>
                     <h2>Sign Up for a Free Session</h2>
@@ -109,6 +118,7 @@ function Hero() {
                     <label>Phone Number: <input type="tel" name="phoneNumber" placeholder="123-456-7890" /></label>
                     <button type="submit" className="submit-button">Submit</button>
                 </form>
+            </Modal>
             </Modal>
         </div>
     );
