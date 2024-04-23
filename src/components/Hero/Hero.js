@@ -81,6 +81,7 @@ function Hero() {
                     </button>
                 </div>
             )}
+    
             {quizStarted && (
                 <>
                     <div className="progress-container correct-container">
@@ -101,15 +102,26 @@ function Hero() {
                     </div>
                 </>
             )}
+    
             {quizComplete && (
-                <div className="grade-input-container">
-                    <h2 className="question-text">Quiz Completed! You scored {correctAnswers} out of {questions.length}.</h2>
-                    <button className="grade-circle" onClick={restartQuiz}>
-                        Restart Quiz
-                    </button>
-                </div>
+                <>
+                    <div className="progress-container correct-container">
+                        <div className="correct-bar" style={{ width: `${correctProgress}%` }}></div>
+                        <span className="progress-text">{correctAnswers} Correct</span>
+                    </div>
+                    <div className="progress-container incorrect-container">
+                        <div className="incorrect-bar" style={{ width: `${incorrectProgress}%` }}></div>
+                        <span className="progress-text">{incorrectAnswers} Incorrect</span>
+                    </div>
+                    <div className="grade-input-container">
+                        <h2 className="question-text">Quiz Completed! You scored {correctAnswers} out of {questions.length}.</h2>
+                        <button className="grade-circle" onClick={restartQuiz}>
+                            Restart Quiz
+                        </button>
+                    </div>
+                </>
             )}
-            <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+    
             <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
                 <form>
                     <h2>Sign Up for a Free Session</h2>
@@ -120,9 +132,9 @@ function Hero() {
                     <button type="submit" className="submit-button">Submit</button>
                 </form>
             </Modal>
-            </Modal>
         </div>
     );
+    
 }
 
 export default Hero;
