@@ -1,18 +1,19 @@
 {
   "files": {
     "main.css": "/mathpoint/static/css/main.58fedade.chunk.css",
-    "main.js": "/mathpoint/static/js/main.35c5a7f8.chunk.js",
-    "main.js.map": "/mathpoint/static/js/main.35c5a7f8.chunk.js.map",
-    "runtime~main.js": "/mathpoint/static/js/runtime~main.49e6cc6a.js",
-    "runtime~main.js.map": "/mathpoint/static/js/runtime~main.49e6cc6a.js.map",
-    "static/js/2.22bdda16.chunk.js": "/mathpoint/static/js/2.22bdda16.chunk.js",
-    "static/js/2.22bdda16.chunk.js.map": "/mathpoint/static/js/2.22bdda16.chunk.js.map",
-    "static/js/3.b265e9c7.chunk.js": "/mathpoint/static/js/3.b265e9c7.chunk.js",
-    "static/js/3.b265e9c7.chunk.js.map": "/mathpoint/static/js/3.b265e9c7.chunk.js.map",
+    "main.js": "/mathpoint/static/js/main.c5d57e72.chunk.js",
+    "main.js.map": "/mathpoint/static/js/main.c5d57e72.chunk.js.map",
+    "runtime-main.js": "/mathpoint/static/js/runtime-main.d5d8599b.js",
+    "runtime-main.js.map": "/mathpoint/static/js/runtime-main.d5d8599b.js.map",
+    "static/js/2.5b72c0e4.chunk.js": "/mathpoint/static/js/2.5b72c0e4.chunk.js",
+    "static/js/2.5b72c0e4.chunk.js.map": "/mathpoint/static/js/2.5b72c0e4.chunk.js.map",
+    "static/js/3.e1ab611c.chunk.js": "/mathpoint/static/js/3.e1ab611c.chunk.js",
+    "static/js/3.e1ab611c.chunk.js.map": "/mathpoint/static/js/3.e1ab611c.chunk.js.map",
     "index.html": "/mathpoint/index.html",
-    "precache-manifest.f51daa9fa5a4762bd5559087c4511253.js": "/mathpoint/precache-manifest.f51daa9fa5a4762bd5559087c4511253.js",
+    "precache-manifest.e552232b7e6cd7e14d2bfe982852706f.js": "/mathpoint/precache-manifest.e552232b7e6cd7e14d2bfe982852706f.js",
     "service-worker.js": "/mathpoint/service-worker.js",
     "static/css/main.58fedade.chunk.css.map": "/mathpoint/static/css/main.58fedade.chunk.css.map",
+    "static/js/2.5b72c0e4.chunk.js.LICENSE.txt": "/mathpoint/static/js/2.5b72c0e4.chunk.js.LICENSE.txt",
     "static/media/Community-Based Learning Centers.jpg": "/mathpoint/static/media/Community-Based Learning Centers.0d5355fe.jpg",
     "static/media/Dynamic and Engaging Curriculum.jpg": "/mathpoint/static/media/Dynamic and Engaging Curriculum.20c73936.jpg",
     "static/media/Personalized Learning Paths.jpg": "/mathpoint/static/media/Personalized Learning Paths.d0aebb7c.jpg",
@@ -20,5 +21,11 @@
     "static/media/affordable_pricing_image.jpg": "/mathpoint/static/media/affordable_pricing_image.3d5d627c.jpg",
     "static/media/logo.png": "/mathpoint/static/media/logo.1220596e.png",
     "static/media/technology_enhanced_learning_image.jpg": "/mathpoint/static/media/technology_enhanced_learning_image.f69fe1de.jpg"
-  }
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d5d8599b.js",
+    "static/js/2.5b72c0e4.chunk.js",
+    "static/css/main.58fedade.chunk.css",
+    "static/js/main.c5d57e72.chunk.js"
+  ]
 }

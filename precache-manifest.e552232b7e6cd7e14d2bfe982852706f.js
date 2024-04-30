@@ -1,27 +1,31 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "19f9bc91d2b4c6a9ca5ffbd8755e5ed3",
+    "revision": "789e960538bae34cdd30913f2e8e6ab2",
     "url": "/mathpoint/index.html"
   },
   {
-    "revision": "f9b02a73bd0a2ce37427",
+    "revision": "20ea819f19fb4734d99f",
     "url": "/mathpoint/static/css/main.58fedade.chunk.css"
   },
   {
-    "revision": "98a4925633fa7a73399d",
-    "url": "/mathpoint/static/js/2.22bdda16.chunk.js"
+    "revision": "ff666222f9ef82a8b825",
+    "url": "/mathpoint/static/js/2.5b72c0e4.chunk.js"
   },
   {
-    "revision": "60c46b200b0cfd41617f",
-    "url": "/mathpoint/static/js/3.b265e9c7.chunk.js"
+    "revision": "60f6bf9e100e456690e9ab6c9a37bfc2",
+    "url": "/mathpoint/static/js/2.5b72c0e4.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "f9b02a73bd0a2ce37427",
-    "url": "/mathpoint/static/js/main.35c5a7f8.chunk.js"
+    "revision": "a12b8478ac1629270a33",
+    "url": "/mathpoint/static/js/3.e1ab611c.chunk.js"
   },
   {
-    "revision": "0d41b3ee02f83d0c459a",
-    "url": "/mathpoint/static/js/runtime~main.49e6cc6a.js"
+    "revision": "20ea819f19fb4734d99f",
+    "url": "/mathpoint/static/js/main.c5d57e72.chunk.js"
+  },
+  {
+    "revision": "102b3aa3268f1506bc12",
+    "url": "/mathpoint/static/js/runtime-main.d5d8599b.js"
   },
   {
     "revision": "0d5355fe1dbf2b5192eb93f41332bcaf",
