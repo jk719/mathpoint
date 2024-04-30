@@ -5,7 +5,12 @@ const questionsByGrade = {
       { id: 1001, question: "What number comes after 6?", options: ["7", "5", "8", "6"], answer: "7" },
       { id: 1002, question: "How many sides does a square have?", options: ["4", "3", "5", "6"], answer: "4" },
       { id: 1003, question: "What is 5 + 3 - 4?", options: ["4", "3", "2", "5"], answer: "4" },
-      { id: 1004, question: "What is 10 - 7?", options: ["2", "3", "4", "5"], answer: "3" }
+      { id: 1004, question: "What is 10 - 7?", options: ["2", "3", "4", "5"], answer: "3" },
+      { id: 1006, question: "What is 7 + 6?", options: ["12", "13", "14", "15"], answer: "13" },
+      { id: 1007, question: "If you start with 10 candies and eat 3, how many do you have left?", options: ["6", "7", "8", "9"], answer: "7" },
+      { id: 1008, question: "What is half of 8?", options: ["3", "4", "5", "6"], answer: "4" },
+      { id: 1009, question: "What time does the clock show if the hour hand is on 4 and the minute hand is on 12?", options: ["4:00", "12:00", "4:12", "12:04"], answer: "4:00" },
+      { id: 1010, question: "You have 4 oranges and your friend gives you 2 more. How many oranges do you have now?", options: ["5", "6", "7", "8"], answer: "6" }
     ],
     2: [
       { id: 2000, question: "What is 4 x 2?", options: ["6", "8", "10", "12"], answer: "8" },
