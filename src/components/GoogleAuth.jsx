@@ -7,13 +7,15 @@ const GoogleAuth = () => {
 
     const initClient = () => {
         window.gapi.client.init({
-            apiKey: '2d535e7db5a9b6f80489e51924c424c2f0e6a47e	',
-            clientId: '384939632446-3tfh8ig2csf5adqj66iljf9bejjhciac.apps.googleusercontent.com',
+            apiKey: process.env.REACT_APP_API_KEY,  // Access API key from environment variables
+            clientId: process.env.REACT_APP_CLIENT_ID,  // Access Client ID from environment variables
             discoveryDocs: ["https://sheets.googleapis.com/$discovery/rest?version=v4"],
             scope: 'https://www.googleapis.com/auth/spreadsheets'
         }).then(() => {
             updateSigninStatus(window.gapi.auth2.getAuthInstance().isSignedIn.get());
             window.gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+        }).catch(error => {
+            console.error('Error loading GAPI client for API', error);
         });
     };
 
