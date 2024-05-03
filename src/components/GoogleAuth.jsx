@@ -1,32 +1,27 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const GoogleAuth = () => {
+    const [isSignedIn, setIsSignedIn] = useState(null); // null means unknown, true means logged in, false means not logged in
+
     useEffect(() => {
         window.gapi.load('client:auth2', initClient);
     }, []);
 
     const initClient = () => {
         window.gapi.client.init({
-            apiKey: process.env.REACT_APP_API_KEY,  // Access API key from environment variables
-            clientId: process.env.REACT_APP_CLIENT_ID,  // Access Client ID from environment variables
+            apiKey: process.env.REACT_APP_API_KEY,
+            clientId: process.env.REACT_APP_CLIENT_ID,
             discoveryDocs: ["https://sheets.googleapis.com/$discovery/rest?version=v4"],
             scope: 'https://www.googleapis.com/auth/spreadsheets'
         }).then(() => {
-            updateSigninStatus(window.gapi.auth2.getAuthInstance().isSignedIn.get());
-            window.gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+            const authInstance = window.gapi.auth2.getAuthInstance();
+            // Update state with the initial sign-in state
+            setIsSignedIn(authInstance.isSignedIn.get());
+            // Listen for sign-in state changes
+            authInstance.isSignedIn.listen(setIsSignedIn);
         }).catch(error => {
             console.error('Error loading GAPI client for API', error);
         });
-    };
-
-    const updateSigninStatus = (isSignedIn) => {
-        if (isSignedIn) {
-            console.log('User is signed in.');
-            // Additional logic for user sign-in
-        } else {
-            console.log('User is not signed in.');
-            // Handle user not signed in
-        }
     };
 
     const handleSignIn = () => {
@@ -39,8 +34,19 @@ const GoogleAuth = () => {
 
     return (
         <div>
-            <button onClick={handleSignIn}>Sign In</button>
-            <button onClick={handleSignOut}>Sign Out</button>
+            {isSignedIn === null ? (
+                <div>Loading...</div>
+            ) : isSignedIn ? (
+                <div>
+                    <div>User is signed in.</div>
+                    <button onClick={handleSignOut}>Sign Out</button>
+                </div>
+            ) : (
+                <div>
+                    <div>User is not signed in.</div>
+                    <button onClick={handleSignIn}>Sign In</button>
+                </div>
+            )}
         </div>
     );
 };
