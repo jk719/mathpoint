@@ -13,7 +13,7 @@ const testimonialsData = [
 function Testimonials() {
     return (
         <div className="testimonials-section">
-            <h2 className="testimonials-heading">What Our Students Say</h2>
+            <h2 className="testimonials-heading">Testimonials</h2>
             <div className="testimonials-container">
                 {testimonialsData.map(testimonial => (
                     <div key={testimonial.id} className="testimonial">

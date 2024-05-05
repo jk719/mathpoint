@@ -2,13 +2,17 @@
 .testimonials-section {
     text-align: center; /* Centers the title */
     padding: 20px; /* Adds padding around the section for better spacing */
-    margin-top: 40px; /* Separates the section from elements above it */
 }
 
 .testimonials-heading {
     font-size: 24px; /* Sets a prominent size for the heading */
     color: #333; /* Ensures the text is visible and matches the theme */
     margin-bottom: 20px; /* Adds space below the heading before testimonials start */
+    background-color: black;
+    color: white;
+    padding: 20px;
+    font-size: 28px; /* Increased font size for better visibility */
+    font-weight: 700; /* Making the font bolder to stand out */
 }
 
 .testimonials-container {
@@ -80,7 +84,7 @@
         grid-template-columns: 1fr; /* Single column layout for small phones */
     }
 
-    .testimonial-text, .testimonial-author {
+    .testimonial.testimonial-author {
         font-size: 14px; /* Smaller font size to ensure text fits well */
     }
 
