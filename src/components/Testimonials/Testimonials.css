@@ -1,94 +1,83 @@
 /* Testimonials.css */
 .testimonials-section {
-    text-align: center; /* Centers the title */
-    padding: 20px; /* Adds padding around the section for better spacing */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f4f4f4;
 }
 
 .testimonials-heading {
-    font-size: 24px; /* Sets a prominent size for the heading */
-    color: #333; /* Ensures the text is visible and matches the theme */
-    margin-bottom: 20px; /* Adds space below the heading before testimonials start */
+    text-align: center;
+    padding: 20px;
     background-color: black;
     color: white;
-    padding: 20px;
-    font-size: 28px; /* Increased font size for better visibility */
-    font-weight: 700; /* Making the font bolder to stand out */
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    width: 100%;
 }
 
 .testimonials-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Creates three columns */
-    gap: 20px; /* Space between grid items */
+    display: flex;
+    justify-content: space-between;
     padding: 20px;
-    max-width: 1200px; /* Maximum width of the container */
-    margin: auto; /* Center align the container */
+    width: 100%;
 }
 
 .testimonial {
-    background: #f9f9f9; /* Default light background for each testimonial */
-    border: 1px solid #ddd; /* Subtle border */
+    flex: 1;
+    background: #ffffff;
     padding: 20px;
-    border-radius: 8px; /* Rounded corners for aesthetic */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Soft shadow for depth */
-    opacity: 0; /* Start with hidden for animation */
-    animation: fadeIn 0.5s ease forwards; /* Animation for fade in */
-    transition: transform 0.3s ease-in-out; /* Smooth transform on hover */
-    text-align: left; /* Align text to the left */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+    margin: 0 10px;
 }
-
-/* Different background colors for each testimonial based on nth-child */
-.testimonial:nth-child(1) { background-color: #ffadad; }
-.testimonial:nth-child(2) { background-color: #ffd6a5; }
-.testimonial:nth-child(3) { background-color: #fdffb6; }
-.testimonial:nth-child(4) { background-color: #caffbf; }
-.testimonial:nth-child(5) { background-color: #9bf6ff; }
-.testimonial:nth-child(6) { background-color: #a0c4ff; }
 
 .testimonial:hover {
-    transform: scale(1.05); /* Scale up on hover for emphasis */
+    transform: translateY(-5px);
+    background-color: #e8f0fe;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-@keyframes fadeIn {
-    to {
-        opacity: 1; /* End at fully visible */
-    }
-}
-
-.testimonial-text {
-    font-size: 16px; /* Adequate font size for readability */
-    color: #333; /* Darker text for contrast */
-    margin-bottom: 10px; /* Space between text and author */
-}
-
-.testimonial-author {
-    font-size: 14px; /* Slightly smaller font for the author */
-    color: #666; /* Lighter color for author text */
-    text-align: right; /* Align author to the right */
-}
-
-/* Responsive adjustments for tablets and mobile devices */
 @media (max-width: 768px) {
     .testimonials-container {
-        grid-template-columns: repeat(2, 1fr); /* Two columns for tablets */
-        gap: 15px; /* Slightly reduced gap */
+        flex-direction: column;
     }
 
-    .testimonials-heading {
-        font-size: 20px; /* Slightly smaller heading for better fit */
+    .testimonial {
+        margin-bottom: 20px;
     }
 }
 
-/* Additional adjustments for very small devices */
-@media (max-width: 480px) {
-    .testimonials-container {
-        grid-template-columns: 1fr; /* Single column layout for small phones */
-    }
+/* Testimonials.css */
 
-    .testimonial.testimonial-author {
-        font-size: 14px; /* Smaller font size to ensure text fits well */
-    }
+/* ... other styles ... */
 
-    .testimonials-heading {
-        font-size: 18px; /* Reduce font size further for very small devices */
-    }
+.testimonial:nth-child(1) {
+    background-color: #ffadad;
 }
+
+.testimonial:nth-child(2) {
+    background-color: #ffd6a5;
+}
+
+.testimonial:nth-child(3) {
+    background-color: #fdffb6;
+}
+
+.testimonial:nth-child(4) {
+    background-color: #caffbf;
+}
+
+.testimonial:nth-child(5) {
+    background-color: #9bf6ff;
+}
+
+.testimonial:nth-child(6) {
+    background-color: #a0c4ff;
+}
+
+/* ... other styles ... */

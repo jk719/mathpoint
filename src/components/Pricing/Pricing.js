@@ -34,7 +34,7 @@ function Pricing() {
 
     return (
         <div className="pricing-container">
-            <h1 className="pricing-header">Pricing</h1>
+            <h1 className="pricing-header">PRICING</h1>
             {plans.map(plan => (
                 <div key={plan.id} className="about-item pricing-item">
                     <h3>{plan.name}</h3>

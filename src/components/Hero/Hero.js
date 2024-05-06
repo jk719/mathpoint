@@ -14,7 +14,6 @@ function Hero() {
     const [errorMessage, setErrorMessage] = useState('');
     const [quizComplete, setQuizComplete] = useState(false);  // State to track if the quiz is completed
     
-
     const startQuiz = () => {
         const gradeNum = parseInt(grade, 10);
         if (!isNaN(gradeNum) && gradeNum >= 1 && gradeNum <= 12) {
@@ -48,7 +47,6 @@ function Hero() {
         }
     };
 
-    const handleOpenModal = () => setIsModalOpen(true);
     const handleCloseModal = () => setIsModalOpen(false);
 
     const restartQuiz = () => {
@@ -134,7 +132,6 @@ function Hero() {
             </Modal>
         </div>
     );
-    
 }
 
 export default Hero;
