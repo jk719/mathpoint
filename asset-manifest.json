@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/mathpoint/static/css/main.edb81e9c.css",
+    "main.css": "/mathpoint/static/css/main.3dbdbddf.css",
     "main.js": "/mathpoint/static/js/main.f686fe4f.js",
     "static/js/453.6485a020.chunk.js": "/mathpoint/static/js/453.6485a020.chunk.js",
     "static/media/Dynamic and Engaging Curriculum.jpg": "/mathpoint/static/media/Dynamic and Engaging Curriculum.c2adf34d72bcfc784fc1.jpg",
@@ -8,12 +8,12 @@
     "static/media/technology_enhanced_learning_image.jpg": "/mathpoint/static/media/technology_enhanced_learning_image.b04742109e591e98672c.jpg",
     "static/media/logo.png": "/mathpoint/static/media/logo.1aadabeca383e52a6a43.png",
     "index.html": "/mathpoint/index.html",
-    "main.edb81e9c.css.map": "/mathpoint/static/css/main.edb81e9c.css.map",
+    "main.3dbdbddf.css.map": "/mathpoint/static/css/main.3dbdbddf.css.map",
     "main.f686fe4f.js.map": "/mathpoint/static/js/main.f686fe4f.js.map",
     "453.6485a020.chunk.js.map": "/mathpoint/static/js/453.6485a020.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.edb81e9c.css",
+    "static/css/main.3dbdbddf.css",
     "static/js/main.f686fe4f.js"
   ]
 }
