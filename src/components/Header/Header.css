@@ -1,8 +1,6 @@
 /* Header.css */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
-
-
 .header {
     width: 100%;
     display: flex;
@@ -64,9 +62,15 @@
         text-align: center;
     }
 
-    .site-logo, .social-media-icons, .signup-button {
-        flex: none; /* Override the flex-grow in mobile */
+    .site-logo, .social-media-icons {
         width: 100%; /* Full width for mobile */
         margin-top: 10px; /* Space between elements */
+    }
+
+    .signup-button {
+        order: 3; /* Makes sure the sign-up button is at the bottom */
+        margin-top: 20px; /* Adds a little space between elements */
+        width: 90%; /* Slightly less than full width for padding */
+        align-self: center; /* Centers button in mobile view */
     }
 }
