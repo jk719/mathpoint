@@ -1,9 +1,11 @@
+// src/components/Header/Header.js
 import React, { useState } from 'react';
 import Modal from '../Modal/Modal';
 import './Header.css';
 import logo from '../../assets/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faInstagram, faTiktok } from '@fortawesome/free-brands-svg-icons';
+import GoogleAuth from '../GoogleAuth/GoogleAuth'; // Import GoogleAuth component
 
 function Header() {
     const [isModalOpen, setModalOpen] = useState(false);
@@ -30,6 +32,8 @@ function Header() {
                     <FontAwesomeIcon icon={faTiktok} />
                 </a>
             </div>
+            {/* GoogleAuth login button included here to ensure it's rendered once */}
+            <GoogleAuth />
             <button className="signup-button" onClick={toggleModal}>
                 Sign Up for Free Session
             </button>
