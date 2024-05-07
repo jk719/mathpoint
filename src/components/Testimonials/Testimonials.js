@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import './Testimonials.css';  // Ensure the CSS file is linked for styling
 
 const testimonialsData = [
@@ -11,10 +11,28 @@ const testimonialsData = [
 ];
 
 function Testimonials() {
+    const testimonialsContainerRef = useRef(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    testimonialsContainerRef.current.style.animation = 'none';
+                    setTimeout(() => {
+                        testimonialsContainerRef.current.style.animation = 'nudge 2s ease-out 1';
+                    }, 10);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        observer.observe(testimonialsContainerRef.current);
+        return () => observer.disconnect(); 
+    }, []);
+
     return (
-        <div className="testimonials-section">
+        <div className="universal-section">
             <h2 className="testimonials-heading">Testimonials</h2>
-            <div className="testimonials-container">
+            <div className="testimonials-container" ref={testimonialsContainerRef}>
                 {testimonialsData.map(testimonial => (
                     <div key={testimonial.id} className="testimonial">
                         <p className="testimonial-text">"{testimonial.text}"</p>

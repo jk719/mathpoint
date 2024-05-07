@@ -1,10 +1,22 @@
 /* AboutSection.css */
+
+.about-header {
+    text-align: center;
+    color: white;
+    background-color: black;
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
 .about-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     padding: 20px;
     background-color: #f4f4f4;
+    overflow-x: hidden; /* Default to no horizontal scroll */
 }
 
 .about-item {
@@ -15,12 +27,13 @@
     transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
     cursor: pointer;
     text-align: center;
+    min-width: 300px; /* Minimum width for each item */
 }
 
 .about-item img {
-    width: 100%; /* Adjust width as necessary */
+    width: 100%;
     height: auto;
-    margin-bottom: 10px; /* Space between image and header */
+    margin-bottom: 10px;
 }
 
 .about-item ul {
@@ -53,13 +66,44 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
+/* Keyframes for nudge animation to hint at horizontal scrolling capability */
+@keyframes nudge {
+    0%, 100% {
+        transform: translateX(0px);
+    }
+    50% {
+        transform: translateX(-20px); /* Small nudge to the left */
+    }
+}
+/* Responsive adjustments for mobile view */
 @media (max-width: 768px) {
     .about-container {
-        grid-template-columns: 1fr;
+        display: flex; /* Change to flex for horizontal scrolling */
+        overflow-x: auto; /* Enable horizontal scrolling */
+        scroll-behavior: smooth;
+        animation: nudge 2s ease-out 1; /* Apply the nudge animation */
+    }
+
+    .about-item {
+        display: flex; /* Flex display to manage image and text side by side */
+        flex-wrap: wrap; /* Allow items to wrap if needed */
+        align-items: center; /* Align items vertically */
+        width: 100%; /* Adjust width for a single, full view */
+        min-width: 300px; /* Ensure minimum width */
+    }
+
+    .about-item img {
+        width: 60%; /* Increase the width of images on mobile */
+        flex: 0 0 100%; /* Flex basis set to the width percentage */
+    }
+
+    .about-item ul {
+        width: 40%; /* Decrease the width of text content to balance the larger image */
+        flex: 1 0 40%; /* Flex basis set to the width percentage */
     }
 }
 
-/* Color styles */
+/* Color styles for items */
 .about-item:nth-child(1) { background-color: #ffadad; }
 .about-item:nth-child(2) { background-color: #ffd6a5; }
 .about-item:nth-child(3) { background-color: #fdffb6; }

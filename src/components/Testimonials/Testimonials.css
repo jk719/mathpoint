@@ -5,6 +5,10 @@
     align-items: center;
     padding: 20px;
     background-color: #f4f4f4;
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    box-sizing: border-box;
 }
 
 .testimonials-heading {
@@ -20,20 +24,31 @@
 
 .testimonials-container {
     display: flex;
-    justify-content: space-between;
+    overflow-x: auto;
     padding: 20px;
     width: 100%;
 }
 
 .testimonial {
-    flex: 1;
+    flex: 0 0 300px;
     background: #ffffff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
     text-align: center;
     margin: 0 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    min-height: 300px; /* Ensure there is enough height */
+}
+
+.testimonial p {
+    margin: 0; /* Remove margins from paragraphs to save space */
+    padding: 5px; /* Add padding to maintain spacing */
+    font-size: 14px; /* Adjust font size */
+    line-height: 1.4; /* Adjust line height for compact fit */
 }
 
 .testimonial:hover {
@@ -44,40 +59,14 @@
 
 @media (max-width: 768px) {
     .testimonials-container {
-        flex-direction: column;
-    }
-
-    .testimonial {
-        margin-bottom: 20px;
+        flex-direction: row; /* Ensure horizontal layout for scrolling */
     }
 }
 
-/* Testimonials.css */
-
-/* ... other styles ... */
-
-.testimonial:nth-child(1) {
-    background-color: #ffadad;
-}
-
-.testimonial:nth-child(2) {
-    background-color: #ffd6a5;
-}
-
-.testimonial:nth-child(3) {
-    background-color: #fdffb6;
-}
-
-.testimonial:nth-child(4) {
-    background-color: #caffbf;
-}
-
-.testimonial:nth-child(5) {
-    background-color: #9bf6ff;
-}
-
-.testimonial:nth-child(6) {
-    background-color: #a0c4ff;
-}
-
-/* ... other styles ... */
+/* Background colors for each testimonial */
+.testimonial:nth-child(1) { background-color: #ffadad; }
+.testimonial:nth-child(2) { background-color: #ffd6a5; }
+.testimonial:nth-child(3) { background-color: #fdffb6; }
+.testimonial:nth-child(4) { background-color: #caffbf; }
+.testimonial:nth-child(5) { background-color: #9bf6ff; }
+.testimonial:nth-child(6) { background-color: #a0c4ff; }

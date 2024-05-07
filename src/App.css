@@ -9,7 +9,7 @@ body, html {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 100%;
+  overflow-x: hidden; /* This prevents horizontal scrolling caused by overflow */
 }
 
 .App {
@@ -20,6 +20,15 @@ body, html {
   align-items: center; /* Center-align children components */
   justify-content: flex-start; /* Align children to the start of the main axis */
   background-color: #f4f4f4; /* Light background for the entire app */
+}
+
+/* Define universal section for consistent layout across the site */
+.universal-section {
+  max-width: 1200px; /* Or any other width according to design */
+  width: 100%; /* Ensures it takes up as much space as it can within its parent */
+  margin: auto; /* Centers the section horizontally */
+  padding: 0 20px; /* Provides padding to prevent content from touching the edges */
+  box-sizing: border-box; /* Includes padding in width and height calculations */
 }
 
 /* Additional global styles or specific ones can be added here depending on your design needs */

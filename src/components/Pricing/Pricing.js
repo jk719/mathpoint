@@ -5,7 +5,8 @@ function Pricing() {
     const plans = [
         {
             id: 1,
-            name: "First Two Sessions Free",
+            name: "First Two Sessions",
+            price: "FREE",
             description: "Experience our tutoring services with no commitment.",
             translation: "Experimenta nuestros servicios de tutoría sin compromiso."
         },
@@ -33,15 +34,17 @@ function Pricing() {
     ];
 
     return (
-        <div className="pricing-container">
-            <h1 className="pricing-header">PRICING</h1>
-            {plans.map(plan => (
-                <div key={plan.id} className="about-item pricing-item">
-                    <h3>{plan.name}</h3>
-                    <h2>{plan.price}</h2>
-                    <p>{plan.description} <span className="translation">({plan.translation})</span></p>
-                </div>
-            ))}
+        <div className="universal-section">  {/* Updated class name for consistent styling */}
+            <div className="pricing-header">PRICING</div>
+            <div className="pricing-container">
+                {plans.map(plan => (
+                    <div key={plan.id} className="pricing-item">
+                        <h3>{plan.name}</h3>
+                        {plan.price && <h2>{plan.price}</h2>}
+                        <p>{plan.description} <span className="translation">({plan.translation})</span></p>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }

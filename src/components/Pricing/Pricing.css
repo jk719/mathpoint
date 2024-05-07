@@ -1,58 +1,49 @@
 /* Pricing.css */
+.pricing-header {
+    text-align: center;
+    color: white;
+    background-color: black;
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 40px; /* Provides ample space above and below the header */
+}
+
 .pricing-container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Four columns by default */
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
-    padding: 20px;
-    background-color: #f4f4f4;
+    background-color: transparent;
 }
 
-.pricing-header {
-    grid-column: 1 / -1; /* Spans the header across all columns */
-    text-align: center;
-    padding: 20px;
-    background-color: black;
-    color: white;
-    font-size: 28px; /* Increased font size for better visibility */
-    font-weight: 700; /* Making the font bolder to stand out */
-    margin-bottom: 20px; /* Space below the header */
-}
-
-.pricing-item, .about-item {
+.pricing-item {
     background: #ffffff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
+    color: #333;
 }
 
-.pricing-item h2, .pricing-item h3, .pricing-item p,
-.about-item h2, .about-item h3, .about-item p {
+.pricing-item h3, h2, p {
     margin-bottom: 10px;
 }
 
-.pricing-item:hover, .about-item:hover {
-    transform: translateY(-5px);
-    background-color: #e8f0fe;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.translation {
-    display: block;
-    font-size: 14px;
-    color: #666;
+.pricing-item h2 {
+    color: black;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 28px;
 }
 
 @media (max-width: 768px) {
     .pricing-container {
-        grid-template-columns: repeat(2, 1fr); /* Two columns for medium-sized devices */
+        grid-template-columns: 1fr;
     }
 }
 
-@media (max-width: 480px) {
-    .pricing-container {
-        grid-template-columns: 1fr; /* One column for small devices */
-    }
-}
+/* Background colors for items, assuming these are intentional for design */
+.pricing-item:nth-child(1) { background-color: #ffadad; }
+.pricing-item:nth-child(2) { background-color: #ffd6a5; }
+.pricing-item:nth-child(3) { background-color: #fdffb6; }
+.pricing-item:nth-child(4) { background-color: #caffbf; }
