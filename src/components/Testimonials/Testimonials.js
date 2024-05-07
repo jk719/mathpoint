@@ -31,7 +31,7 @@ function Testimonials() {
 
     return (
         <div className="universal-section">
-            <h2 className="testimonials-heading">Testimonials</h2>
+            <h2 className="testimonials-heading">testimonials</h2>
             <div className="testimonials-container" ref={testimonialsContainerRef}>
                 {testimonialsData.map(testimonial => (
                     <div key={testimonial.id} className="testimonial">
