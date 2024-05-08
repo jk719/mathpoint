@@ -1,6 +1,5 @@
 {
   "name": "mathpoint",
-  "homepage": "https://jk719.github.io/mathpoint/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
