@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/mathpoint/static/css/main.2504106c.css",
-    "main.js": "/mathpoint/static/js/main.60b1edbc.js",
-    "static/js/453.6485a020.chunk.js": "/mathpoint/static/js/453.6485a020.chunk.js",
-    "static/media/Dynamic and Engaging Curriculum.jpg": "/mathpoint/static/media/Dynamic and Engaging Curriculum.c2adf34d72bcfc784fc1.jpg",
-    "static/media/Personalized Learning Paths.jpg": "/mathpoint/static/media/Personalized Learning Paths.8b1a09f8b5dcd23ab18c.jpg",
-    "static/media/technology_enhanced_learning_image.jpg": "/mathpoint/static/media/technology_enhanced_learning_image.b04742109e591e98672c.jpg",
-    "static/media/logo.png": "/mathpoint/static/media/logo.1aadabeca383e52a6a43.png",
-    "index.html": "/mathpoint/index.html",
-    "main.2504106c.css.map": "/mathpoint/static/css/main.2504106c.css.map",
-    "main.60b1edbc.js.map": "/mathpoint/static/js/main.60b1edbc.js.map",
-    "453.6485a020.chunk.js.map": "/mathpoint/static/js/453.6485a020.chunk.js.map"
+    "main.css": "/static/css/main.2504106c.css",
+    "main.js": "/static/js/main.c41072b7.js",
+    "static/js/453.6485a020.chunk.js": "/static/js/453.6485a020.chunk.js",
+    "static/media/Dynamic and Engaging Curriculum.jpg": "/static/media/Dynamic and Engaging Curriculum.c2adf34d72bcfc784fc1.jpg",
+    "static/media/Personalized Learning Paths.jpg": "/static/media/Personalized Learning Paths.8b1a09f8b5dcd23ab18c.jpg",
+    "static/media/technology_enhanced_learning_image.jpg": "/static/media/technology_enhanced_learning_image.b04742109e591e98672c.jpg",
+    "static/media/logo.png": "/static/media/logo.1aadabeca383e52a6a43.png",
+    "index.html": "/index.html",
+    "main.2504106c.css.map": "/static/css/main.2504106c.css.map",
+    "main.c41072b7.js.map": "/static/js/main.c41072b7.js.map",
+    "453.6485a020.chunk.js.map": "/static/js/453.6485a020.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.2504106c.css",
-    "static/js/main.60b1edbc.js"
+    "static/js/main.c41072b7.js"
   ]
 }
