@@ -7,19 +7,18 @@ const expiryDate = new Date(Date.now() + 60 * 60 * 24 * 1000); // 24 hours
 
 app.use(cookieSession({
   name: 'session',
-  keys: ['key1', 'key2'],
+  keys: [process.env.KEY1, process.env.KEY2],
   cookie: {
     secure: true,
     httpOnly: true,
-    domain: 'example.com',
-    path: 'foo/bar',
+    domain: 'www.mathpoint.academy', // use your actual domain
     expires: expiryDate,
     sameSite: 'lax' // or 'strict' or 'none'
   }
 }));
 
 app.use((req, res, next) => {
-  res.setHeader('Cross-Origin-Opener-Policy', 'same-origin-allow-popups');
+  res.setHeader('Cross-Origin-Opener-Policy', 'unsafe-none');
   next();
 });
 
