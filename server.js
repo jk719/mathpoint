@@ -5,6 +5,14 @@ const app = express();
 
 const expiryDate = new Date(Date.now() + 60 * 60 * 24 * 1000); // 24 hours
 
+app.use((req, res, next) => {
+  if (req.header('x-forwarded-proto') !== 'https' && process.env.NODE_ENV === 'production') {
+    res.redirect(`https://${req.header('host')}${req.url}`);
+  } else {
+    next();
+  }
+});
+
 app.use(cookieSession({
   name: 'session',
   keys: [process.env.KEY1, process.env.KEY2],
