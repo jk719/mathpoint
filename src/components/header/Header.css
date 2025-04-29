@@ -1,0 +1,151 @@
+/* Mathpoint Header Styles */
+.mathpoint-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #02244a; /* Dark blue from brand guidelines */
+  padding: 14px 24px;
+  border-bottom: 4px solid #fb923c; /* Orange accent */
+  box-shadow: 0 4px 24px rgba(2, 36, 74, 0.16);
+  position: relative;
+  z-index: 10;
+}
+
+.mathpoint-logo-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.mathpoint-logo-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.logo-main {
+  font-family: 'Press Start 2P', 'Poppins', sans-serif;
+  font-size: 2.1rem;
+  color: #fff;
+  letter-spacing: 2px;
+  font-weight: 900;
+  text-shadow: 0 3px 0 #1a1a1a, 0 2px 8px #000;
+  margin: 0;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.logo-tag {
+  font-size: 0.8rem;
+  color: #fb923c; /* Orange accent */
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  margin-top: -2px;
+  letter-spacing: 1.2px;
+  text-shadow: 0 1px 0 #000;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.social-icons {
+  display: flex;
+  gap: 12px;
+}
+
+.social-icon {
+  color: #fff;
+  font-size: 20px;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.social-icon:hover {
+  color: #fb923c;
+  transform: scale(1.15);
+}
+
+.cta-btn {
+  background: #fb923c; /* Orange */
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(251, 146, 60, 0.2);
+  letter-spacing: 0.5px;
+  transition: background 0.2s, transform 0.2s;
+  outline: none;
+}
+
+.cta-btn:hover {
+  background: #fda762; /* Lighter orange */
+  transform: translateY(-2px);
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .mathpoint-header {
+    padding: 12px 20px;
+  }
+  
+  .logo-main {
+    font-size: 1.9rem;
+  }
+  
+  .logo-tag {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .mathpoint-header {
+    flex-direction: column;
+    align-items: center;
+    padding: 14px 16px;
+  }
+  
+  .mathpoint-logo-row {
+    margin-bottom: 12px;
+  }
+  
+  .header-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 480px) {
+  .mathpoint-logo-row {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+  
+  .mathpoint-logo-text {
+    align-items: center;
+  }
+  
+  .logo-main {
+    font-size: 1.7rem;
+  }
+  
+  .logo-tag {
+    font-size: 0.7rem;
+  }
+  
+  .social-icons {
+    gap: 8px;
+  }
+  
+  .cta-btn {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+}

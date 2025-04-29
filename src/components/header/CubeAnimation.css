@@ -1,0 +1,20 @@
+.cube-animation-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin-right: 1.2rem;
+}
+
+.cube-svg {
+  display: block;
+}
+
+.cube-edges {
+  stroke-width: 4.5;
+  stroke-linecap: square;
+  filter: drop-shadow(1px 1px 0 #c26619);
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  opacity: 1;
+}
