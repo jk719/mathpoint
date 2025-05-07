@@ -1,1 +1,21 @@
+.micro-task .canvas,
+.micro-task .grid-placeholder {
+  width: 100%;
+  max-width: 500px;
+  aspect-ratio: 4/3;
+  border: 2px dashed #aaa;
+  margin-top: 0.5rem;
+}
+.hint { font-size: 0.8rem; color: #777; }
 
+/* Add styles for completed state */
+.micro-task.completed .grid-placeholder,
+.micro-task.completed .canvas {
+  border-color: #4CAF50;
+  border-style: solid;
+}
+
+.micro-task.completed .hint {
+  color: #4CAF50;
+  font-weight: bold;
+}
