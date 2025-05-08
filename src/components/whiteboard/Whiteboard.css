@@ -33,14 +33,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #ffffff;
+  background-color: var(--color-white);
   padding: 0.75rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
   margin-bottom: 1rem;
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: var(--z-toolbar);
 }
 
 .tool-group, .history-buttons {
@@ -171,13 +171,13 @@
 
 /* Common styles for popovers */
 .popover {
-  background-color: #ffffff;
-  border-radius: 8px;
+  background-color: var(--color-white);
+  border-radius: var(--radius-lg);
   padding: 1rem;
   margin-bottom: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-md);
   animation: fadeIn 0.3s ease;
-  z-index: 5;
+  z-index: var(--z-popover);
   border: 1px solid #e1e4e8;
 }
 
@@ -339,10 +339,22 @@
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (max-width: var(--breakpoint-sm)) {
   .toolbar {
+    flex-direction: column;
+    padding: 0.5rem;
+    gap: 0.75rem;
+  }
+  
+  .tool-group {
     flex-wrap: wrap;
-    gap: 0.5rem;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .history-buttons {
+    justify-content: center;
+    width: 100%;
   }
   
   .whiteboard-container {
@@ -351,14 +363,172 @@
   }
   
   .whiteboard-canvas {
-    height: 400px;
+    max-height: 450px;
+    touch-action: none;
   }
   
-  .tool-group, .history-buttons {
-    flex-wrap: wrap;
+  .tool-btn {
+    min-width: 42px;
+    min-height: 42px;
+    margin: 0 2px;
   }
   
-  .shapes-grid, .color-grid {
+  .shapes-grid, 
+  .color-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+  
+  .color-preset,
+  .shape-btn {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media (max-width: var(--breakpoint-xs)) {
+  .toolbar {
+    padding: 0.4rem;
+    gap: 0.5rem;
+  }
+  
+  .whiteboard-container {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .whiteboard-header {
+    margin-bottom: 0.5rem;
+  }
+  
+  .whiteboard-header h2 {
+    font-size: 1.4rem;
+  }
+  
+  .whiteboard-header p {
+    font-size: 0.9rem;
+  }
+  
+  .whiteboard-canvas {
+    max-height: 400px;
+  }
+  
+  .tool-btn {
+    min-width: 38px;
+    min-height: 38px;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+  
+  .color-picker {
+    height: 25px;
+    width: 25px;
+  }
+  
+  .line-width {
+    width: 80px;
+  }
+  
+  .shapes-grid, 
+  .color-grid {
     grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+  
+  .color-preset,
+  .shape-btn {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .popover {
+    padding: 0.75rem;
+  }
+  
+  .popover h3 {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .size-buttons button {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Mobile optimization for whiteboard toolbar */
+@media (max-width: 768px) {
+  .whiteboard-container {
+    padding: 0.75rem;
+  }
+  
+  .whiteboard-header h2 {
+    font-size: 1.3rem;
+  }
+  
+  .whiteboard-header p {
+    font-size: 0.85rem;
+  }
+  
+  .toolbar {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 8px;
+  }
+  
+  .tool-group, .color-options, .line-width, .history-buttons {
+    flex: 1 1 auto;
+    min-width: max-content;
+    justify-content: center;
+  }
+  
+  .whiteboard-canvas {
+    height: 400px !important;
+    max-width: 100%;
+    object-fit: contain;
+    touch-action: none; /* Prevent default touch actions for better drawing */
+  }
+  
+  .popover {
+    max-width: 90vw;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 480px) {
+  .whiteboard-container {
+    padding: 0.5rem;
+  }
+  
+  .whiteboard-header h2 {
+    font-size: 1.1rem;
+  }
+  
+  .whiteboard-header p {
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .toolbar {
+    padding: 6px;
+    gap: 6px;
+  }
+  
+  .tool-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 0.9rem;
+  }
+  
+  .whiteboard-canvas {
+    height: 300px !important;
+  }
+  
+  .size-buttons button {
+    padding: 6px 8px;
+    font-size: 0.8rem;
   }
 } 

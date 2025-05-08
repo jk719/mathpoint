@@ -1,3 +1,10 @@
+.reason-choice .question-prompt {
+  margin-bottom: 1rem;
+  display: block;
+  font-family: var(--font-display);
+  letter-spacing: 0.5px;
+}
+
 .reason-choice .options-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -36,4 +43,16 @@
 .reason-choice .option-label {
   font-size: 0.9rem;
   text-align: center;
+  font-family: var(--font-display);
+  letter-spacing: 0.5px;
+}
+
+/* Fade-in animation */
+.reason-choice .fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 } 

@@ -1,3 +1,10 @@
+.micro-task .question-prompt {
+  margin-bottom: 1rem;
+  display: block;
+  font-family: var(--font-display);
+  letter-spacing: 0.5px;
+}
+
 .micro-task .canvas,
 .micro-task .grid-placeholder {
   width: 100%;
@@ -6,7 +13,22 @@
   border: 2px dashed #aaa;
   margin-top: 0.5rem;
 }
-.hint { font-size: 0.8rem; color: #777; }
+
+.micro-task .grid-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+}
+
+.hint { 
+  font-size: 0.8rem; 
+  color: #777; 
+  font-family: var(--font-display);
+  letter-spacing: 0.5px;
+}
 
 /* Add styles for completed state */
 .micro-task.completed .grid-placeholder,
@@ -18,4 +40,14 @@
 .micro-task.completed .hint {
   color: #4CAF50;
   font-weight: bold;
+}
+
+/* Fade-in animation */
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }

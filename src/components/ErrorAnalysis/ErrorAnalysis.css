@@ -1,3 +1,10 @@
+.error-analysis .question-prompt {
+  margin-bottom: 1rem;
+  display: block;
+  font-family: var(--font-display);
+  letter-spacing: 0.5px;
+}
+
 .error-analysis img,
 .error-analysis .work-placeholder {
   width: 100%;
@@ -12,9 +19,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: #333;
   text-align: center;
+  font-family: var(--font-display);
+  letter-spacing: 0.5px;
 }
 
 .error-analysis .choices {
@@ -30,10 +39,23 @@
   border-radius: 6px;
   cursor: pointer;
   background: #fff;
-  color: #333; /* Add explicit text color */
+  color: #333;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
 }
 /* Make sure selected state has higher specificity */
 .question-container .error-analysis button.selected {
   border-color: #007acc;
   background: rgba(0, 122, 204, 0.15);
+}
+
+/* Fade-in animation */
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }

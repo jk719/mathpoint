@@ -2,22 +2,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
+/* Global Variables */
 :root {
-  /* Brand colors */
-  --color-primary: #02244a; /* Dark blue */
-  --color-accent: #fb923c; /* Orange accent */
-  --color-accent-light: #fda762;
-  --color-accent-dark: #c26619;
-  --color-text: #333;
-  --color-text-light: #666;
-  --color-background: #f8f9fa;
-  --color-white: #fff;
+  /* Colors */
+  --color-primary: #02244a;
+  --color-accent: #fb923c;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-light-gray: #e2e8f0;
+  --color-dark-gray: #64748b;
+  --color-success: #4CAF50;
+  --color-error: #F44336;
   
   /* Typography */
   --font-primary: 'Poppins', sans-serif;
-  --font-display: 'Press Start 2P', cursive;
+  --font-display: 'Press Start 2P', 'Poppins', sans-serif;
   
-  /* Spacing */
+  /* Spacing & Sizing */
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.5rem;
   --spacing-md: 1rem;
@@ -25,9 +26,25 @@
   --spacing-xl: 2rem;
   
   /* Shadows */
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.12);
-  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.15);
+  
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 6px; 
+  --radius-lg: 8px;
+  
+  /* Z-index layers */
+  --z-header: 1000;
+  --z-modal: 2000;
+  --z-tooltip: 3000;
+  
+  /* Breakpoints */
+  --breakpoint-xs: 480px;
+  --breakpoint-sm: 768px;
+  --breakpoint-md: 880px;
+  --breakpoint-lg: 1024px;
   
   font-family: var(--font-primary);
   line-height: 1.5;
@@ -38,6 +55,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Global Resets */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -49,10 +67,13 @@ html, body {
 }
 
 body {
-  background-color: var(--color-background);
-  color: var(--color-text);
-  margin: 0;
-  min-height: 100vh;
+  font-family: var(--font-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #333;
+  background-color: #f9fafb;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 a {
@@ -105,4 +126,41 @@ button:focus {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #bbb;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+/* Remove focus outlines for mouse users, keep for keyboard users */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Better button styling */
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* Responsive image defaults */
+img {
+  max-width: 100%;
+  height: auto;
 }

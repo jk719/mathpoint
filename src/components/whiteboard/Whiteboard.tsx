@@ -136,20 +136,6 @@ const Whiteboard = () => {
     }
   };
   
-  // Draw a line directly between two points
-  const drawDirectLine = (
-    context: CanvasRenderingContext2D,
-    startX: number,
-    startY: number,
-    endX: number,
-    endY: number
-  ) => {
-    context.beginPath();
-    context.moveTo(startX, startY);
-    context.lineTo(endX, endY);
-    context.stroke();
-  };
-  
   // Draw smooth line between points using advanced Catmull-Rom spline algorithm
   const drawSmoothLine = (
     context: CanvasRenderingContext2D, 
@@ -157,71 +143,36 @@ const Whiteboard = () => {
   ) => {
     if (points.length < 2) return;
     
-    // Clear existing path and start fresh
-    context.beginPath();
-    
-    // Always start at the exact first point
+    // First point
     context.moveTo(points[0].x, points[0].y);
     
-    // Apply tension (0 = tight, 1 = smooth)
-    const tension = 0.33;
-    
-    // For just 2 points, draw a direct line for accuracy
-    if (points.length === 2) {
-      context.lineTo(points[1].x, points[1].y);
-    } else if (points.length === 3) {
-      // For 3 points, use quadratic curve
-      const xc = (points[1].x + points[2].x) / 2;
-      const yc = (points[1].y + points[2].y) / 2;
-      context.quadraticCurveTo(points[1].x, points[1].y, xc, yc);
-      context.lineTo(points[2].x, points[2].y);
-    } else {
-      // For more points, use Catmull-Rom spline (centripetal)
-      // This creates beautiful smooth curves that follow the hand movement naturally
+    // Catmull-Rom to Bezier conversion
+    for (let i = 0; i < points.length - 1; i++) {
+      const p1 = points[i];
+      const p2 = points[i + 1];
       
-      // Move to first point
-      context.moveTo(points[0].x, points[0].y);
+      // For the start point, handle first segment
+      let lastSegStartIdx = i === 0 ? 0 : i - 1;
+      const _p0 = points[lastSegStartIdx]; // Unused but kept for reference
       
-      let i;
-      for (i = 0; i < points.length - 3; i++) {
-        const p0 = i > 0 ? points[i - 1] : points[0];
-        const p1 = points[i];
-        const p2 = points[i + 1];
-        const p3 = points[i + 2];
-        
-        // Calculate tension vectors
-        const t1x = (p2.x - p0.x) * tension;
-        const t1y = (p2.y - p0.y) * tension;
-        const t2x = (p3.x - p1.x) * tension;
-        const t2y = (p3.y - p1.y) * tension;
-        
-        // Calculate control points for bezier curve
-        const c1x = p1.x + t1x / 3;
-        const c1y = p1.y + t1y / 3;
-        const c2x = p2.x - t2x / 3;
-        const c2y = p2.y - t2y / 3;
-        
-        // Draw smooth curve segment
-        context.bezierCurveTo(c1x, c1y, c2x, c2y, p2.x, p2.y);
-      }
+      // Next point (careful with bounds)
+      let nextPointIdx = i + 2 < points.length ? i + 2 : i + 1;
+      const p3 = points[nextPointIdx];
       
-      // Handle the last segment
-      const lastSegStartIdx = Math.max(0, points.length - 3);
-      const lastSegEndIdx = points.length - 1;
+      // Control points
+      const _xc = (p1.x + p2.x) / 2; // Unused but kept for reference
+      const _yc = (p1.y + p2.y) / 2; // Unused but kept for reference
       
-      if (lastSegEndIdx > lastSegStartIdx + 1) {
-        const p0 = points[lastSegStartIdx];
-        const p1 = points[lastSegStartIdx + 1];
-        const p2 = points[lastSegEndIdx];
-        
-        // For last segment, use quadratic curve
-        const xc = (p1.x + p2.x) / 2;
-        const yc = (p1.y + p2.y) / 2;
-        context.quadraticCurveTo(p1.x, p1.y, p2.x, p2.y);
-      }
+      // Compute control points for Bezier curve
+      const cp1x = p1.x + (p2.x - _p0.x) / 6;
+      const cp1y = p1.y + (p2.y - _p0.y) / 6;
+      
+      const cp2x = p2.x - (p3.x - p1.x) / 6;
+      const cp2y = p2.y - (p3.y - p1.y) / 6;
+      
+      // Draw the curve
+      context.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, p2.x, p2.y);
     }
-    
-    context.stroke();
   };
 
   // Optimize points by removing redundant ones that don't contribute to curve shape
@@ -329,7 +280,7 @@ const Whiteboard = () => {
     }
   };
 
-  const stopDrawing = (e: React.MouseEvent<HTMLCanvasElement>) => {
+  const stopDrawing = (_e: React.MouseEvent<HTMLCanvasElement>) => {
     if (!isDrawing) return;
     
     const context = getContext();

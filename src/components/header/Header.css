@@ -6,9 +6,9 @@
   background: #02244a; /* Dark blue from brand guidelines */
   padding: 14px 24px;
   border-bottom: 4px solid #fb923c; /* Orange accent */
-  box-shadow: 0 4px 24px rgba(2, 36, 74, 0.16);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
   position: relative;
-  z-index: 10;
+  z-index: 1000; /* Ensure header has highest z-index */
 }
 
 .mathpoint-logo-row {
@@ -89,7 +89,33 @@
   transform: translateY(-2px);
 }
 
-/* Responsive design */
+/* Mobile menu toggle */
+.mobile-menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mobile-menu-toggle:hover {
+  color: #fb923c;
+}
+
+/* Hide mobile menu toggle on desktop */
+@media (min-width: 769px) {
+  .mobile-menu-toggle {
+    display: none !important;
+  }
+}
+
+/* Responsive design - enhanced for better mobile UX */
 @media (max-width: 1024px) {
   .mathpoint-header {
     padding: 12px 20px;
@@ -106,46 +132,68 @@
 
 @media (max-width: 768px) {
   .mathpoint-header {
-    flex-direction: column;
-    align-items: center;
+    flex-wrap: wrap;
     padding: 14px 16px;
+    gap: 0;
   }
   
   .mathpoint-logo-row {
-    margin-bottom: 12px;
+    margin-bottom: 0;
+  }
+  
+  .mobile-menu-toggle {
+    display: flex;
+    position: absolute;
+    right: 16px;
+    top: 14px;
   }
   
   .header-right {
     width: 100%;
     justify-content: space-between;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .header-right.menu-open {
+    max-height: 100px;
+    opacity: 1;
+    margin-top: 1rem;
   }
 }
 
 @media (max-width: 480px) {
-  .mathpoint-logo-row {
-    flex-direction: column;
-    text-align: center;
-    gap: 8px;
+  .mathpoint-header {
+    padding: 12px;
   }
   
-  .mathpoint-logo-text {
-    align-items: center;
+  .mathpoint-logo-row {
+    gap: 0.8rem;
   }
   
   .logo-main {
-    font-size: 1.7rem;
+    font-size: 1.5rem;
   }
   
   .logo-tag {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
+    letter-spacing: 1px;
   }
   
   .social-icons {
     gap: 8px;
   }
   
+  .social-icon {
+    font-size: 18px;
+  }
+  
   .cta-btn {
     padding: 8px 16px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
 }
