@@ -1,6 +1,6 @@
 .mathpoint-theme {
-  max-width: 800px;
-  width: 90%;
+  width: 100%;
+  max-width: 100%; /* Allow full width on all screens including desktop */
   margin: 0 auto;
   padding: 1rem;
   font-family: 'Poppins', sans-serif;
@@ -9,6 +9,9 @@
   border-radius: 8px;
   box-shadow: 0 4px 16px rgba(2, 36, 74, 0.15);
   min-width: 320px;
+  min-height: calc(85vh - 100px); /* Take up most of viewport height minus header */
+  display: flex;
+  flex-direction: column;
 }
 
 /* Question header with icons */
@@ -202,6 +205,7 @@
   100% { box-shadow: 0 4px 12px rgba(2, 36, 74, 0.1); }
 }
 
+/* Ensure question container expands but doesn't overflow */
 .question-container {
   background-color: #ffffff;
   border: 2px solid #e2e8f0;
@@ -209,8 +213,7 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   padding: 1.5rem;
   margin: 1.5rem 0;
-  min-height: 280px;
-  max-height: 40vh;
+  flex: 1;
   overflow-y: auto;
   position: relative;
   animation: subtle-focus 2s ease-in-out;
@@ -278,12 +281,14 @@
 
 /* Debug section */
 .debug {
-  margin-top: 2rem;
+  margin-top: 1rem;
   padding: 1rem;
   background-color: #f8fafc;
   border: 2px solid #e2e8f0;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(2, 36, 74, 0.08);
+  max-height: 200px;
+  overflow-y: auto;
 }
 
 .debug h3 {
@@ -346,11 +351,10 @@
     max-width: 100%;
     padding: 0.75rem;
     border-width: 3px;
+    min-height: calc(90vh - 80px); /* Adjust for smaller header on mobile */
   }
 
   .question-container {
-    min-height: 250px;
-    max-height: 50vh; /* Allow more vertical space on tablets */
     padding: 1rem;
     margin: 1rem 0;
   }
@@ -405,6 +409,7 @@
     border-width: 2px;
     border-radius: 6px;
     min-width: 280px; /* Ensure minimum width works on small devices */
+    min-height: calc(92vh - 70px); /* Adjust for even smaller header on mobile */
   }
   
   .question-container {
