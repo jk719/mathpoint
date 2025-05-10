@@ -1,17 +1,17 @@
-import React from 'react';
+import { useState } from 'react';
 import './SmartMC.css';
 import { SmartMCQuestion } from '../../types/Assessment';
 import { TypeAnimation } from '../TypeAnimation/TypeAnimation';
 
-type Props = {
+interface SmartMCProps {
   question: SmartMCQuestion;
   onAnswer: (choiceId: string, correct: boolean) => void;
-  initialAnswer?: { choiceId: string; correct: boolean };
-};
+  initialAnswer?: { choiceId: string, correct: boolean };
+}
 
-export const SmartMC: React.FC<Props> = ({ question, onAnswer, initialAnswer }) => {
-  const [selected, setSelected] = React.useState<string | null>(initialAnswer?.choiceId || null);
-  const [showChoices, setShowChoices] = React.useState(initialAnswer ? true : false);
+export const SmartMC: React.FC<SmartMCProps> = ({ question, onAnswer, initialAnswer }) => {
+  const [selected, setSelected] = useState<string | null>(initialAnswer?.choiceId || null);
+  const [showChoices, setShowChoices] = useState(initialAnswer ? true : false);
   
   const handle = (id: string, correct: boolean) => {
     setSelected(id);

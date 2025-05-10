@@ -7,6 +7,7 @@
   /* Colors */
   --color-primary: #02244a;
   --color-accent: #fb923c;
+  --color-accent-light: #fda762;
   --color-white: #ffffff;
   --color-black: #000000;
   --color-light-gray: #e2e8f0;
@@ -37,8 +38,11 @@
   
   /* Z-index layers */
   --z-header: 1000;
+  --z-toolbar: 1010;
+  --z-popover: 1020;
   --z-modal: 2000;
   --z-tooltip: 3000;
+  --z-achievement: 1500;
   
   /* Breakpoints */
   --breakpoint-xs: 480px;
@@ -163,4 +167,27 @@ button {
 img {
   max-width: 100%;
   height: auto;
+}
+
+/* Mobile height fix for iOS and other mobile browsers */
+@supports (-webkit-touch-callout: none) {
+  /* iOS devices */
+  .mathpoint-theme {
+    min-height: -webkit-fill-available;
+    height: -webkit-fill-available;
+  }
+}
+
+/* Fix for Safari and other browsers on various devices */
+@media (max-width: 480px) {
+  html, body, #root {
+    height: 100%;
+    overflow-x: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+  }
 }

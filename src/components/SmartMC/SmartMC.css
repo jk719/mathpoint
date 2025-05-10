@@ -37,3 +37,14 @@
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+.smartmc-question h3 {
+  font-family: 'Press Start 2P', 'Poppins', sans-serif;
+  margin-bottom: 1.5rem;
+}
+
+.question-label {
+  font-family: 'Press Start 2P', 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}

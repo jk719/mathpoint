@@ -114,13 +114,24 @@ export const QuestionDemo: React.FC = () => {
       setTimeout(() => {
         const questionElement = questionContainerRef.current;
         if (questionElement) {
-          // Use gentler scrolling that respects the header
-          const headerHeight = document.querySelector('.mathpoint-header')?.clientHeight || 100;
-          const offset = Math.max(0, questionElement.getBoundingClientRect().top + window.scrollY - headerHeight - 20);
-          window.scrollTo({
-            top: offset,
-            behavior: 'smooth'
-          });
+          // Use gentler scrolling that respects the header and works on mobile
+          const headerHeight = document.querySelector('.mathpoint-header')?.clientHeight || 70;
+          const tabsHeight = document.querySelector('.app-tabs')?.clientHeight || 50;
+          
+          // On mobile, we want minimal scrolling since we're already filling the viewport
+          const isMobile = window.innerWidth <= 480;
+          
+          if (isMobile) {
+            // On mobile, just focus the element without scrolling the page
+            questionElement.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+          } else {
+            // On desktop/tablet, scroll with offset for header
+            const offset = Math.max(0, questionElement.getBoundingClientRect().top + window.scrollY - headerHeight - 20);
+            window.scrollTo({
+              top: offset,
+              behavior: 'smooth'
+            });
+          }
         }
       }, 100);
     }, 300);

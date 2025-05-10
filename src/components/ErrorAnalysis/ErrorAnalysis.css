@@ -59,3 +59,20 @@
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+.error-analysis-question h3 {
+  font-family: 'Press Start 2P', 'Poppins', sans-serif;
+  margin-bottom: 1rem;
+}
+
+.error-heading {
+  font-family: 'Press Start 2P', 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.error-instruction {
+  font-family: 'Press Start 2P', 'Poppins', sans-serif;
+  font-size: 0.8rem;
+  margin: 0.5rem 0;
+}

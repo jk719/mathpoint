@@ -9,6 +9,7 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
   position: relative;
   z-index: 1000; /* Ensure header has highest z-index */
+  width: 100%;
 }
 
 .mathpoint-logo-row {
@@ -135,6 +136,8 @@
     flex-wrap: wrap;
     padding: 14px 16px;
     gap: 0;
+    width: 100vw;
+    box-sizing: border-box;
   }
   
   .mathpoint-logo-row {
@@ -169,6 +172,9 @@
 @media (max-width: 480px) {
   .mathpoint-header {
     padding: 12px;
+    width: 100vw;
+    box-sizing: border-box;
+    height: 70px;
   }
   
   .mathpoint-logo-row {
