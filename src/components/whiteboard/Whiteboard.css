@@ -8,7 +8,9 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   margin: 2rem auto;
   max-width: 900px;
+  width: 100%;
   position: relative;
+  box-sizing: border-box;
 }
 
 .whiteboard-header {
@@ -134,7 +136,7 @@
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
   touch-action: none;
   width: 100%;
-  height: auto;
+  height: 500px;
   transition: box-shadow 0.3s ease;
 }
 

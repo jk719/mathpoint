@@ -1,6 +1,6 @@
 .mathpoint-theme {
   width: 100%;
-  max-width: 100%; /* Allow full width on all screens including desktop */
+  max-width: 800px; /* Set appropriate max-width for desktop */
   margin: 0 auto;
   padding: 1rem;
   font-family: 'Poppins', sans-serif;
@@ -135,7 +135,7 @@
   justify-content: center;
   align-items: center;
   pointer-events: none;
-  z-index: 1500;
+  z-index: 1200; /* Adjusted to fit in the hierarchy: header(1000), toolbar(1010), popover(1020) */
 }
 
 .achievement-box {
@@ -342,7 +342,8 @@
 /* Update the media queries for better responsiveness */
 @media (max-width: 1024px) {
   .mathpoint-theme {
-    width: 95%; /* Use more space on smaller screens */
+    max-width: 95%; /* Use percentage instead of fixed width */
+    min-height: calc(85vh - 100px);
   }
 }
 
