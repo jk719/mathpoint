@@ -42,29 +42,21 @@
   font-weight: bold;
 }
 
-/* Fade-in animation */
-.fade-in {
-  animation: fadeIn 0.5s ease-in;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+/* Removed duplicate fadeIn animation - now using global one in index.css */
 
 .microtask-question h3 {
-  font-family: 'Press Start 2P', 'Poppins', sans-serif;
+  font-family: var(--font-display);
   margin-bottom: 1rem;
 }
 
 .microtask-label {
-  font-family: 'Press Start 2P', 'Poppins', sans-serif;
+  font-family: var(--font-display);
   font-size: 0.9rem;
   margin-bottom: 0.5rem;
 }
 
 .microtask-instruction {
-  font-family: 'Press Start 2P', 'Poppins', sans-serif;
+  font-family: var(--font-display);
   font-size: 0.8rem;
   margin: 0.5rem 0;
 }

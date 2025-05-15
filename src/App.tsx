@@ -27,8 +27,12 @@ function App() {
       </div>
       
       <div className="app-content">
-        {activeTab === 'assessment' && <QuestionDemo />}
-        {activeTab === 'whiteboard' && <Whiteboard />}
+        <div style={{ display: activeTab === 'assessment' ? 'block' : 'none', width: '100%' }}>
+          <QuestionDemo />
+        </div>
+        <div style={{ display: activeTab === 'whiteboard' ? 'block' : 'none', width: '100%' }}>
+          <Whiteboard />
+        </div>
       </div>
     </div>
   )

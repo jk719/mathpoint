@@ -16,6 +16,7 @@
   padding: 1rem;
   background-color: #f5f5f5;
   border-bottom: 1px solid #ddd;
+  box-sizing: border-box;
 }
 
 .tab-button {
@@ -41,7 +42,7 @@
 /* Content container */
 .app-content {
   flex: 1;
-  padding: 1rem;
+  padding: 0.5rem;
   margin-top: 10px; /* Add small spacing below header */
   overflow-y: auto;
   scroll-behavior: smooth;
@@ -49,6 +50,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  height: calc(100vh - 140px); /* Account for header and tabs */
+}
+
+/* Make sure child components take full width */
+.app-content > div {
   width: 100%;
   box-sizing: border-box;
 }
@@ -65,9 +73,9 @@
   }
   
   .app-content {
-    padding: 0.75rem;
+    padding: 0.5rem;
     flex: 1;
-    height: calc(100vh - 70px); /* Adjust for header height on mobile */
+    height: calc(100vh - 80px); /* Adjust for header height on tablets */
   }
 }
 
@@ -100,11 +108,10 @@
   }
   
   .app-content {
-    padding: 0;
+    padding: 0.25rem;
     width: 100%;
     margin-top: 0;
     height: calc(100vh - 120px); /* Adjust for header and tabs height */
-    flex: 1;
     overflow-y: auto;
   }
 }
@@ -112,9 +119,26 @@
 /* Additional responsive breakpoint for wider screens */
 @media (min-width: 1200px) {
   .app-content {
-    padding: 1.5rem;
+    padding: 1rem;
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
+  }
+}
+
+/* Fix for iOS height issues */
+@supports (-webkit-touch-callout: none) {
+  .app-container {
+    height: -webkit-fill-available;
+  }
+  
+  .app-content {
+    height: calc(100vh - 140px - env(safe-area-inset-bottom));
+  }
+  
+  @media (max-width: 480px) {
+    .app-content {
+      height: calc(100vh - 120px - env(safe-area-inset-bottom));
+    }
   }
 }

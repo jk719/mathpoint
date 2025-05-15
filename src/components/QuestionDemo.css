@@ -3,7 +3,7 @@
   max-width: 800px; /* Set appropriate max-width for desktop */
   margin: 0 auto;
   padding: 1rem;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-primary);
   background-color: #ffffff;
   border: 4px solid #02244a;
   border-radius: 8px;
@@ -12,6 +12,7 @@
   min-height: calc(85vh - 100px); /* Take up most of viewport height minus header */
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 }
 
 /* Question header with icons */
@@ -34,7 +35,7 @@
   box-shadow: 0 3px 8px rgba(2, 36, 74, 0.2);
   flex: 1;
   text-align: center;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-primary);
   font-weight: 600;
 }
 
@@ -169,14 +170,14 @@
   margin-bottom: 0.5rem;
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-family: 'Press Start 2P', 'Poppins', sans-serif;
+  font-family: var(--font-display);
 }
 
 .achievement-message {
   font-size: 1.5rem;
   font-weight: bold;
   letter-spacing: 1px;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-primary);
 }
 
 @keyframes achievement-appear {
@@ -352,9 +353,8 @@
     max-width: 100%;
     padding: 0.75rem;
     border-width: 3px;
-    min-height: calc(100vh - 80px); /* Adjusted for header height */
-    height: calc(100vh - 80px); /* Fixed height for mobile */
-    box-sizing: border-box;
+    min-height: calc(100vh - 80px);
+    height: calc(100vh - 80px);
   }
 
   .question-container {
@@ -407,16 +407,14 @@
 
 @media (max-width: 480px) {
   .mathpoint-theme {
-    width: 100%; /* Full width on mobile */
+    width: 100%;
     padding: 0.5rem;
     border-width: 2px;
-    border-radius: 6px;
-    min-width: 280px; /* Ensure minimum width works on small devices */
-    min-height: calc(100vh - 70px); /* Full viewport height minus header */
-    height: calc(100vh - 120px); /* Force exact height accounting for header and tabs */
-    box-sizing: border-box; /* Ensure padding doesn't add to the height */
+    border-radius: 0;
+    min-width: 280px;
+    min-height: calc(100vh - 70px);
+    height: calc(100vh - 120px);
     margin: 0;
-    border-radius: 0; /* Remove border radius on mobile for full-width look */
   }
   
   .question-container {
@@ -424,7 +422,7 @@
     margin: 0.75rem 0;
     flex: 1 1 auto;
     overflow-y: auto;
-    max-height: none; /* Remove conflicting max-height */
+    max-height: none;
   }
   
   .question-header {

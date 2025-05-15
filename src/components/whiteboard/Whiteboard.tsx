@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import './Whiteboard.css';
 import { FaPencilAlt, FaEraser, FaUndo, FaRedo, FaTrash, FaSave, FaRuler } from 'react-icons/fa';
 import { IoColorPaletteOutline } from 'react-icons/io5';
+import { TbEraser } from 'react-icons/tb';
 
 interface CanvasSize {
   width: number;
@@ -16,37 +17,57 @@ interface Point {
 
 // Predefined color palettes for quick selection
 const colorPresets = [
-  '#000000', // Black
+  '#FFFFFF', // White
+  '#101010', // Black
   '#FF5252', // Red
   '#FF9800', // Orange
   '#FFEB3B', // Yellow
   '#4CAF50', // Green
-  '#2196F3', // Blue
-  '#673AB7', // Purple
-  '#F06292', // Pink
+  '#29B6F6', // Blue
+  '#B39DDB', // Purple
+  '#F48FB1', // Pink
+  '#80DEEA', // Cyan
+  '#F0E68C', // Light Yellow
+  '#A5D6A7', // Light Green
 ];
 
 // Tool types
-type ToolType = 'pen' | 'eraser';
+type ToolType = 'pen' | 'big-eraser';
 
 const Whiteboard = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const canvasContainerRef = useRef<HTMLDivElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [color, setColor] = useState('#000000');
   const [lineWidth, setLineWidth] = useState(2);
   const [tool, setTool] = useState<ToolType>('pen');
   const drawHistoryRef = useRef<ImageData[]>([]);
   const historyPointerRef = useRef<number>(-1);
-  const [canvasSize, setCanvasSize] = useState<CanvasSize>({ width: 800, height: 600 });
+  const [canvasSize, setCanvasSize] = useState<CanvasSize>({ width: 800, height: 500 }); // Match CSS height
   const [showSizeControls, setShowSizeControls] = useState(false);
   const [showColorPresets, setShowColorPresets] = useState(false);
   const startPointRef = useRef<{x: number, y: number} | null>(null);
+  const tempCanvasRef = useRef<HTMLCanvasElement | null>(null);
+  const isResizingRef = useRef<boolean>(false);
   
   // For smooth drawing
   const pathPointsRef = useRef<Point[]>([]);
   
   // For cursor style
   const [canvasCursor, setCanvasCursor] = useState('default');
+  
+  // For mobile touch indicator
+  const [touchPoint, setTouchPoint] = useState<Point | null>(null);
+  const [touchIndicatorVisible, setTouchIndicatorVisible] = useState(false);
+  const [touchIndicatorColor, setTouchIndicatorColor] = useState('#000000');
+
+  // Create a chalk tip SVG element for the touch indicator
+  const ChalkTipSVG = (color: string) => `
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="8" fill="${color}" fill-opacity="0.9" />
+      <circle cx="12" cy="12" r="12" fill="${color}" fill-opacity="0.3" />
+    </svg>
+  `;
 
   // Helper function to get canvas context - eliminates repetition
   const getContext = () => {
@@ -57,19 +78,86 @@ const Whiteboard = () => {
     return context;
   };
 
-  useEffect(() => {
+  // Initialize canvas with proper dimensions and background
+  const initializeCanvas = () => {
     const context = getContext();
-    if (!context) return;
-
+    if (!context || !canvasRef.current) return;
+    
     // Set white background
     context.fillStyle = '#ffffff';
-    context.fillRect(0, 0, canvasRef.current!.width, canvasRef.current!.height);
+    context.fillRect(0, 0, canvasRef.current.width, canvasRef.current.height);
     
     // Save initial state
-    saveCanvasState();
+    if (canvasRef.current.width > 0 && canvasRef.current.height > 0 && drawHistoryRef.current.length === 0) {
+      saveCanvasState();
+    }
+  };
+
+  // Create temporary canvas to store drawings during resize
+  useEffect(() => {
+    // Create temp canvas immediately
+    tempCanvasRef.current = document.createElement('canvas');
     
-    // Update cursor based on current tool
-    updateCursor();
+    // Initialize canvas and calculate proper size
+    const updateCanvasSize = () => {
+      if (canvasContainerRef.current) {
+        const containerWidth = canvasContainerRef.current.clientWidth;
+        if (containerWidth > 0) {
+          // Keep aspect ratio
+          const aspectRatio = 3 / 4; // Maintain 4:3 aspect ratio
+          const newHeight = Math.round(containerWidth * aspectRatio);
+          
+          setCanvasSize({
+            width: containerWidth,
+            height: newHeight
+          });
+        }
+      }
+    };
+    
+    // Initial size calculation
+    updateCanvasSize();
+    
+    // Wait for DOM to fully render before initializing
+    setTimeout(() => {
+      initializeCanvas();
+      updateCursor();
+    }, 300); // Increased delay for initialization
+    
+    // Add window resize listener with debounce
+    let resizeTimer: ReturnType<typeof setTimeout>;
+    const handleResize = () => {
+      clearTimeout(resizeTimer);
+      isResizingRef.current = true;
+      
+      // Use the tempCanvas to store the current drawing before resize
+      if (canvasRef.current && tempCanvasRef.current) {
+        const currentContext = getContext();
+        if (currentContext) {
+          tempCanvasRef.current.width = canvasRef.current.width;
+          tempCanvasRef.current.height = canvasRef.current.height;
+          
+          // Copy current canvas to temp canvas
+          const tempContext = tempCanvasRef.current.getContext('2d');
+          if (tempContext) {
+            tempContext.clearRect(0, 0, tempCanvasRef.current.width, tempCanvasRef.current.height);
+            tempContext.drawImage(canvasRef.current, 0, 0);
+          }
+        }
+      }
+      
+      resizeTimer = setTimeout(() => {
+        updateCanvasSize();
+        isResizingRef.current = false;
+      }, 250); // Debounce resize events
+    };
+
+    window.addEventListener('resize', handleResize);
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      clearTimeout(resizeTimer);
+    };
   }, []);
   
   // Effect to update cursor when tool changes
@@ -83,8 +171,8 @@ const Whiteboard = () => {
       case 'pen':
         setCanvasCursor('pen');
         break;
-      case 'eraser':
-        setCanvasCursor('eraser');
+      case 'big-eraser':
+        setCanvasCursor('big-eraser');
         break;
       default:
         setCanvasCursor('default');
@@ -95,15 +183,25 @@ const Whiteboard = () => {
     const context = getContext();
     if (!context || !canvasRef.current) return;
     
+    // Check for valid canvas dimensions before proceeding
+    if (canvasRef.current.width <= 0 || canvasRef.current.height <= 0) {
+      console.warn('Cannot save canvas state - canvas has zero width or height');
+      return;
+    }
+    
     // Remove any states after current pointer if we've gone back in history
     if (historyPointerRef.current < drawHistoryRef.current.length - 1) {
       drawHistoryRef.current = drawHistoryRef.current.slice(0, historyPointerRef.current + 1);
     }
     
-    // Save current state
-    const imageData = context.getImageData(0, 0, canvasRef.current.width, canvasRef.current.height);
-    drawHistoryRef.current.push(imageData);
-    historyPointerRef.current = drawHistoryRef.current.length - 1;
+    try {
+      // Save current state
+      const imageData = context.getImageData(0, 0, canvasRef.current.width, canvasRef.current.height);
+      drawHistoryRef.current.push(imageData);
+      historyPointerRef.current = drawHistoryRef.current.length - 1;
+    } catch (error) {
+      console.error('Error saving canvas state:', error);
+    }
   };
 
   const undo = () => {
@@ -128,11 +226,25 @@ const Whiteboard = () => {
 
   // Configure drawing context settings based on current tool
   const configureContext = (context: CanvasRenderingContext2D) => {
-    if (tool === 'pen' || tool === 'eraser') {
-      context.strokeStyle = tool === 'eraser' ? '#ffffff' : color;
-      context.lineWidth = tool === 'eraser' ? 20 : lineWidth;
+    if (tool === 'pen') {
+      context.strokeStyle = color;
+      context.lineWidth = lineWidth;
       context.lineCap = 'round';
       context.lineJoin = 'round';
+      
+      // Add slight shadowBlur for chalk-like effect
+      context.shadowColor = color;
+      context.shadowBlur = 1;
+      context.globalAlpha = 0.9; // Slight transparency for chalk look
+    } else if (tool === 'big-eraser') {
+      context.strokeStyle = '#ffffff';
+      context.lineWidth = 100;
+      context.lineCap = 'square';
+      context.lineJoin = 'miter';
+      
+      // Reset shadow and opacity for erasers
+      context.shadowBlur = 0;
+      context.globalAlpha = 1;
     }
   };
   
@@ -232,6 +344,9 @@ const Whiteboard = () => {
   };
 
   const startDrawing = (e: React.MouseEvent<HTMLCanvasElement>) => {
+    // Don't allow drawing while resizing
+    if (isResizingRef.current) return;
+    
     const canvas = canvasRef.current;
     if (!canvas) return;
     
@@ -251,12 +366,18 @@ const Whiteboard = () => {
     configureContext(context);
     context.moveTo(x, y);
     // Add a small dot to ensure the starting point is visible
-    context.arc(x, y, lineWidth / 2, 0, Math.PI * 2);
-    context.fill();
+    if (tool === 'big-eraser') {
+      // For big eraser, draw a rectangle
+      context.fillStyle = '#ffffff';
+      context.fillRect(x - 50, y - 25, 100, 50); // Adjust to a more rectangular shape 100x50
+    } else {
+      context.arc(x, y, context.lineWidth / 2, 0, Math.PI * 2);
+      context.fill();
+    }
   };
 
   const draw = (e: React.MouseEvent<HTMLCanvasElement>) => {
-    if (!isDrawing) return;
+    if (!isDrawing || isResizingRef.current) return;
     
     const { x, y } = getCursorPosition(e);
     
@@ -281,15 +402,15 @@ const Whiteboard = () => {
   };
 
   const stopDrawing = (_e: React.MouseEvent<HTMLCanvasElement>) => {
-    if (!isDrawing) return;
+    if (!isDrawing || isResizingRef.current) return;
     
     const context = getContext();
     if (!context) return;
     
     // When done drawing, redraw the entire path with smooth curves
     if (pathPointsRef.current.length > 2) {
-      // Clear the canvas to the last saved state
-      if (historyPointerRef.current >= 0) {
+      // Get the current state from history to avoid erasing parts during path redrawing
+      if (historyPointerRef.current >= 0 && drawHistoryRef.current.length > historyPointerRef.current) {
         context.putImageData(drawHistoryRef.current[historyPointerRef.current], 0, 0);
       }
       
@@ -299,10 +420,28 @@ const Whiteboard = () => {
       // Draw the optimized path with our smooth algorithm
       context.beginPath();
       configureContext(context);
-      drawSmoothLine(context, optimizedPoints);
+      
+      // For the big eraser, we can use a more direct approach instead of curves
+      if (tool === 'big-eraser') {
+        optimizedPoints.forEach((point, index) => {
+          if (index === 0) {
+            context.moveTo(point.x, point.y);
+          } else {
+            context.lineTo(point.x, point.y);
+          }
+        });
+      } else {
+        drawSmoothLine(context, optimizedPoints);
+      }
+      context.stroke();
     }
     
     context.closePath();
+    
+    // Reset context shadow and alpha
+    context.shadowBlur = 0;
+    context.globalAlpha = 1;
+    
     saveCanvasState();
     setIsDrawing(false);
     startPointRef.current = null;
@@ -337,9 +476,17 @@ const Whiteboard = () => {
   const handleTouchStart = (e: React.TouchEvent<HTMLCanvasElement>) => {
     e.preventDefault(); // Prevent scrolling when using the canvas
     
+    // Don't allow drawing while resizing
+    if (isResizingRef.current) return;
+    
     if (!e.touches[0]) return;
     
     const { x, y } = getTouchPosition(e.touches[0]);
+    
+    // Show touch indicator
+    setTouchPoint({ x, y });
+    setTouchIndicatorVisible(true);
+    setTouchIndicatorColor(tool === 'pen' ? color : '#ffffff');
     
     setIsDrawing(true);
     startPointRef.current = { x, y };
@@ -355,16 +502,25 @@ const Whiteboard = () => {
     configureContext(context);
     context.moveTo(x, y);
     // Add a small dot to ensure the starting point is visible
-    context.arc(x, y, lineWidth / 2, 0, Math.PI * 2);
-    context.fill();
+    if (tool === 'big-eraser') {
+      // For big eraser, draw a rectangle
+      context.fillStyle = '#ffffff';
+      context.fillRect(x - 50, y - 25, 100, 50); // Adjust to a more rectangular shape 100x50
+    } else {
+      context.arc(x, y, context.lineWidth / 2, 0, Math.PI * 2);
+      context.fill();
+    }
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLCanvasElement>) => {
     e.preventDefault(); // Prevent scrolling when using the canvas
     
-    if (!isDrawing || !e.touches[0]) return;
+    if (!isDrawing || isResizingRef.current || !e.touches[0]) return;
     
     const { x, y } = getTouchPosition(e.touches[0]);
+    
+    // Update touch indicator position
+    setTouchPoint({ x, y });
     
     const context = getContext();
     if (!context) return;
@@ -389,15 +545,18 @@ const Whiteboard = () => {
   const handleTouchEnd = (e: React.TouchEvent<HTMLCanvasElement>) => {
     e.preventDefault(); // Prevent scrolling when using the canvas
     
-    if (!isDrawing) return;
+    // Hide touch indicator
+    setTouchIndicatorVisible(false);
+    
+    if (!isDrawing || isResizingRef.current) return;
     
     const context = getContext();
     if (!context) return;
     
     // When done drawing, redraw the entire path with smooth curves
     if (pathPointsRef.current.length > 2) {
-      // Clear the canvas to the last saved state
-      if (historyPointerRef.current >= 0) {
+      // Get the current state from history to avoid erasing parts
+      if (historyPointerRef.current >= 0 && drawHistoryRef.current.length > historyPointerRef.current) {
         context.putImageData(drawHistoryRef.current[historyPointerRef.current], 0, 0);
       }
       
@@ -407,10 +566,28 @@ const Whiteboard = () => {
       // Draw the optimized path with our smooth algorithm
       context.beginPath();
       configureContext(context);
-      drawSmoothLine(context, optimizedPoints);
+      
+      // For the big eraser, we can use a more direct approach instead of curves
+      if (tool === 'big-eraser') {
+        optimizedPoints.forEach((point, index) => {
+          if (index === 0) {
+            context.moveTo(point.x, point.y);
+          } else {
+            context.lineTo(point.x, point.y);
+          }
+        });
+      } else {
+        drawSmoothLine(context, optimizedPoints);
+      }
+      context.stroke();
     }
     
     context.closePath();
+    
+    // Reset context shadow and alpha
+    context.shadowBlur = 0;
+    context.globalAlpha = 1;
+    
     saveCanvasState();
     setIsDrawing(false);
     startPointRef.current = null;
@@ -430,30 +607,90 @@ const Whiteboard = () => {
   };
 
   const resizeCanvas = (newSize: CanvasSize) => {
+    // Set resizing flag to prevent drawing during resize
+    isResizingRef.current = true;
+    
+    // Store current drawing in temp canvas
+    if (canvasRef.current && tempCanvasRef.current) {
+      tempCanvasRef.current.width = canvasRef.current.width;
+      tempCanvasRef.current.height = canvasRef.current.height;
+      
+      const tempContext = tempCanvasRef.current.getContext('2d');
+      if (tempContext) {
+        tempContext.clearRect(0, 0, tempCanvasRef.current.width, tempCanvasRef.current.height);
+        tempContext.drawImage(canvasRef.current, 0, 0);
+      }
+    }
+    
     setCanvasSize(newSize);
+    
+    // Clear resizing flag after a short delay
+    setTimeout(() => {
+      isResizingRef.current = false;
+    }, 300);
   };
 
-  // Add effect to handle canvas size changes
+  // Handle canvas size changes
   useEffect(() => {
     const context = getContext();
-    if (!context || !canvasRef.current) return;
+    const canvas = canvasRef.current;
+    if (!context || !canvas) return;
+    
+    // Ensure canvas has valid dimensions
+    if (canvasSize.width <= 0 || canvasSize.height <= 0) {
+      console.warn('Invalid canvas dimensions', canvasSize);
+      return;
+    }
     
     // Set white background for new size
     context.fillStyle = '#ffffff';
-    context.fillRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+    context.fillRect(0, 0, canvas.width, canvas.height);
     
-    // If we have history, redraw the last state
-    if (historyPointerRef.current >= 0) {
+    // If we have a temp canvas with content, restore it with proper scaling
+    if (tempCanvasRef.current && tempCanvasRef.current.width > 0 && tempCanvasRef.current.height > 0) {
       try {
-        context.putImageData(drawHistoryRef.current[historyPointerRef.current], 0, 0);
+        context.drawImage(
+          tempCanvasRef.current,
+          0, 0, tempCanvasRef.current.width, tempCanvasRef.current.height,
+          0, 0, canvas.width, canvas.height
+        );
+        
+        // Save this as a new state in history
+        saveCanvasState();
       } catch (error) {
-        // If the previous image doesn't fit the new canvas, just start fresh
-        drawHistoryRef.current = [];
-        historyPointerRef.current = -1;
+        console.error('Error restoring from temp canvas:', error);
+        // If restoring fails, just save the white background
+        saveCanvasState();
+      }
+    } else if (historyPointerRef.current >= 0 && drawHistoryRef.current.length > 0) {
+      // Try to restore from history if temp canvas is empty
+      try {
+        // Only use putImageData if the dimensions match
+        if (drawHistoryRef.current[historyPointerRef.current].width === canvas.width &&
+            drawHistoryRef.current[historyPointerRef.current].height === canvas.height) {
+          context.putImageData(drawHistoryRef.current[historyPointerRef.current], 0, 0);
+        } else {
+          // Dimensions mismatch - create a temporary canvas to scale the image
+          const tempCanvas = document.createElement('canvas');
+          tempCanvas.width = drawHistoryRef.current[historyPointerRef.current].width;
+          tempCanvas.height = drawHistoryRef.current[historyPointerRef.current].height;
+          
+          const tempContext = tempCanvas.getContext('2d');
+          if (tempContext) {
+            tempContext.putImageData(drawHistoryRef.current[historyPointerRef.current], 0, 0);
+            context.drawImage(tempCanvas, 0, 0, canvas.width, canvas.height);
+          }
+          
+          // Save the scaled version
+          saveCanvasState();
+        }
+      } catch (error) {
+        console.warn('Could not restore canvas from history:', error);
+        // Just save the current state (white background)
         saveCanvasState();
       }
     } else {
-      // Initialize history for new canvas
+      // No history and no temp canvas - initialize a new state
       saveCanvasState();
     }
   }, [canvasSize]);
@@ -479,8 +716,30 @@ const Whiteboard = () => {
     hideAllPopovers();
   };
 
+  // Custom chalk icon for pen tool
+  const ChalkIcon = () => (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6,4 L18,4 L18,16 C18,19 14,22 12,23 C10,22 6,19 6,16 Z" fill="#FFFFFF" stroke="#666666" strokeWidth="1.2"/>
+      <path d="M7,5 L17,5 L17,16 C17,18.5 13.5,21 12,22 C10.5,21 7,18.5 7,16 Z" fill="#F5F5F5"/>
+      <path d="M8,10 L16,10 L16,16 C16,18 13,20 12,20.5 C11,20 8,18 8,16 Z" fill="#E6E6E6"/>
+      <path d="M10,6 L14,6 L14,8 L10,8 Z" fill="#DDDDDD"/>
+    </svg>
+  );
+
+  // Custom chalkboard eraser SVG icon for the big eraser
+  const ChalkboardEraserIcon = () => (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="8" width="20" height="10" rx="1" fill="#f0f0f0" stroke="#888888" strokeWidth="1.2"/>
+      <rect x="3" y="9" width="18" height="8" rx="1" fill="#ffffff"/>
+      <rect x="5" y="11" width="3" height="1" fill="#dddddd"/>
+      <rect x="10" y="13" width="4" height="1" fill="#dddddd"/>
+      <rect x="16" y="12" width="3" height="1" fill="#dddddd"/>
+      <rect x="7" y="15" width="4" height="1" fill="#dddddd"/>
+    </svg>
+  );
+
   return (
-    <div className="whiteboard-container">
+    <div className="whiteboard-container" ref={canvasContainerRef}>
       <div className="whiteboard-header">
         <h2>Interactive Whiteboard</h2>
         <p>Use this whiteboard to collaborate with students and tutors</p>
@@ -491,16 +750,16 @@ const Whiteboard = () => {
           <button 
             className={`tool-btn ${tool === 'pen' ? 'active' : ''}`}
             onClick={() => handleToolClick('pen')}
-            title="Pen"
+            title="Chalk"
           >
-            <FaPencilAlt />
+            <ChalkIcon />
           </button>
           <button 
-            className={`tool-btn ${tool === 'eraser' ? 'active' : ''}`}
-            onClick={() => handleToolClick('eraser')}
+            className={`tool-btn ${tool === 'big-eraser' ? 'active' : ''}`}
+            onClick={() => handleToolClick('big-eraser')}
             title="Eraser"
           >
-            <FaEraser />
+            <ChalkboardEraserIcon />
           </button>
         </div>
         
@@ -517,7 +776,7 @@ const Whiteboard = () => {
             value={color} 
             onChange={(e) => setColor(e.target.value)}
             className="color-picker"
-            disabled={tool === 'eraser'}
+            disabled={tool === 'big-eraser'}
             title="Pick Custom Color"
           />
         </div>
@@ -529,25 +788,47 @@ const Whiteboard = () => {
             max="20" 
             value={lineWidth} 
             onChange={(e) => setLineWidth(parseInt(e.target.value))}
-            disabled={tool === 'eraser'}
+            disabled={tool === 'big-eraser'}
             title="Line Width"
           />
         </div>
         
         <div className="history-buttons">
-          <button onClick={undo} title="Undo" disabled={historyPointerRef.current <= 0}>
+          <button 
+            className="tool-btn"
+            onClick={undo} 
+            title="Undo" 
+            disabled={historyPointerRef.current <= 0}
+          >
             <FaUndo />
           </button>
-          <button onClick={redo} title="Redo" disabled={historyPointerRef.current >= drawHistoryRef.current.length - 1}>
+          <button 
+            className="tool-btn"
+            onClick={redo} 
+            title="Redo" 
+            disabled={historyPointerRef.current >= drawHistoryRef.current.length - 1}
+          >
             <FaRedo />
           </button>
-          <button onClick={clearCanvas} title="Clear All">
+          <button 
+            className="tool-btn"
+            onClick={clearCanvas} 
+            title="Clear All"
+          >
             <FaTrash />
           </button>
-          <button onClick={saveWhiteboard} title="Save as Image" className="save-btn">
+          <button 
+            className="tool-btn save-btn"
+            onClick={saveWhiteboard} 
+            title="Save as Image" 
+          >
             <FaSave />
           </button>
-          <button onClick={toggleSizeControls} title="Resize Canvas">
+          <button 
+            className="tool-btn"
+            onClick={toggleSizeControls} 
+            title="Resize Canvas"
+          >
             <FaRuler />
           </button>
         </div>
@@ -587,19 +868,51 @@ const Whiteboard = () => {
         </div>
       )}
       
-      <canvas
-        ref={canvasRef}
-        width={canvasSize.width}
-        height={canvasSize.height}
-        onMouseDown={startDrawing}
-        onMouseMove={draw}
-        onMouseUp={stopDrawing}
-        onMouseLeave={stopDrawing}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-        className={`whiteboard-canvas cursor-${canvasCursor}`}
-      />
+      <div className="canvas-wrapper" style={{ position: 'relative' }}>
+        <canvas
+          ref={canvasRef}
+          width={canvasSize.width}
+          height={canvasSize.height}
+          onMouseDown={startDrawing}
+          onMouseMove={draw}
+          onMouseUp={stopDrawing}
+          onMouseLeave={stopDrawing}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          className={`whiteboard-canvas cursor-${canvasCursor}`}
+        />
+        
+        {/* Touch indicator for mobile devices */}
+        {touchIndicatorVisible && touchPoint && (
+          <div 
+            className="touch-indicator"
+            style={{
+              position: 'absolute',
+              left: `${touchPoint.x / canvasSize.width * 100}%`,
+              top: `${touchPoint.y / canvasSize.height * 100}%`,
+              transform: 'translate(-50%, -50%)',
+              width: tool === 'pen' ? '32px' : '50px',
+              height: tool === 'pen' ? '32px' : '25px',
+              pointerEvents: 'none',
+              zIndex: 1000,
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center',
+              ...(tool === 'pen' 
+                ? {
+                    backgroundImage: `url('data:image/svg+xml;utf8,${encodeURIComponent(ChalkTipSVG(touchIndicatorColor))}')`
+                  }
+                : {
+                    backgroundColor: touchIndicatorColor,
+                    borderRadius: '2px',
+                    opacity: 0.7,
+                    boxShadow: '0 0 3px rgba(0,0,0,0.3)'
+                  }
+              )
+            }}
+          />
+        )}
+      </div>
     </div>
   );
 };
