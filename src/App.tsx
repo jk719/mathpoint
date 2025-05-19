@@ -1,7 +1,7 @@
 import './App.css'
 import Header from './components/header/Header'
 import Whiteboard from './components/whiteboard/Whiteboard'
-import { QuestionDemo } from './components/QuestionDemo'
+import { Grade2NYQuestions } from './components/Grade2NYQuestions'
 import { useState } from 'react'
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
           className={`tab-button ${activeTab === 'assessment' ? 'active' : ''}`} 
           onClick={() => setActiveTab('assessment')}
         >
-          Assessment Demo
+          Grade 2 NY Math
         </button>
         <button 
           className={`tab-button ${activeTab === 'whiteboard' ? 'active' : ''}`} 
@@ -28,7 +28,7 @@ function App() {
       
       <div className="app-content">
         <div style={{ display: activeTab === 'assessment' ? 'block' : 'none', width: '100%' }}>
-          <QuestionDemo />
+          <Grade2NYQuestions />
         </div>
         <div style={{ display: activeTab === 'whiteboard' ? 'block' : 'none', width: '100%' }}>
           <Whiteboard />

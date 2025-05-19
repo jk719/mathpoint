@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './ReasonChoice.css';
 import { ReasonChoiceQuestion } from '../../types/Assessment';
 import { TypeAnimation } from '../TypeAnimation/TypeAnimation';
@@ -12,6 +12,12 @@ type Props = {
 export const ReasonChoice: React.FC<Props> = ({ question, onAnswer, initialAnswer }) => {
   const [selected, setSelected] = React.useState<string | null>(initialAnswer || null);
   const [showOptions, setShowOptions] = React.useState<boolean>(initialAnswer ? true : false);
+
+  // Reset selected state when question changes or initialAnswer is cleared
+  useEffect(() => {
+    setSelected(initialAnswer || null);
+    setShowOptions(initialAnswer ? true : false);
+  }, [question.id, initialAnswer]);
 
   const handleSelect = (id: string) => {
     setSelected(id);

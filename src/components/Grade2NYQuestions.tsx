@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import './QuestionDemo.css';
-import { Question, SmartMCQuestion, ReasonChoiceQuestion, ErrorAnalysisQuestion } from '../types/Assessment';
+import './Grade2NYQuestions.css';
+import { Question, SmartMCQuestion, ReasonChoiceQuestion } from '../types/Assessment';
 import { SmartMC } from './SmartMC/SmartMC';
-import { MicroTask } from './MicroTask/MicroTask';
 import { ReasonChoice } from './ReasonChoice/ReasonChoice';
-import { ErrorAnalysis } from './ErrorAnalysis/ErrorAnalysis';
-import { getFormattedNYGrade2Questions } from './questions-grade2-ny';
 import OpenEnded from './OpenEnded/OpenEnded';
+import { getFormattedNYGrade2Questions } from './questions-grade2-ny';
 
 // MathPoint-themed streak messages
 const STREAK_MESSAGES = [
@@ -72,7 +70,7 @@ interface Stats {
   total: number;
 }
 
-export const QuestionDemo: React.FC = () => {
+export const Grade2NYQuestions: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, any>>({});
   const [isChanging, setIsChanging] = useState(false);
@@ -148,33 +146,24 @@ export const QuestionDemo: React.FC = () => {
     const question = questionBank.find(q => q.id === questionId);
     if (question && question.type === 'smartMC' && answer.correct) {
       isCorrect = true;
-    } else if (question && question.type === 'errorAnalysis') {
-      // For simplicity, let's consider the first error type as correct for demo
-      isCorrect = answer === 'calc';
     }
     
-    // Update stats
+    // Update stats based on correct/incorrect
     setStats(prevStats => {
-      const newStats = { 
-        ...prevStats,
-        total: prevStats.total + 1
-      };
+      const newStats = { ...prevStats };
+      newStats.total = prevStats.total + 1;
       
       if (isCorrect) {
         newStats.correct = prevStats.correct + 1;
         newStats.streak = prevStats.streak + 1;
         
-        // Show streak animation for 2+ correct answers in a row
+        // Show streak message for streak >= 2
         if (newStats.streak >= 2) {
-          const messageIndex = Math.min(newStats.streak, STREAK_MESSAGES.length - 1);
-          setStreakMessage(STREAK_MESSAGES[messageIndex]);
-          setStreakIcon(STREAK_ICONS[messageIndex]);
+          // Get appropriate message and icon based on streak level
+          const streakLevel = Math.min(newStats.streak, STREAK_MESSAGES.length - 1);
+          setStreakMessage(STREAK_MESSAGES[streakLevel]);
+          setStreakIcon(STREAK_ICONS[streakLevel]);
           setShowStreak(true);
-          
-          // Play achievement sound
-          const audio = new Audio('/success.mp3');
-          audio.volume = 0.3;
-          audio.play().catch(e => console.log('Audio play failed:', e));
           
           // Hide streak message after 2 seconds
           setTimeout(() => {
@@ -196,11 +185,8 @@ export const QuestionDemo: React.FC = () => {
       }, 1200);
     }
   };
-
-  // Render the current question
+  
   const renderCurrentQuestion = () => {
-    if (!currentQuestion) return null;
-    
     // Get any existing answer for this question
     const existingAnswer = answers[currentQuestion.id];
     const questionObj = nyQuestions.find(q => q.id === currentQuestion.id);
@@ -226,22 +212,10 @@ export const QuestionDemo: React.FC = () => {
           onAnswer={(choiceId, correct) => handleAnswer(currentQuestion.id, { choiceId, correct })} 
           initialAnswer={existingAnswer}
         />;
-      case 'microTask':
-        return <MicroTask 
-          question={currentQuestion} 
-          onAnswer={(payload) => handleAnswer(currentQuestion.id, payload)} 
-          initialAnswer={existingAnswer}
-        />;
       case 'reasonChoice':
         return <ReasonChoice 
           question={currentQuestion} 
           onAnswer={(optionId) => handleAnswer(currentQuestion.id, optionId)} 
-          initialAnswer={existingAnswer}
-        />;
-      case 'errorAnalysis':
-        return <ErrorAnalysis 
-          question={currentQuestion} 
-          onAnswer={(errorTypeId) => handleAnswer(currentQuestion.id, errorTypeId)} 
           initialAnswer={existingAnswer}
         />;
       default:
@@ -252,9 +226,9 @@ export const QuestionDemo: React.FC = () => {
   return (
     <div className="question-demo mathpoint-theme">
       <div className="question-header">
-        <span className="math-icon">📊</span>
-        <p className="question-count">Question {currentIndex + 1} of {questionBank.length}</p>
-        <span className="formula-icon">📐</span>
+        <span className="math-icon">📚</span>
+        <p className="question-count">Grade 2 NY Math - Question {currentIndex + 1} of {questionBank.length}</p>
+        <span className="formula-icon">✏️</span>
       </div>
       
       {/* Progress bars */}
@@ -326,11 +300,6 @@ export const QuestionDemo: React.FC = () => {
           Next <span className="button-icon">▶</span>
         </button>
       </div>
-      
-      {/* <div className="debug">
-        <h3>📊 Debug: Collected Answers</h3>
-        <pre>{JSON.stringify(answers, null, 2)}</pre>
-      </div> */}
     </div>
   );
-}; 
+};

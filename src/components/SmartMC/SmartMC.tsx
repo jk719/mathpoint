@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './SmartMC.css';
 import { SmartMCQuestion } from '../../types/Assessment';
 import { TypeAnimation } from '../TypeAnimation/TypeAnimation';
@@ -12,6 +12,12 @@ interface SmartMCProps {
 export const SmartMC: React.FC<SmartMCProps> = ({ question, onAnswer, initialAnswer }) => {
   const [selected, setSelected] = useState<string | null>(initialAnswer?.choiceId || null);
   const [showChoices, setShowChoices] = useState(initialAnswer ? true : false);
+  
+  // Reset selected state when question changes or initialAnswer is cleared
+  useEffect(() => {
+    setSelected(initialAnswer?.choiceId || null);
+    setShowChoices(initialAnswer ? true : false);
+  }, [question.id, initialAnswer]);
   
   const handle = (id: string, correct: boolean) => {
     setSelected(id);
