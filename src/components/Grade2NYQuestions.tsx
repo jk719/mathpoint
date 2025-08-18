@@ -6,28 +6,42 @@ import { ReasonChoice } from './ReasonChoice/ReasonChoice';
 import OpenEnded from './OpenEnded/OpenEnded';
 import { getFormattedNYGrade2Questions } from './questions-grade2-ny';
 
-// MathPoint-themed streak messages
+// Helper function to shuffle an array (Fisher-Yates shuffle)
+function shuffleArray<T>(array: T[]): T[] {
+  const newArray = [...array]; // Create a copy to avoid modifying the original
+  for (let i = newArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [newArray[i], newArray[j]] = [newArray[j], newArray[i]]; // Swap elements
+  }
+  return newArray;
+}
+
+// MathPoint-themed streak messages with number words
 const STREAK_MESSAGES = [
   '', // 0 streak
   '', // 1 streak (doesn't show)
   'DOUBLE CORRECT!', // 2 streak
-  'GREAT PROGRESS!', // 3 streak
-  'MATH GENIUS!', // 4 streak
-  'BRILLIANT MIND!', // 5 streak
-  'PERFECT STREAK!', // 6 streak
-  'MATH MASTER!', // 7+ streak
+  'TRIPLE CORRECT!', // 3 streak
+  'QUADRUPLE CORRECT!', // 4 streak
+  'QUINTUPLE CORRECT!', // 5 streak
+  'SEXTUPLE CORRECT!', // 6 streak
+  'SEPTUPLE CORRECT!', // 7 streak
+  'OCTUPLE CORRECT!', // 8 streak
+  'INCREDIBLE STREAK!', // 9+ streak
 ];
 
-// Achievement icons matching streak levels
+// Cool mathematical icons for MathPoint theme
 const STREAK_ICONS = [
   '',
   '',
-  '✓✓', // 2 streak
-  '🔢', // numbers - 3 streak
-  '🧠', // brain - 4 streak
-  '💡', // idea - 5 streak
-  '🏅', // medal - 6 streak
-  '🔱', // achievement - 7+ streak
+  '🎯', // 2 streak
+  '🔥', // 3 streak
+  '⚡', // 4 streak
+  '🌟', // 5 streak
+  '💎', // 6 streak
+  '🚀', // 7 streak
+  '👑', // 8 streak
+  '🏆', // 9+ streak
 ];
 
 // Convert NY Grade 2 questions to application format
@@ -48,15 +62,22 @@ const questionBank: Question[] = nyQuestions.map(q => {
       ]
     } as ReasonChoiceQuestion;
   } else {
-    // For multiple choice questions
+    // For multiple choice questions (q.type is 'multiple-choice' here)
+    // The 'Question' type from getFormattedNYGrade2Questions for multiple-choice
+    // has 'options' and 'correctIndex'.
+    const mcQuestion = q as Extract<typeof q, { type: 'multiple-choice' }>; // Type assertion
+
+    const correctAnswerLabel = mcQuestion.options[mcQuestion.correctIndex];
+    const shuffledOptions = shuffleArray(mcQuestion.options);
+
     return {
-      id: q.id,
+      id: mcQuestion.id,
       type: 'smartMC',
-      prompt: q.prompt,
-      choices: q.options.map((option, idx) => ({
+      prompt: mcQuestion.prompt,
+      choices: shuffledOptions.map((option, idx) => ({
         id: String.fromCharCode(97 + idx), // a, b, c, d...
         label: option,
-        isCorrect: idx === q.correctIndex
+        isCorrect: option === correctAnswerLabel
       }))
     } as SmartMCQuestion;
   }
@@ -71,6 +92,7 @@ interface Stats {
 }
 
 export const Grade2NYQuestions: React.FC = () => {
+  console.log('Grade2NYQuestions component rendering'); // TEST CONSOLE LOG
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, any>>({});
   const [isChanging, setIsChanging] = useState(false);
@@ -78,9 +100,14 @@ export const Grade2NYQuestions: React.FC = () => {
   const [showStreak, setShowStreak] = useState(false);
   const [streakMessage, setStreakMessage] = useState('');
   const [streakIcon, setStreakIcon] = useState('');
+  const [hasStarted, setHasStarted] = useState(false);
   const questionContainerRef = useRef<HTMLDivElement>(null);
 
   const currentQuestion = questionBank[currentIndex];
+
+  const startAssessment = () => {
+    setHasStarted(true);
+  };
 
   // Scroll to question container on initial load
   useEffect(() => {
@@ -160,15 +187,17 @@ export const Grade2NYQuestions: React.FC = () => {
         // Show streak message for streak >= 2
         if (newStats.streak >= 2) {
           // Get appropriate message and icon based on streak level
-          const streakLevel = Math.min(newStats.streak, STREAK_MESSAGES.length - 1);
+          const streakLevel = newStats.streak >= STREAK_MESSAGES.length 
+            ? STREAK_MESSAGES.length - 1 
+            : newStats.streak;
           setStreakMessage(STREAK_MESSAGES[streakLevel]);
           setStreakIcon(STREAK_ICONS[streakLevel]);
           setShowStreak(true);
           
-          // Hide streak message after 2 seconds
+          // Hide streak message after 2.5 seconds
           setTimeout(() => {
             setShowStreak(false);
-          }, 2000);
+          }, 2500);
         }
       } else {
         newStats.incorrect = prevStats.incorrect + 1;
@@ -194,6 +223,7 @@ export const Grade2NYQuestions: React.FC = () => {
     // For open-ended questions in the original data
     if (questionObj && questionObj.type === 'open-ended') {
       return <OpenEnded
+        key={currentQuestion.id} // Add key prop
         question={{ 
           id: questionObj.id,
           prompt: questionObj.prompt,
@@ -208,12 +238,14 @@ export const Grade2NYQuestions: React.FC = () => {
     switch(currentQuestion.type) {
       case 'smartMC':
         return <SmartMC 
+          key={currentQuestion.id} // Add key prop
           question={currentQuestion} 
           onAnswer={(choiceId, correct) => handleAnswer(currentQuestion.id, { choiceId, correct })} 
           initialAnswer={existingAnswer}
         />;
       case 'reasonChoice':
         return <ReasonChoice 
+          key={currentQuestion.id} // Add key prop
           question={currentQuestion} 
           onAnswer={(optionId) => handleAnswer(currentQuestion.id, optionId)} 
           initialAnswer={existingAnswer}
@@ -223,59 +255,124 @@ export const Grade2NYQuestions: React.FC = () => {
     }
   };
 
+  // Show start screen if assessment hasn't started
+  if (!hasStarted) {
+    return (
+      <div className="question-demo mathpoint-theme">
+        <div className="assessment-start-screen">
+          <div className="start-header">
+            <span className="start-icon">🧮</span>
+            <h2 className="start-title">MathPoint Assessment</h2>
+            <span className="start-icon">🎯</span>
+          </div>
+          <div className="start-content">
+            <h3 className="start-subtitle">Ready to Test Your Math Skills?</h3>
+            <p className="start-description">
+              This assessment contains <strong>{questionBank.length} questions</strong> covering various mathematical concepts. 
+              Take your time and do your best!
+            </p>
+            <div className="start-features">
+              <div className="start-feature">
+                <span className="feature-icon">⚡</span>
+                <span>Track your streak</span>
+              </div>
+              <div className="start-feature">
+                <span className="feature-icon">📊</span>
+                <span>Real-time progress</span>
+              </div>
+              <div className="start-feature">
+                <span className="feature-icon">🎯</span>
+                <span>Instant feedback</span>
+              </div>
+            </div>
+            <button className="start-assessment-btn" onClick={startAssessment}>
+              🚀 Start Assessment
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="question-demo mathpoint-theme">
       <div className="question-header">
-        <span className="math-icon">📚</span>
-        <p className="question-count">Grade 2 NY Math - Question {currentIndex + 1} of {questionBank.length}</p>
-        <span className="formula-icon">✏️</span>
+        <span className="math-icon">🧮</span>
+        <p className="question-count">MathPoint Assessment - Question {currentIndex + 1} of {questionBank.length}</p>
+        <span className="formula-icon">🎯</span>
       </div>
       
-      {/* Progress bars */}
+      {/* Modern Stats Dashboard */}
+      <div className="stats-dashboard">
+        <div className="stat-card stat-correct">
+          <div className="stat-icon">✓</div>
+          <div className="stat-content">
+            <div className="stat-value">{stats.correct}</div>
+            <div className="stat-label">Correct</div>
+          </div>
+        </div>
+        <div className="stat-card stat-streak">
+          <div className="stat-icon">⚡</div>
+          <div className="stat-content">
+            <div className="stat-value">{stats.streak}</div>
+            <div className="stat-label">Streak</div>
+          </div>
+        </div>
+        <div className="stat-card stat-incorrect">
+          <div className="stat-icon">✗</div>
+          <div className="stat-content">
+            <div className="stat-value">{stats.incorrect}</div>
+            <div className="stat-label">Missed</div>
+          </div>
+        </div>
+        <div className="stat-card stat-total">
+          <div className="stat-icon">#</div>
+          <div className="stat-content">
+            <div className="stat-value">{stats.total}</div>
+            <div className="stat-label">Total</div>
+          </div>
+        </div>
+      </div>
+      
       <div className="progress-container">
-        <div className="progress-stats">
-          <div className="stat">
-            <span className="stat-icon">💚</span>
-            <span className="stat-label">Correct</span>
-            <span className="stat-value">{stats.correct}</span>
-          </div>
-          <div className="stat">
-            <span className="stat-icon">🔥</span>
-            <span className="stat-label">Streak</span>
-            <span className="stat-value">{stats.streak}</span>
-          </div>
-          <div className="stat">
-            <span className="stat-icon">❌</span>
-            <span className="stat-label">Incorrect</span>
-            <span className="stat-value">{stats.incorrect}</span>
-          </div>
-        </div>
-        
         <div className="progress-bars">
-          <div className="progress-bar-container">
-            <div 
-              className="progress-bar progress-correct" 
-              style={{ width: `${stats.total ? (stats.correct / stats.total) * 100 : 0}%` }}
-            ></div>
+          <div className="progress-track">
+            <div className="progress-header">
+              <span className="progress-label">✅ Correct</span>
+              <span className="progress-count">{stats.correct}</span>
+            </div>
+            <div className="progress-bar-container">
+              <div 
+                className="progress-bar progress-correct"
+                style={{ width: `${Math.min(100, (stats.correct / 20) * 100)}%` }}
+              />
+            </div>
           </div>
-          <div className="progress-bar-container">
-            <div 
-              className="progress-bar progress-incorrect" 
-              style={{ width: `${stats.total ? (stats.incorrect / stats.total) * 100 : 0}%` }}
-            ></div>
+          <div className="progress-track">
+            <div className="progress-header">
+              <span className="progress-label">❌ Incorrect</span>
+              <span className="progress-count">{stats.incorrect}</span>
+            </div>
+            <div className="progress-bar-container">
+              <div 
+                className="progress-bar progress-incorrect"
+                style={{ width: `${Math.min(100, (stats.incorrect / 20) * 100)}%` }}
+              />
+            </div>
           </div>
         </div>
       </div>
       
-      {/* Streak animation */}
+      {/* Modern Streak Achievement */}
       {showStreak && (
-        <div className="streak-animation">
-          <div className="achievement-box">
-            <div className="achievement-icon">{streakIcon}</div>
-            <div className="achievement-text">
-              <div className="achievement-title">Achievement Unlocked!</div>
-              <div className="achievement-message">{streakMessage}</div>
+        <div className="streak-overlay">
+          <div className="mathpoint-achievement">
+            <div className="achievement-header">
+              <div className="achievement-badge">{streakIcon}</div>
+              <div className="achievement-title">Streak Achievement!</div>
             </div>
+            <div className="achievement-message">{streakMessage}</div>
+            <div className="achievement-subtitle">Keep up the excellent work!</div>
           </div>
         </div>
       )}
@@ -290,14 +387,14 @@ export const Grade2NYQuestions: React.FC = () => {
           disabled={currentIndex === 0}
           className="nav-button prev-button"
         >
-          <span className="button-icon">◀</span> Previous
+          <span className="button-icon">←</span> Previous
         </button>
         <button 
           onClick={() => changeQuestion(Math.min(questionBank.length - 1, currentIndex + 1))}
           disabled={currentIndex === questionBank.length - 1}
           className="nav-button next-button"
         >
-          Next <span className="button-icon">▶</span>
+          Next <span className="button-icon">→</span>
         </button>
       </div>
     </div>

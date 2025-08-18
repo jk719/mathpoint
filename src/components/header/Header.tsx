@@ -1,12 +1,37 @@
 import React, { useState } from 'react';
 import CubeAnimation from './CubeAnimation';
+import { useAuth } from '../../context/AuthContext';
 import './Header.css';
 
 const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [loginForm, setLoginForm] = useState({ username: '', password: '' });
+  const [loginError, setLoginError] = useState('');
+  const { isAuthenticated, user, login, logout } = useAuth();
   
   const toggleMenu = () => {
     setMenuOpen(prev => !prev);
+  };
+
+  const handleLogout = () => {
+    logout();
+  };
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoginError('');
+    
+    const success = await login(loginForm.username, loginForm.password);
+    if (!success) {
+      setLoginError('Invalid credentials');
+    } else {
+      setLoginForm({ username: '', password: '' });
+    }
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setLoginForm(prev => ({ ...prev, [name]: value }));
   };
 
   return (
@@ -53,7 +78,37 @@ const Header: React.FC = () => {
           </a>
         </div>
         
-        <button className="cta-btn">Free Session</button>
+        {isAuthenticated ? (
+          <div className="user-info">
+            <span className="user-email">{user}</span>
+            <button className="logout-btn" onClick={handleLogout}>Logout</button>
+          </div>
+        ) : (
+          <form className="header-login-form" onSubmit={handleLogin}>
+            <div className="login-fields">
+              <input
+                type="text"
+                name="username"
+                placeholder="Username"
+                value={loginForm.username}
+                onChange={handleInputChange}
+                className="login-input"
+                required
+              />
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                value={loginForm.password}
+                onChange={handleInputChange}
+                className="login-input"
+                required
+              />
+              <button type="submit" className="login-btn">Login</button>
+            </div>
+            {loginError && <div className="login-error">{loginError}</div>}
+          </form>
+        )}
       </div>
     </header>
   );

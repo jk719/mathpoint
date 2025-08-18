@@ -1,6 +1,6 @@
 .mathpoint-theme {
   width: 100%;
-  max-width: 800px; /* Set appropriate max-width for desktop */
+  max-width: 100%; /* Take up full width on desktop */
   margin: 0 auto;
   padding: 1rem;
   font-family: var(--font-primary);
@@ -45,6 +45,131 @@
   color: #02244a;
 }
 
+/* Modern Stats Dashboard */
+.stats-dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+  padding: 0;
+}
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  border-left: 4px solid;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  opacity: 0.1;
+  transition: opacity 0.2s ease;
+}
+
+.stat-card:hover::before {
+  opacity: 0.2;
+}
+
+.stat-correct {
+  border-left-color: #4CAF50;
+}
+.stat-correct::before {
+  background: #4CAF50;
+}
+
+.stat-streak {
+  border-left-color: #FF9800;
+}
+.stat-streak::before {
+  background: #FF9800;
+}
+
+.stat-incorrect {
+  border-left-color: #F44336;
+}
+.stat-incorrect::before {
+  background: #F44336;
+}
+
+.stat-total {
+  border-left-color: #02244a;
+}
+.stat-total::before {
+  background: #02244a;
+}
+
+.stat-icon {
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.stat-correct .stat-icon {
+  background: rgba(76, 175, 80, 0.1);
+  color: #4CAF50;
+}
+
+.stat-streak .stat-icon {
+  background: rgba(255, 152, 0, 0.1);
+  color: #FF9800;
+}
+
+.stat-incorrect .stat-icon {
+  background: rgba(244, 67, 54, 0.1);
+  color: #F44336;
+}
+
+.stat-total .stat-icon {
+  background: rgba(2, 36, 74, 0.1);
+  color: #02244a;
+}
+
+.stat-content {
+  flex: 1;
+}
+
+.stat-value {
+  font-size: 28px;
+  font-weight: 800;
+  color: #02244a;
+  line-height: 1;
+  margin-bottom: 4px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: 'Poppins', sans-serif;
+}
+
 /* Progress bars and stats styling */
 .progress-container {
   margin: 1rem 0;
@@ -55,78 +180,93 @@
   box-shadow: 0 2px 8px rgba(2, 36, 74, 0.08);
 }
 
-.progress-stats {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-}
-
-.stat {
-  text-align: center;
-  position: relative;
-  background-color: #02244a;
-  border: none;
-  border-radius: 6px;
-  padding: 0.75rem;
-  color: #ffffff;
-  min-width: 80px;
-  box-shadow: 0 3px 6px rgba(2, 36, 74, 0.15);
-}
-
-.stat-icon {
-  display: block;
-  font-size: 1.3rem;
-  margin-bottom: 0.25rem;
-}
-
-.stat-label {
-  display: block;
-  font-size: 0.7rem;
-  margin-bottom: 0.25rem;
-  color: #e2e8f0;
-  text-transform: uppercase;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-}
-
-.stat-value {
-  display: block;
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #ffffff;
-}
-
 .progress-bars {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1rem;
+}
+
+.progress-track {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.progress-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #02244a;
+  font-family: 'Poppins', sans-serif;
+}
+
+.progress-count {
+  font-size: 14px;
+  font-weight: 700;
+  color: #02244a;
+  font-family: 'Poppins', sans-serif;
+  background: rgba(2, 36, 74, 0.1);
+  padding: 2px 8px;
+  border-radius: 12px;
+  min-width: 24px;
+  text-align: center;
 }
 
 .progress-bar-container {
-  height: 14px;
+  height: 16px;
   background-color: #e2e8f0;
-  border-radius: 7px;
+  border-radius: 8px;
   overflow: hidden;
-  border: none;
   position: relative;
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .progress-bar {
   height: 100%;
-  transition: width 0.5s ease-in-out;
+  border-radius: 8px;
+  transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
 }
 
 .progress-correct {
-  background-color: #4CAF50;
+  background: linear-gradient(135deg, #4CAF50 0%, #66BB6A 100%);
+  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
 }
 
 .progress-incorrect {
-  background-color: #F44336;
+  background: linear-gradient(135deg, #F44336 0%, #EF5350 100%);
+  box-shadow: 0 2px 8px rgba(244, 67, 54, 0.3);
 }
 
-/* Achievement animation */
-.streak-animation {
+/* Modern MathPoint Achievement System */
+.streak-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -136,66 +276,238 @@
   justify-content: center;
   align-items: center;
   pointer-events: none;
-  z-index: 1200; /* Adjusted to fit in the hierarchy: header(1000), toolbar(1010), popover(1020) */
+  z-index: var(--z-achievement);
+  background-color: rgba(2, 36, 74, 0.15);
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.4s ease-in;
 }
 
-.achievement-box {
+.mathpoint-achievement {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 
+    0 20px 60px rgba(2, 36, 74, 0.2),
+    0 0 0 4px #02244a;
+  text-align: center;
+  max-width: 400px;
+  margin: 0 20px;
+  transform: scale(0.7) translateY(-20px);
+  opacity: 0;
+  animation: achievementSlideIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes achievementSlideIn {
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.achievement-header {
   display: flex;
   align-items: center;
-  background-color: #02244a;
-  border: 2px solid #fb923c;
-  padding: 1.25rem;
-  border-radius: 8px;
-  box-shadow: 0 8px 32px rgba(2, 36, 74, 0.25);
-  max-width: 400px;
-  animation: achievement-appear 2s ease-in-out;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 16px;
 }
 
-.achievement-icon {
-  font-size: 2.5rem;
-  margin-right: 1.25rem;
-  background-color: #fb923c;
-  padding: 1rem;
-  border-radius: 50%;
-  box-shadow: 0 4px 10px rgba(251, 146, 60, 0.3);
-}
-
-.achievement-text {
-  color: #ffffff;
+.achievement-badge {
+  background: linear-gradient(145deg, #fb923c, #fda762);
+  color: white;
+  font-size: 32px;
+  font-weight: 800;
+  font-family: 'Press Start 2P', monospace;
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    0 8px 24px rgba(251, 146, 60, 0.3),
+    inset 0 2px 0 rgba(255, 255, 255, 0.3);
+  letter-spacing: -2px;
 }
 
 .achievement-title {
-  font-size: 0.9rem;
-  color: #fb923c;
-  margin-bottom: 0.5rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-family: var(--font-display);
+  color: #02244a;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
 }
 
 .achievement-message {
-  font-size: 1.5rem;
-  font-weight: bold;
+  color: #02244a;
+  font-size: 24px;
+  font-weight: 800;
+  font-family: 'Press Start 2P', monospace;
+  margin-bottom: 12px;
   letter-spacing: 1px;
-  font-family: var(--font-primary);
+  line-height: 1.2;
 }
 
-@keyframes achievement-appear {
-  0% { 
-    transform: translateY(-50px);
-    opacity: 0;
+.achievement-subtitle {
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 0.5px;
+}
+
+/* Assessment Start Screen */
+.assessment-start-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.start-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.start-icon {
+  font-size: 3rem;
+}
+
+.start-title {
+  color: #02244a;
+  font-size: 2.5rem;
+  font-weight: 800;
+  font-family: 'Press Start 2P', monospace;
+  margin: 0;
+  letter-spacing: 2px;
+}
+
+.start-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.start-subtitle {
+  color: #02244a;
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 1rem;
+}
+
+.start-description {
+  color: #64748b;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 2rem;
+}
+
+.start-features {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.start-feature {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #02244a;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.start-feature .feature-icon {
+  font-size: 1.2rem;
+}
+
+.start-assessment-btn {
+  background: linear-gradient(135deg, #fb923c, #fda762);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 16px 32px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 32px rgba(251, 146, 60, 0.3);
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 auto;
+}
+
+.start-assessment-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(251, 146, 60, 0.4);
+  background: linear-gradient(135deg, #fda762, #fb923c);
+}
+
+.start-assessment-btn:active {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(251, 146, 60, 0.3);
+}
+
+/* Responsive start screen */
+@media (max-width: 768px) {
+  .assessment-start-screen {
+    padding: 2rem 1rem;
+    min-height: 50vh;
   }
-  20% { 
-    transform: translateY(0);
-    opacity: 1;
+  
+  .start-title {
+    font-size: 1.8rem;
   }
-  80% { 
-    transform: translateY(0);
-    opacity: 1;
+  
+  .start-subtitle {
+    font-size: 1.2rem;
   }
-  100% { 
-    transform: translateY(-30px);
-    opacity: 0;
+  
+  .start-description {
+    font-size: 1rem;
+  }
+  
+  .start-features {
+    gap: 1rem;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .start-assessment-btn {
+    padding: 14px 28px;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .start-header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .start-icon {
+    font-size: 2rem;
+  }
+  
+  .start-title {
+    font-size: 1.4rem;
+  }
+  
+  .start-subtitle {
+    font-size: 1.1rem;
   }
 }
 
@@ -234,50 +546,69 @@
   border-bottom: 2px solid #e2e8f0;
 }
 
-/* Navigation buttons styled like MathPoint buttons */
+/* Modern MathPoint Navigation Buttons */
 .navigation {
   display: flex;
   justify-content: space-between;
-  margin: 1.5rem 0;
+  align-items: center;
+  margin: 2rem 0;
+  gap: 1rem;
 }
 
 .nav-button {
-  padding: 0.625rem 1.25rem;
-  background-color: #fb923c;
-  color: #ffffff;
-  border: none;
-  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 12px 24px;
+  background: white;
+  color: #02244a;
+  border: 2px solid #02244a;
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
+  font-size: 14px;
   letter-spacing: 0.5px;
-  font-size: 0.9rem;
   position: relative;
-  box-shadow: 0 4px 10px rgba(251, 146, 60, 0.3);
+  min-width: 120px;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(2, 36, 74, 0.1);
 }
 
 .nav-button:hover:not(:disabled) {
-  background-color: #fda762;
+  background: #02244a;
+  color: white;
   transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(2, 36, 74, 0.2);
 }
 
 .nav-button:active:not(:disabled) {
-  box-shadow: 0 2px 4px rgba(251, 146, 60, 0.3);
-  transform: translateY(1px);
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(2, 36, 74, 0.2);
 }
 
 .nav-button:disabled {
-  background-color: #cbd5e1;
+  background: #f1f5f9;
+  border-color: #e2e8f0;
+  color: #94a3b8;
   cursor: not-allowed;
-  color: #64748b;
+  transform: none;
   box-shadow: none;
 }
 
 .button-icon {
-  display: inline-block;
-  font-size: 0.8rem;
-  margin: 0 0.3rem;
+  font-size: 16px;
+  font-weight: bold;
+  transition: transform 0.2s ease;
+}
+
+.prev-button:hover:not(:disabled) .button-icon {
+  transform: translateX(-2px);
+}
+
+.next-button:hover:not(:disabled) .button-icon {
+  transform: translateX(2px);
 }
 
 /* Animation classes */
@@ -300,9 +631,13 @@
   to { opacity: 0; transform: translateY(-10px); }
 }
 
-/* Ensure focus animation only happens once on load */
-.fade-in.question-container {
-  animation: fadeIn 0.5s ease-in, subtle-focus 2s ease-in-out;
+/* Single animation for question container */
+.question-container.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+.question-container.fade-out {
+  animation: fadeOut 0.3s ease-out;
 }
 
 /* Update the media queries for better responsiveness */
@@ -327,24 +662,28 @@
     margin: 1rem 0;
   }
 
-  .progress-stats {
-    flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 0.5rem;
+  .stats-dashboard {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
 
-  .stat {
-    min-width: 75px;
-    padding: 0.5rem;
-    flex: 1;
+  .stat-card {
+    padding: 12px;
   }
 
   .stat-icon {
-    font-size: 1.1rem;
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+    margin-right: 8px;
+  }
+
+  .stat-value {
+    font-size: 22px;
   }
 
   .stat-label {
-    font-size: 0.65rem;
+    font-size: 11px;
   }
 
   .stat-value {
@@ -367,5 +706,68 @@
   
   .achievement-message {
     font-size: 1.2rem;
+  }
+
+  .stats-dashboard {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .stat-card {
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  .stat-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 16px;
+    margin-right: 6px;
+  }
+
+  .stat-value {
+    font-size: 18px;
+  }
+
+  .stat-label {
+    font-size: 10px;
+  }
+
+  .progress-bar-container {
+    height: 14px;
+  }
+
+  .progress-label {
+    font-size: 12px;
+  }
+
+  .progress-count {
+    font-size: 12px;
+    padding: 1px 6px;
+  }
+
+  .mathpoint-achievement {
+    padding: 24px;
+    margin: 0 16px;
+    max-width: 320px;
+  }
+  
+  .achievement-badge {
+    width: 56px;
+    height: 56px;
+    font-size: 24px;
+  }
+  
+  .achievement-title {
+    font-size: 16px;
+  }
+  
+  .achievement-message {
+    font-size: 18px;
+  }
+
+  .achievement-subtitle {
+    font-size: 12px;
   }
 }

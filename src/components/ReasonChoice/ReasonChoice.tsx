@@ -36,6 +36,7 @@ export const ReasonChoice: React.FC<Props> = ({ question, onAnswer, initialAnswe
         text={prompt}
         className="question-prompt"
         tag="h3"
+        speed={50}
         onComplete={() => setShowOptions(true)}
       />
       

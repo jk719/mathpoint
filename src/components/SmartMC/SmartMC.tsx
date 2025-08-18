@@ -36,6 +36,7 @@ export const SmartMC: React.FC<SmartMCProps> = ({ question, onAnswer, initialAns
         text={prompt}
         className="question-prompt"
         tag="h3"
+        speed={50}
         onComplete={() => setShowChoices(true)}
       />
       

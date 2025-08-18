@@ -28,11 +28,16 @@ export const TypeAnimation: React.FC<TypeAnimationProps> = ({
     if (typeof text !== 'string') {
       console.error('TypeAnimation received non-string text:', text);
       setDisplayText(String(text || ''));
+      setIsComplete(true);
       return;
     }
     
-    setDisplayText('');
-    setIsComplete(false);
+    // Only reset if text actually changed
+    const cleanText = String(text).trim();
+    if (cleanText !== displayText) {
+      setDisplayText('');
+      setIsComplete(false);
+    }
   }, [text]);
   
   // Handle the typing animation

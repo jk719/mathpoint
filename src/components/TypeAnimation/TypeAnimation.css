@@ -1,7 +1,9 @@
 .type-animation {
-  display: inline-block;
+  display: block;
   position: relative;
   cursor: pointer;
+  min-height: 1.2em; /* Prevent layout shifts */
+  line-height: 1.2;
 }
 
 .type-animation .cursor {
@@ -9,10 +11,12 @@
   margin-left: 2px;
   font-weight: 100;
   color: #333;
-  animation: blink 1s infinite;
+  animation: blink 1.2s ease-in-out infinite;
+  will-change: opacity; /* Optimize for animation */
 }
 
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+  0%, 45% { opacity: 1; }
+  50%, 95% { opacity: 0; }
+  100% { opacity: 1; }
 } 
