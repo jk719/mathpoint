@@ -26,6 +26,7 @@ const Header: React.FC = () => {
       setLoginError('Invalid credentials');
     } else {
       setLoginForm({ username: '', password: '' });
+      setMenuOpen(false); // Close mobile menu after successful login
     }
   };
 

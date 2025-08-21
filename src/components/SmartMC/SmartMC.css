@@ -40,3 +40,40 @@
   font-size: 0.9rem;
   margin-bottom: 0.5rem;
 }
+
+/* Mobile optimizations */
+@media (max-width: 480px) {
+  .smart-mc {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .smart-mc .question-prompt {
+    font-size: 1rem; /* Smaller but readable */
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+    flex-shrink: 0; /* Don't shrink question text */
+  }
+  
+  .smart-mc ul {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  
+  .smart-mc li {
+    padding: 0.75rem 0.5rem;
+    margin: 0.3rem 0;
+    font-size: 0.9rem;
+    line-height: 1.3;
+    min-height: 44px; /* Touch-friendly */
+    flex-shrink: 0; /* Prevent answer options from shrinking */
+  }
+  
+  .smartmc-question h3 {
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+  }
+}
