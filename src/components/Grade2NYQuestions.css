@@ -508,70 +508,65 @@
   }
 
   .question-header {
-    /* Simplify header on mobile */
-    flex-direction: row;
-    gap: 0.3rem;
-    margin-bottom: 0.5rem;
+    /* Ultra-simple header on mobile */
+    display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0.4rem;
+    padding: 0.3rem;
     background: linear-gradient(135deg, #02244a, #034a7a);
     color: white;
     border-radius: 6px;
-    margin: -0.25rem -0.25rem 0.5rem -0.25rem;
+    margin: -0.25rem -0.25rem 0.3rem -0.25rem;
   }
 
   .question-count {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     padding: 0;
+    margin: 0;
     background: none;
     color: white;
     border: none;
     box-shadow: none;
     white-space: nowrap;
+    font-weight: 600;
   }
 
-  .math-icon, .formula-icon {
-    font-size: 1.2rem;
-    margin: 0;
-    flex-shrink: 0;
-    color: #fb923c;
-  }
+  /* Icons removed for mobile - more space for content */
 
   .stats-dashboard {
-    /* Show compact stats on mobile */
+    /* Ultra-compact stats on mobile */
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 3px;
-    margin-bottom: 0.5rem;
+    gap: 2px;
+    margin-bottom: 0.25rem;
   }
 
   .stat-card {
-    padding: 4px 2px;
-    border-radius: 4px;
+    padding: 2px 1px;
+    border-radius: 3px;
     flex-direction: column;
     text-align: center;
-    min-height: 35px; /* Very compact */
-    font-size: 0.75rem;
+    min-height: 24px; /* Ultra compact */
+    font-size: 0.65rem;
   }
 
   .stat-icon {
-    width: 16px;
-    height: 16px;
-    font-size: 10px;
-    margin: 0 0 2px 0;
+    width: 12px;
+    height: 12px;
+    font-size: 8px;
+    margin: 0;
   }
 
   .stat-value {
-    font-size: 14px;
+    font-size: 11px;
     font-weight: 700;
     line-height: 1;
   }
 
   .stat-label {
-    font-size: 7px;
+    font-size: 6px;
     line-height: 1;
-    margin-top: 1px;
+    margin: 0;
   }
 
   .progress-container {
@@ -589,9 +584,9 @@
 
   .question-container {
     padding: 0.75rem;
-    margin: 0.25rem 0;
+    margin: 0.1rem 0;
     flex: 1;
-    min-height: calc(100vh - 420px); /* Dynamic height based on available space */
+    min-height: calc(100vh - 380px); /* More space due to smaller stats and header */
     background: white;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);

@@ -296,9 +296,7 @@ export const Grade2NYQuestions: React.FC = () => {
   return (
     <div className="question-demo mathpoint-theme">
       <div className="question-header">
-        <span className="math-icon">🧮</span>
-        <p className="question-count">MathPoint Assessment - Question {currentIndex + 1} of {questionBank.length}</p>
-        <span className="formula-icon">🎯</span>
+        <p className="question-count">Question {currentIndex + 1} of {questionBank.length}</p>
       </div>
       
       {/* Modern Stats Dashboard */}
