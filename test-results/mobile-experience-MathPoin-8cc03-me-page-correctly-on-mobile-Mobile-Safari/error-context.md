@@ -1,0 +1,49 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - img [ref=e7]
+      - generic [ref=e19]:
+        - generic [ref=e20]: MATHPOINT
+        - generic [ref=e21]: WHERE MATH MEETS MASTERY
+    - button "Toggle menu" [ref=e22] [cursor=pointer]: ☰
+    - generic:
+      - generic [ref=e23]:
+        - link "Facebook" [ref=e24]:
+          - /url: "#"
+          - img [ref=e25]
+        - link "Instagram" [ref=e27]:
+          - /url: "#"
+          - img [ref=e28]
+        - link "TikTok" [ref=e30]:
+          - /url: "#"
+          - img [ref=e31]
+      - generic [ref=e34]:
+        - textbox "Username" [ref=e35]
+        - textbox "Password" [ref=e36]
+        - button "Login" [ref=e37] [cursor=pointer]
+  - generic [ref=e38]:
+    - heading "Welcome to MathPoint" [level=1] [ref=e39]
+    - heading "Where Math Meets Mastery" [level=2] [ref=e40]
+    - paragraph [ref=e41]: Master mathematics from elementary through high school with our comprehensive assessment platform and interactive learning tools designed for grades 2-12.
+    - generic [ref=e42]:
+      - generic [ref=e43]:
+        - generic [ref=e44]: 🧮
+        - heading "Adaptive Math Assessments" [level=3] [ref=e45]
+        - paragraph [ref=e46]: Comprehensive math evaluations covering all grade levels (2-12) with real-time feedback, progress tracking, and personalized learning paths.
+      - generic [ref=e47]:
+        - generic [ref=e48]: 🎯
+        - heading "Smart Progress Analytics" [level=3] [ref=e49]
+        - paragraph [ref=e50]: Advanced streak tracking, achievement systems, and detailed performance insights to motivate and guide mathematical growth.
+      - generic [ref=e51]:
+        - generic [ref=e52]: 🎨
+        - heading "Interactive Whiteboard" [level=3] [ref=e53]
+        - paragraph [ref=e54]: Collaborative digital workspace perfect for visual problem-solving, mathematical exploration, and creative learning experiences.
+      - generic [ref=e55]:
+        - generic [ref=e56]: 🚀
+        - heading "Modern Learning Experience" [level=3] [ref=e57]
+        - paragraph [ref=e58]: Sleek, responsive design with gamified elements, instant feedback, and engaging animations that make math fun and accessible.
+    - paragraph [ref=e59]: 🔐 Please log in using the form above to start your mathematical journey.
+```

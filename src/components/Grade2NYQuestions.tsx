@@ -101,7 +101,20 @@ export const Grade2NYQuestions: React.FC = () => {
   const [streakMessage, setStreakMessage] = useState('');
   const [streakIcon, setStreakIcon] = useState('');
   const [hasStarted, setHasStarted] = useState(false);
+  const [showMobileStats, setShowMobileStats] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const questionContainerRef = useRef<HTMLDivElement>(null);
+
+  // Check if mobile on mount and resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 480);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const currentQuestion = questionBank[currentIndex];
 
@@ -374,6 +387,93 @@ export const Grade2NYQuestions: React.FC = () => {
             <div className="achievement-message">{streakMessage}</div>
             <div className="achievement-subtitle">Keep up the excellent work!</div>
           </div>
+        </div>
+      )}
+      
+      {/* Mobile Stats Toggle Button */}
+      {isMobile && (
+        <button 
+          className="mobile-stats-toggle"
+          onClick={() => setShowMobileStats(true)}
+        >
+          📊
+        </button>
+      )}
+      
+      {/* Mobile Stats Overlay */}
+      {showMobileStats && (
+        <div 
+          className="mobile-stats-overlay show"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setShowMobileStats(false);
+          }}
+        >
+        <button 
+          className="mobile-stats-close"
+          onClick={() => setShowMobileStats(false)}
+        >
+          ×
+        </button>
+        
+        <div className="stats-dashboard">
+          <div className="stat-card stat-correct">
+            <div className="stat-icon">✓</div>
+            <div className="stat-content">
+              <div className="stat-value">{stats.correct}</div>
+              <div className="stat-label">Correct</div>
+            </div>
+          </div>
+          <div className="stat-card stat-streak">
+            <div className="stat-icon">⚡</div>
+            <div className="stat-content">
+              <div className="stat-value">{stats.streak}</div>
+              <div className="stat-label">Streak</div>
+            </div>
+          </div>
+          <div className="stat-card stat-incorrect">
+            <div className="stat-icon">✗</div>
+            <div className="stat-content">
+              <div className="stat-value">{stats.incorrect}</div>
+              <div className="stat-label">Missed</div>
+            </div>
+          </div>
+          <div className="stat-card stat-total">
+            <div className="stat-icon">#</div>
+            <div className="stat-content">
+              <div className="stat-value">{stats.total}</div>
+              <div className="stat-label">Total</div>
+            </div>
+          </div>
+        </div>
+        
+        <div className="progress-container">
+          <div className="progress-bars">
+            <div className="progress-track">
+              <div className="progress-header">
+                <span className="progress-label">✅ Correct</span>
+                <span className="progress-count">{stats.correct}</span>
+              </div>
+              <div className="progress-bar-container">
+                <div 
+                  className="progress-bar progress-correct"
+                  style={{ width: `${Math.min(100, (stats.correct / 20) * 100)}%` }}
+                />
+              </div>
+            </div>
+            <div className="progress-track">
+              <div className="progress-header">
+                <span className="progress-label">❌ Incorrect</span>
+                <span className="progress-count">{stats.incorrect}</span>
+              </div>
+              <div className="progress-bar-container">
+                <div 
+                  className="progress-bar progress-incorrect"
+                  style={{ width: `${Math.min(100, (stats.incorrect / 20) * 100)}%` }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
         </div>
       )}
       

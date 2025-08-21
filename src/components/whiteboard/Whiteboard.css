@@ -462,9 +462,9 @@
   }
   
   .whiteboard-canvas {
-    max-height: 100vh;
+    max-height: calc(100vh - 200px); /* Account for header, tabs, and toolbar */
     min-height: 60vh;
-    height: 100dvh;
+    height: auto;
     border-radius: 6px;
   }
   

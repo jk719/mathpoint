@@ -1,0 +1,51 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - img [ref=e7]
+      - generic [ref=e19]:
+        - generic [ref=e20]: MATHPOINT
+        - generic [ref=e21]: WHERE MATH MEETS MASTERY
+    - button "Toggle menu" [expanded] [ref=e22] [cursor=pointer]: ✕
+    - generic [ref=e23]:
+      - generic [ref=e24]:
+        - link "Facebook" [ref=e25]:
+          - /url: "#"
+          - img [ref=e26]
+        - link "Instagram" [ref=e28]:
+          - /url: "#"
+          - img [ref=e29]
+        - link "TikTok" [ref=e31]:
+          - /url: "#"
+          - img [ref=e32]
+      - generic [ref=e34]:
+        - generic [ref=e35]: testuser
+        - button "Logout" [ref=e36] [cursor=pointer]
+  - generic [ref=e37]:
+    - button "🧮 Math Assessment" [ref=e38] [cursor=pointer]
+    - button "🎨 Whiteboard" [ref=e39] [cursor=pointer]
+  - generic [ref=e43]:
+    - generic [ref=e44]:
+      - generic [ref=e45]: 🧮
+      - heading "MathPoint Assessment" [level=2] [ref=e46]
+      - generic [ref=e47]: 🎯
+    - generic [ref=e48]:
+      - heading "Ready to Test Your Math Skills?" [level=3] [ref=e49]
+      - paragraph [ref=e50]:
+        - text: This assessment contains
+        - strong [ref=e51]: 29 questions
+        - text: covering various mathematical concepts. Take your time and do your best!
+      - generic [ref=e52]:
+        - generic [ref=e53]:
+          - generic [ref=e54]: ⚡
+          - generic [ref=e55]: Track your streak
+        - generic [ref=e56]:
+          - generic [ref=e57]: 📊
+          - generic [ref=e58]: Real-time progress
+        - generic [ref=e59]:
+          - generic [ref=e60]: 🎯
+          - generic [ref=e61]: Instant feedback
+      - button "🚀 Start Assessment" [ref=e62] [cursor=pointer]
+```

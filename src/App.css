@@ -111,8 +111,10 @@
     padding: 0.25rem;
     width: 100%;
     margin-top: 0;
-    height: calc(100vh - 120px); /* Adjust for header and tabs height */
+    height: auto; /* Let content determine height on mobile */
     overflow-y: auto;
+    min-height: calc(100vh - 120px); /* Minimum viewport height */
+    max-height: none; /* Remove max-height constraint */
   }
 }
 
@@ -223,7 +225,7 @@
   }
   
   .features {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
     gap: 1.5rem;
   }
   
@@ -299,6 +301,8 @@
   @media (max-width: 480px) {
     .app-content {
       height: calc(100vh - 120px - env(safe-area-inset-bottom));
+      min-height: 300px;
+      max-height: calc(100vh - 120px - env(safe-area-inset-bottom));
     }
   }
 }
