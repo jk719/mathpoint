@@ -26,7 +26,7 @@
 }
 
 .logo-main {
-  font-family: 'Press Start 2P', 'Poppins', sans-serif;
+  font-family: 'Press Start 2P', 'Orbitron', sans-serif;
   font-size: 2.1rem;
   color: #fff;
   letter-spacing: 2px;
@@ -40,7 +40,7 @@
 .logo-tag {
   font-size: 0.8rem;
   color: #fb923c; /* Orange accent */
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   font-weight: 600;
   margin-top: -2px;
   letter-spacing: 1.2px;
@@ -72,7 +72,7 @@
 .cta-btn {
   background: #fb923c; /* Orange */
   color: #fff;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   font-weight: 700;
   font-size: 1rem;
   border: none;
@@ -235,7 +235,7 @@
   border-radius: 4px;
   padding: 8px 12px;
   color: white;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   font-size: 0.9rem;
   min-width: 120px;
   transition: all 0.2s ease;
@@ -258,7 +258,7 @@
   border: none;
   border-radius: 4px;
   padding: 8px 16px;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   font-weight: 600;
   font-size: 0.9rem;
   cursor: pointer;
@@ -274,7 +274,7 @@
 .login-error {
   color: #ff6b6b;
   font-size: 0.8rem;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   text-align: center;
 }
 
@@ -286,7 +286,7 @@
 
 .user-email {
   color: white;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   font-size: 0.9rem;
 }
 
@@ -296,7 +296,7 @@
   border: 1px solid #fb923c;
   border-radius: 4px;
   padding: 6px 12px;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   font-weight: 600;
   font-size: 0.9rem;
   cursor: pointer;

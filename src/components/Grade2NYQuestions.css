@@ -126,7 +126,7 @@
   width: 40px;
   height: 40px;
   border-radius: 8px;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Orbitron', sans-serif;
 }
 
 .stat-correct .stat-icon {
@@ -159,7 +159,7 @@
   color: #02244a;
   line-height: 1;
   margin-bottom: 4px;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Orbitron', sans-serif;
 }
 
 .stat-label {
@@ -168,7 +168,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Orbitron', sans-serif;
 }
 
 /* Progress bars and stats styling */
@@ -203,14 +203,14 @@
   font-size: 14px;
   font-weight: 600;
   color: #02244a;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Orbitron', sans-serif;
 }
 
 .progress-count {
   font-size: 14px;
   font-weight: 700;
   color: #02244a;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   background: rgba(2, 36, 74, 0.1);
   padding: 2px 8px;
   border-radius: 12px;
@@ -335,7 +335,7 @@
   color: #02244a;
   font-size: 20px;
   font-weight: 700;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   margin: 0;
 }
 
@@ -353,7 +353,7 @@
   color: #64748b;
   font-size: 14px;
   font-weight: 600;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   letter-spacing: 0.5px;
 }
 
@@ -398,7 +398,7 @@
   color: #02244a;
   font-size: 1.5rem;
   font-weight: 700;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   margin-bottom: 1rem;
 }
 
@@ -406,7 +406,7 @@
   color: #64748b;
   font-size: 1.1rem;
   line-height: 1.6;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   margin-bottom: 2rem;
 }
 
@@ -423,7 +423,7 @@
   align-items: center;
   gap: 0.5rem;
   color: #02244a;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   font-weight: 600;
   font-size: 1rem;
 }
@@ -440,7 +440,7 @@
   padding: 16px 32px;
   font-size: 1.2rem;
   font-weight: 700;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 8px 32px rgba(251, 146, 60, 0.3);
@@ -729,7 +729,7 @@
 }
 
 .question-container h3 {
-  font-family: 'Press Start 2P', 'Poppins', sans-serif;
+  font-family: 'Press Start 2P', 'Orbitron', sans-serif;
   letter-spacing: 1px;
   font-size: 1.1rem;
   color: #02244a;
@@ -758,7 +758,7 @@
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   font-weight: 600;
   font-size: 14px;
   letter-spacing: 0.5px;
