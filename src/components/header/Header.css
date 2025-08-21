@@ -97,16 +97,20 @@
   justify-content: center;
   width: 44px;
   height: 44px;
-  background: transparent;
-  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
   color: white;
   font-size: 24px;
   cursor: pointer;
   transition: all 0.2s ease;
+  z-index: 1001;
 }
 
 .mobile-menu-toggle:hover {
   color: #fb923c;
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #fb923c;
 }
 
 /* Hide mobile menu toggle on desktop */
@@ -153,7 +157,9 @@
   
   .header-right {
     width: 100%;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     max-height: 0;
     overflow: hidden;
     opacity: 0;
@@ -163,9 +169,12 @@
   }
   
   .header-right.menu-open {
-    max-height: 100px;
+    max-height: 300px;
     opacity: 1;
     margin-top: 1rem;
+    padding: 1rem;
+    background: rgba(2, 36, 74, 0.95);
+    border-radius: 8px;
   }
 }
 
@@ -174,7 +183,8 @@
     padding: 12px;
     width: 100vw;
     box-sizing: border-box;
-    height: 70px;
+    min-height: 70px;
+    height: auto;
   }
   
   .mathpoint-logo-row {
@@ -328,18 +338,34 @@
 }
 
 @media (max-width: 480px) {
+  .header-right.menu-open {
+    max-height: 400px;
+    padding: 1rem;
+  }
+
   .login-fields {
     flex-direction: column;
     width: 100%;
-    gap: 0.5rem;
+    gap: 0.75rem;
   }
   
   .login-input {
     width: 100%;
     min-width: unset;
+    padding: 10px 12px;
+    font-size: 16px; /* Prevents zoom on iOS */
   }
   
   .login-btn {
     width: 100%;
+    padding: 12px;
+    font-size: 16px; /* Prevents zoom on iOS */
+    min-height: 44px; /* Touch-friendly */
+  }
+
+  .social-icons {
+    margin-bottom: 1rem;
+    justify-content: center;
+    display: flex;
   }
 }
