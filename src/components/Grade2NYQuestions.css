@@ -534,39 +534,48 @@
   /* Icons removed for mobile - more space for content */
 
   .stats-dashboard {
-    /* Ultra-compact stats on mobile */
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2px;
-    margin-bottom: 0.25rem;
+    /* Single line stats on mobile */
+    display: flex;
+    flex-direction: row;
+    gap: 1px;
+    margin-bottom: 0.2rem;
+    padding: 0;
   }
 
   .stat-card {
-    padding: 2px 1px;
-    border-radius: 3px;
-    flex-direction: column;
+    padding: 1px;
+    border-radius: 2px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    min-height: 24px; /* Ultra compact */
-    font-size: 0.65rem;
+    min-height: 18px; /* Extremely compact single line */
+    font-size: 0.6rem;
+    flex: 1; /* Equal width for all 4 stats */
+    gap: 2px;
   }
 
   .stat-icon {
-    width: 12px;
-    height: 12px;
-    font-size: 8px;
+    width: 8px;
+    height: 8px;
+    font-size: 6px;
     margin: 0;
+    flex-shrink: 0;
   }
 
   .stat-value {
-    font-size: 11px;
+    font-size: 9px;
     font-weight: 700;
     line-height: 1;
+    margin: 0 1px;
   }
 
   .stat-label {
-    font-size: 6px;
+    font-size: 5px;
     line-height: 1;
     margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.2px;
   }
 
   .progress-container {
@@ -586,7 +595,7 @@
     padding: 0.75rem;
     margin: 0.1rem 0;
     flex: 1;
-    min-height: calc(100vh - 380px); /* More space due to smaller stats and header */
+    min-height: calc(100vh - 360px); /* Even more space with single-line stats */
     background: white;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
